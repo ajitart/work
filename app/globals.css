@@ -134,6 +134,20 @@ img, video {
   cursor: none !important;
 }
 
+/* Editing uses the normal system cursor. */
+html[data-editing],
+html[data-editing] * {
+  cursor: auto !important;
+}
+
+html[data-editing] :is(a, button, select, label, [role="tab"]) {
+  cursor: pointer !important;
+}
+
+html[data-editing] :is(input, textarea) {
+  cursor: text !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { site } from "@/lib/content";
 import { gsap, prefersReducedMotion } from "@/lib/motion";
+import { SETTINGS_EVENT } from "@/components/editor/events";
 import styles from "./shell.module.css";
 
 export const GOTO_EVENT = "journey:goto";
@@ -141,7 +142,18 @@ export function Chrome() {
           Ajit Shitole · Design Lead, CCTech ·{" "}
           <a href="https://ajitart.github.io/resume/" className={styles.inlineLink}>
             Resume
-          </a>
+          </a>{" "}
+          ·{" "}
+          <button
+            type="button"
+            className={styles.inlineLink}
+            onClick={() => {
+              setOpen(false);
+              window.dispatchEvent(new Event(SETTINGS_EVENT));
+            }}
+          >
+            Settings
+          </button>
         </p>
       </div>
     </>

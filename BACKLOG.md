@@ -12,6 +12,7 @@
 ## In progress
 
 ## Done
+- Edit images/videos on the live site: Settings (GitHub token) + Edit button, publishes via GitHub (2026-10-05)
 - Scaffold project folder (2026-10-05)
 - Stages 1–8: particle opening, click-to-timeline transition, four chapters, selected work,
   project template, archive with filters, the making, closing particles (2026-10-05)

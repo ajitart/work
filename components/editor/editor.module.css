@@ -396,3 +396,20 @@
     padding: 0 16px 48px;
   }
 }
+
+.close {
+  padding: 10px 14px;
+  border: 1px solid #2c2c2c;
+  border-radius: 6px;
+  color: var(--white);
+}
+
+.close:hover {
+  border-color: var(--white);
+}
+
+.badgeNew {
+  left: auto;
+  right: 8px;
+  background: var(--white);
+}

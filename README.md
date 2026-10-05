@@ -18,28 +18,29 @@ npm run dev
 ```
 
 - Site: http://localhost:3000/work/
-- **Studio** (add images and videos): http://localhost:3000/work/studio/
+- **Studio** (add images and videos locally): http://localhost:3000/work/studio/
 
-The Studio and its upload API exist only in `npm run dev`. They are never part of the published site.
+The Studio and its upload API exist only in `npm run dev`. On the live site, editing works through Settings → Edit (below).
 
-## Adding images, GIFs and videos to a project
+## Adding and deleting images, GIFs and videos
 
-1. Run `npm run dev` and open `/work/studio/`.
-2. Pick a project on the left (or **Add project**).
-3. Drop files onto the drop zone: JPG, PNG, GIF, WebP, AVIF, MP4, WebM or MOV, up to 95 MB each.
-   - Files are saved to `public/media/projects/<slug>/` and recorded in `content/projects.json` straight away.
-   - The first file becomes the cover; **Use as cover** changes it.
-4. For each file choose:
-   - **Place in page**: under the cover, inside one of the eight story beats (The problem … The outcome), or the gallery strip.
-   - **Size**: full column, edge to edge, half (two side by side), or cropped detail.
-   - Videos play muted on a loop, like a GIF. Tick **Show player controls and sound** for a normal player.
-5. Fill in the details and the case-study text, then **Save changes** (⌘S).
-6. Commit and push. The GitHub Action builds and publishes the site.
+### On the live site (any computer or phone)
 
-Removing a file moves it to `public/media/_trash/` (not committed), so nothing is lost by accident.
-Every save keeps the previous JSON in `content/.backup/`.
+1. Open ajitart.github.io/work → **Index** → **Settings**.
+2. Follow the steps there to create a GitHub fine-grained token for `ajitart/work`
+   (Contents: Read and write; Actions: Read-only), paste it, and press **Connect**. This is a one-time step per browser.
+3. An **Edit** button appears at the bottom right of every page (only in your browser). On a project page it opens that project.
+4. Drop JPG, PNG, GIF, WebP, AVIF, MP4, WebM or MOV files (up to 95 MB each), then set each file's
+   placement (under the cover, one of the eight story beats, or the gallery strip), size, caption, cover, order, or **Delete** it.
+5. Press **Publish**. Everything goes to GitHub as one commit, and the site rebuilds itself; the editor says when it's live (about a minute).
 
-The Making tab works the same way for sketches, wireframes, rejected concepts and so on.
+The token is stored only in that browser. **Settings → Turn off editing on this browser** removes it.
+Deleted files stay recoverable in the repository's git history.
+
+### On this computer (Studio)
+
+`npm run dev`, then open http://localhost:3000/work/studio/. It's the same editor; **Save** writes to this folder
+(removed files go to `public/media/_trash/`, previous JSON to `content/.backup/`). Commit and push to publish.
 
 ## Where things live
 
@@ -53,7 +54,7 @@ The Making tab works the same way for sketches, wireframes, rejected concepts an
 | Home sections | `components/home/` |
 | Project page template | `components/project/` |
 | Header, Index overlay, cursor, page transition | `components/shell/` |
-| Studio (dev only) | `app/studio/page.dev.tsx`, `app/api/studio/*/route.dev.ts` |
+| Editor (live Edit button and local Studio) | `components/editor/`, `app/studio/page.dev.tsx`, `app/api/studio/*/route.dev.ts` |
 
 A project with `"featured": true` appears in Selected work; every project appears in the Archive.
 Empty fields show as clearly marked placeholders, for example `[Project description]`. Nothing is invented.

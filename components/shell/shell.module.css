@@ -151,7 +151,8 @@
   pointer-events: none;
 }
 
-:global(html:not([data-cursor="on"])) .cursor {
+:global(html:not([data-cursor="on"])) .cursor,
+:global(html[data-editing]) .cursor {
   opacity: 0;
 }
 
