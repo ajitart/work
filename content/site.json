@@ -25,11 +25,12 @@
     {
       "id": "ch-1",
       "motion": "reveal",
+      "hoverHighlight": true,
       "period": "2003 — 2013",
       "from": 2003,
       "to": 2013,
       "lines": ["Making", "things", "look good."],
-      "disciplines": ["Art direction", "Advertising", "Campaigns", "Print", "Photography"],
+      "disciplines": ["Art direction", "Advertising", "Campaigns", "Print"],
       "roles": [
         { "role": "Senior Art Director", "org": "Jupiter Design Studio", "years": "2004 – 2006" },
         { "role": "Group Head", "org": "Thoughtrains Design", "years": "2006 – 2008" },
@@ -38,11 +39,13 @@
         { "role": "Art Director", "org": "3 Brothers & Fils", "years": "2011" },
         { "role": "Senior Art Director", "org": "GreenApple Design", "years": "2012 – 2013" }
       ],
-      "note": "Diploma in Applied Arts, L. S. Raheja School of Art, Mumbai. Abby shortlist for Westside direct marketing, 2010."
+      "note": "Abby shortlist for Westside direct marketing, 2010.",
+      "noteIcon": "award"
     },
     {
       "id": "ch-2",
       "motion": "drift",
+      "hoverHighlight": true,
       "period": "2013 — 2021",
       "from": 2013,
       "to": 2021,
@@ -53,11 +56,13 @@
         { "role": "Associate Creative Director", "org": "The Digital Street", "years": "2017 – 2019" },
         { "role": "Associate Creative Director", "org": "VMLY&R", "years": "2019 – 2021" }
       ],
-      "note": "#DarkTravelTales for Reliance General Insurance won two Kyoorius Blue Elephants in 2016 and Ogilvy’s Finest in 2015."
+      "note": "#DarkTravelTales for Reliance General Insurance won two Kyoorius Blue Elephants in 2016 and Ogilvy’s Finest in 2015.",
+      "noteIcon": "award"
     },
     {
       "id": "ch-3",
       "motion": "settle",
+      "hoverHighlight": true,
       "period": "2021 — 2025",
       "from": 2021,
       "to": 2025,
@@ -73,11 +78,12 @@
     {
       "id": "ch-4",
       "motion": "grid",
+      "hoverHighlight": true,
       "period": "2025 — Now",
       "from": 2025,
       "to": 2026,
       "lines": ["Designing", "systems."],
-      "disciplines": ["Enterprise UX", "Solar", "Wind", "Digital platforms", "Design systems", "AI"],
+      "disciplines": ["Enterprise UX", "Solar & wind Domain", "Design System", "Claude AI"],
       "roles": [
         { "role": "Design Lead", "org": "CCTech", "years": "Feb 2025 – Present" }
       ],

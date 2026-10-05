@@ -113,7 +113,14 @@ function Chapter({ chapter, index }: { chapter: ChapterData; index: number }) {
   const sentence = chapter.lines.join(" ");
 
   return (
-    <section ref={root} id={chapter.id} className={styles.chapter} data-motion={chapter.motion} aria-labelledby={`${chapter.id}-h`}>
+    <section
+      ref={root}
+      id={chapter.id}
+      className={styles.chapter}
+      data-motion={chapter.motion}
+      data-highlight={chapter.hoverHighlight ? "" : undefined}
+      aria-labelledby={`${chapter.id}-h`}
+    >
       <div className={styles.top}>
         <p className={`meta ${styles.no}`}>Chapter {String(index + 1).padStart(2, "0")}</p>
         <p className={`meta ${styles.period}`}>{chapter.period}</p>
@@ -163,13 +170,25 @@ function Chapter({ chapter, index }: { chapter: ChapterData; index: number }) {
             ))}
           </ol>
           {chapter.note && (
-            <p className={styles.note} data-detail>
-              {chapter.note}
+            <p className={styles.note} data-detail data-icon={chapter.noteIcon}>
+              {chapter.noteIcon === "award" && <AwardIcon />}
+              <span>{chapter.note}</span>
             </p>
           )}
         </div>
       </div>
     </section>
+  );
+}
+
+/** A small award rosette with ribbons, drawn in line to match the type. */
+function AwardIcon() {
+  return (
+    <svg className={styles.icon} viewBox="0 0 24 24" aria-label="Award" role="img">
+      <circle cx="12" cy="9" r="6" />
+      <circle cx="12" cy="9" r="2.6" />
+      <path d="M8.2 13.6 6.5 21l5.5-2.6 5.5 2.6-1.7-7.4" />
+    </svg>
   );
 }
 

@@ -60,6 +60,8 @@ export interface MakingItem {
 export interface Chapter {
   id: string;
   motion: "reveal" | "drift" | "settle" | "grid";
+  /** Every line of text except the headline lights up yellow under the pointer. */
+  hoverHighlight?: boolean;
   period: string;
   from: number;
   to: number;
@@ -67,6 +69,8 @@ export interface Chapter {
   disciplines: string[];
   roles: { role: string; org: string; years: string }[];
   note: string;
+  /** Optional icon in front of the note, e.g. "award" for recognition. */
+  noteIcon?: "award";
 }
 
 export interface SiteContent {

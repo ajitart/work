@@ -119,6 +119,24 @@
   max-width: 54ch;
 }
 
+.note[data-icon] {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--white);
+}
+
+.icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  margin-top: -2px;
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 1.3;
+  stroke-linejoin: round;
+}
+
 @media (max-width: 760px) {
   .details {
     grid-template-columns: 1fr;
@@ -195,4 +213,30 @@
   width: 1px;
   height: 7px;
   background: var(--grey-dim);
+}
+
+/* Hover highlight: each line of text (not the headline) turns brand yellow under the pointer. */
+[data-highlight] .top p,
+[data-highlight] .disciplines li,
+[data-highlight] .roles li,
+[data-highlight] .roles li *,
+[data-highlight] .note,
+[data-highlight] .icon {
+  transition: color 0.3s var(--ease), stroke 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+[data-highlight] .top p:hover,
+[data-highlight] .disciplines li:hover,
+[data-highlight] .roles li:hover,
+[data-highlight] .roles li:hover *,
+[data-highlight] .note:hover {
+  color: var(--accent);
+}
+
+[data-highlight] .roles li:hover {
+  border-bottom-color: var(--accent);
+}
+
+[data-highlight] .note:hover .icon {
+  stroke: var(--accent);
 }

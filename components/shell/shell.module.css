@@ -170,6 +170,14 @@
   border-radius: 50%;
   background: var(--white);
   mix-blend-mode: difference;
+  transition: background-color 0.3s var(--ease);
+}
+
+/* Over anything clickable the dot turns yellow too. */
+:global(html[data-cursor-state="hover"]) .dot,
+:global(html[data-cursor-state="label"]) .dot {
+  background: var(--accent);
+  mix-blend-mode: normal;
 }
 
 .ring {
@@ -193,15 +201,17 @@
 }
 
 .ring[data-state="hover"]::before {
-  transform: scale(1);
+  transform: scale(1.25);
   opacity: 1;
+  border-color: var(--accent);
+  background: rgba(255, 196, 0, 0.18);
 }
 
 .ring[data-state="label"]::before {
   transform: scale(2.3);
   opacity: 1;
-  background: var(--white);
-  border-color: var(--white);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 .ring[data-down]::before {

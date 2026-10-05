@@ -38,7 +38,9 @@ export function Cursor() {
         "a, button, [role='button'], input, select, textarea, label, [data-cursor]",
       );
       const label = target?.dataset.cursor ?? "";
-      ring.current!.dataset.state = label ? "label" : target ? "hover" : "idle";
+      const state = label ? "label" : target ? "hover" : "idle";
+      ring.current!.dataset.state = state;
+      root.dataset.cursorState = state;
       if (word.current && word.current.textContent !== label) word.current.textContent = label;
     };
     const leave = () => {
@@ -65,6 +67,7 @@ export function Cursor() {
     return () => {
       cancelAnimationFrame(raf);
       root.classList.remove("has-custom-cursor");
+      delete root.dataset.cursorState;
       window.removeEventListener("pointermove", move);
       document.removeEventListener("pointerleave", leave);
       window.removeEventListener("pointerdown", down);
