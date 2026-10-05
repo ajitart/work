@@ -64,7 +64,11 @@
 }
 
 .filter:hover {
-  color: var(--white);
+  color: var(--accent);
+}
+
+.filter:hover::before {
+  border-color: var(--accent);
 }
 
 .filter[aria-pressed="true"] {
@@ -182,6 +186,12 @@
 
 .name {
   color: var(--white);
+  transition: color 0.3s var(--ease);
+}
+
+.card:hover .name,
+.card:focus-visible .name {
+  color: var(--accent);
 }
 
 .sub {
@@ -196,6 +206,11 @@
 .reset {
   color: var(--white);
   border-bottom: 1px solid var(--grey-dim);
+}
+
+.reset:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 @media (max-width: 1000px) {

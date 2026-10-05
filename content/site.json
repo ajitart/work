@@ -1,20 +1,23 @@
 {
   "intro": {
-    "name": "AJIT",
+    "name": "AJEET",
     "line": "20+ years of making",
     "years": "2003 — 2026",
     "cta": "Click to begin"
   },
 
   "timeline": {
-    "start": 2003,
+    "start": 2004,
     "end": 2026,
     "phases": [
-      { "year": 2003, "title": "Art direction" },
-      { "year": 2010, "title": "Digital" },
-      { "year": 2015, "title": "Creative leadership" },
-      { "year": 2021, "title": "Product design" },
-      { "year": 2026, "title": "Design lead / Product / AI" }
+      { "year": 2004, "title": "Designer" },
+      { "year": 2008, "title": "Art Director" },
+      { "year": 2012, "title": "Sr. Art Director" },
+      { "year": 2017, "title": "Creative Controller" },
+      { "year": 2019, "title": "Associate Creative Director" },
+      { "year": 2021, "title": "Creative Director" },
+      { "year": 2023, "title": "Creative Solution Lead" },
+      { "year": 2026, "title": "Product Designer" }
     ]
   },
 

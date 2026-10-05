@@ -95,7 +95,7 @@
 
 .indexList:hover .indexItem:hover,
 .indexItem:focus-visible {
-  color: var(--white);
+  color: var(--accent);
   font-variation-settings: "wdth" 125;
 }
 
@@ -121,7 +121,8 @@
 }
 
 .inlineLink:hover {
-  border-color: var(--white);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 /* ---------- page transition plate ---------- */

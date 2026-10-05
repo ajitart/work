@@ -56,11 +56,13 @@
   font-variation-settings: "wdth" 120;
   border-bottom: 1px solid var(--grey-dim);
   line-height: 1.1;
-  transition: border-color 0.3s var(--ease);
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 
-a.link:hover {
-  border-color: var(--white);
+a.link:hover,
+a.link:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 .foot {
@@ -79,6 +81,7 @@ a.link:hover {
 }
 
 .restart:hover {
+  color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 4px;
 }

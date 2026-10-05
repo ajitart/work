@@ -71,7 +71,7 @@
 }
 
 .list[data-active] .item[data-on] .title {
-  color: var(--white);
+  color: var(--accent);
   font-variation-settings: "wdth" 118;
 }
 

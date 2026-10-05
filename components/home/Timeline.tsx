@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { site } from "@/lib/content";
+import { site, timelineNodes, timelineYearAt } from "@/lib/content";
 import { field, journey } from "@/lib/field";
 import { gsap, prefersReducedMotion, ScrollTrigger } from "@/lib/motion";
 import styles from "./timeline.module.css";
 
 const { start, end, phases } = site.timeline;
-const fractions = phases.map((p) => (p.year - start) / (end - start));
+const fractions = timelineNodes;
 /** Share of the pinned scroll used to travel the line; the rest holds on 2026. */
 const TRAVEL = 0.88;
 
@@ -42,15 +42,25 @@ export function Timeline({ revealDelay }: { revealDelay: number | null }) {
           gsap.set(t, { autoAlpha: on ? 1 : 0 });
           return;
         }
-        if (on) gsap.fromTo(t, { autoAlpha: 0, yPercent: k > prev ? 40 : -40, "--wdth": 70 }, { autoAlpha: 1, yPercent: 0, "--wdth": 100, duration: 0.8 });
-        else if (k === prev) gsap.to(t, { autoAlpha: 0, yPercent: k < i ? -40 : 40, duration: 0.5, ease: "power2.in" });
+        // overwrite: a fast scroll can pass several roles at once; only one title may ever be showing.
+        if (on) {
+          gsap.fromTo(
+            t,
+            { autoAlpha: 0, yPercent: i > prev ? 40 : -40, "--wdth": 70 },
+            { autoAlpha: 1, yPercent: 0, "--wdth": 100, duration: 0.8, overwrite: true },
+          );
+        } else if (k === prev) {
+          gsap.to(t, { autoAlpha: 0, yPercent: k < i ? -40 : 40, duration: 0.5, ease: "power2.in", overwrite: true });
+        } else {
+          gsap.set(t, { autoAlpha: 0, overwrite: true });
+        }
       });
     };
 
     const update = (progress: number) => {
       journey.timeline = progress;
       const f = Math.min(progress / TRAVEL, 1);
-      yearEl.textContent = String(Math.round(start + f * (end - start)));
+      yearEl.textContent = String(Math.round(timelineYearAt(f)));
       fill.style.transform = `scaleX(${f})`;
       let i = 0;
       fractions.forEach((fr, k) => {
@@ -109,6 +119,7 @@ export function Timeline({ revealDelay }: { revealDelay: number | null }) {
         Career timeline, {start} to {end}
       </h2>
 
+      <div className={styles.stack}>
       <div className={styles.head}>
         <p className="meta" data-tl-reveal>
           Phase <span data-phase-no>01</span> of {String(phases.length).padStart(2, "0")}
@@ -124,6 +135,7 @@ export function Timeline({ revealDelay }: { revealDelay: number | null }) {
             {p.title}
           </p>
         ))}
+      </div>
       </div>
 
       <div className={styles.rule} aria-hidden="true">

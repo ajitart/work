@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { field } from "@/lib/field";
 import { prefersReducedMotion } from "@/lib/motion";
 import { MARK_PATH, MARK_VIEWBOX } from "@/lib/mark";
-import { site } from "@/lib/content";
+import { timelineNodes } from "@/lib/content";
 
 function webglAvailable() {
   try {
@@ -27,7 +27,6 @@ export function FieldCanvas() {
     }
     let disposed = false;
     let engine: import("./engine").ParticleField | null = null;
-    const { start, end, phases } = site.timeline;
 
     import("./engine").then(({ ParticleField }) => {
       if (disposed || !canvas.current) return;
@@ -36,7 +35,7 @@ export function FieldCanvas() {
           reducedMotion: prefersReducedMotion(),
           markPath: MARK_PATH,
           markViewBox: MARK_VIEWBOX,
-          nodes: phases.map((p) => (p.year - start) / (end - start)),
+          nodes: timelineNodes,
         });
         field.attach(engine);
         root.dataset.webgl = "on";

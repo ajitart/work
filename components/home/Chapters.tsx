@@ -189,7 +189,7 @@ function Rail() {
         end: "bottom 60%",
         onUpdate: (self) => {
           const y = c.from + (c.to - c.from) * self.progress;
-          fill.style.transform = `scaleX(${(y - start) / (end - start)})`;
+          fill.style.transform = `scaleX(${Math.min(Math.max((y - start) / (end - start), 0), 1)})`;
           year.textContent = String(Math.floor(y));
         },
       }),

@@ -125,9 +125,12 @@
   font-variant-numeric: tabular-nums;
 }
 
-.steps a:hover,
 .steps a[data-on] {
   color: var(--white);
+}
+
+.steps a:hover {
+  color: var(--accent);
 }
 
 .steps a[data-on] span {
@@ -253,16 +256,23 @@
   display: inline-block;
   margin: 12px 0 28px;
   font-size: clamp(3rem, 1rem + 11vw, 13rem);
-  transition: font-variation-settings 0.8s var(--ease);
+  transition: font-variation-settings 0.8s var(--ease), color 0.4s var(--ease);
 }
 
-.nextTitle:hover {
+.nextTitle:hover,
+.nextTitle:focus-visible {
   --wdth: 120;
+  color: var(--accent);
 }
 
 .back {
   display: block;
   color: var(--white);
+  transition: color 0.3s var(--ease);
+}
+
+.back:hover {
+  color: var(--accent);
 }
 
 @media (max-width: 760px) {
