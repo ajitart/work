@@ -1,0 +1,141 @@
+{
+  "intro": {
+    "name": "AJIT",
+    "line": "20+ years of making",
+    "years": "2003 — 2026",
+    "cta": "Click to begin"
+  },
+
+  "timeline": {
+    "start": 2003,
+    "end": 2026,
+    "phases": [
+      { "year": 2003, "title": "Art direction" },
+      { "year": 2010, "title": "Digital" },
+      { "year": 2015, "title": "Creative leadership" },
+      { "year": 2021, "title": "Product design" },
+      { "year": 2026, "title": "Design lead / Product / AI" }
+    ]
+  },
+
+  "chapters": [
+    {
+      "id": "ch-1",
+      "motion": "reveal",
+      "period": "2003 — 2013",
+      "from": 2003,
+      "to": 2013,
+      "lines": ["Making", "things", "look good."],
+      "disciplines": ["Art direction", "Advertising", "Campaigns", "Print", "Photography"],
+      "roles": [
+        { "role": "Senior Art Director", "org": "Jupiter Design Studio", "years": "2004 – 2006" },
+        { "role": "Group Head", "org": "Thoughtrains Design", "years": "2006 – 2008" },
+        { "role": "Art Director", "org": "OgilvyOne Worldwide", "years": "2008 – 2010" },
+        { "role": "Art Director", "org": "Collateral", "years": "2010" },
+        { "role": "Art Director", "org": "3 Brothers & Fils", "years": "2011" },
+        { "role": "Senior Art Director", "org": "GreenApple Design", "years": "2012 – 2013" }
+      ],
+      "note": "Diploma in Applied Arts, L. S. Raheja School of Art, Mumbai. Abby shortlist for Westside direct marketing, 2010."
+    },
+    {
+      "id": "ch-2",
+      "motion": "drift",
+      "period": "2013 — 2021",
+      "from": 2013,
+      "to": 2021,
+      "lines": ["Making", "digital", "move."],
+      "disciplines": ["Digital", "Social", "Platforms", "Campaigns", "Experiences"],
+      "roles": [
+        { "role": "Creative Controller", "org": "OgilvyOne Worldwide", "years": "2013 – 2017" },
+        { "role": "Associate Creative Director", "org": "The Digital Street", "years": "2017 – 2019" },
+        { "role": "Associate Creative Director", "org": "VMLY&R", "years": "2019 – 2021" }
+      ],
+      "note": "#DarkTravelTales for Reliance General Insurance won two Kyoorius Blue Elephants in 2016 and Ogilvy’s Finest in 2015."
+    },
+    {
+      "id": "ch-3",
+      "motion": "settle",
+      "period": "2021 — 2025",
+      "from": 2021,
+      "to": 2025,
+      "lines": ["Making", "complex things", "simple."],
+      "disciplines": ["Creative direction", "Digital products", "AI", "UI/UX", "Brand systems"],
+      "roles": [
+        { "role": "Creative Director", "org": "Creativeland Asia", "years": "2021 – 2023" },
+        { "role": "Creative Solution Lead", "org": "Brane Enterprises", "years": "2023 – 2024" },
+        { "role": "Creative Director", "org": "Ventures Advertising", "years": "2024 – 2025" }
+      ],
+      "note": "Integrated campaigns for Pizza Hut, Netflix and Park Avenue, then product UI/UX and interfaces for AI products."
+    },
+    {
+      "id": "ch-4",
+      "motion": "grid",
+      "period": "2025 — Now",
+      "from": 2025,
+      "to": 2026,
+      "lines": ["Designing", "systems."],
+      "disciplines": ["Enterprise UX", "Solar", "Wind", "Digital platforms", "Design systems", "AI"],
+      "roles": [
+        { "role": "Design Lead", "org": "CCTech", "years": "Feb 2025 – Present" }
+      ],
+      "note": "Leading web-based product design for Adani’s Solar & Wind Energy platforms, including DRS, Pulse and HOTO. Working end to end in Figma and Claude Code."
+    }
+  ],
+
+  "about": {
+    "statement": "I design enterprise products that turn complex business requirements into simple, usable experiences.",
+    "facts": [
+      { "label": "Now", "value": "Design Lead, CCTech" },
+      { "label": "Making since", "value": "2003" },
+      { "label": "Based in", "value": "Pune · Mumbai" },
+      { "label": "Languages", "value": "English, Marathi, Hindi" },
+      { "label": "Studied", "value": "Applied Arts, L. S. Raheja School of Art" },
+      { "label": "Away from work", "value": "Sketching, trekking, photography, music" }
+    ],
+    "photo": "assets/ajit-photo.jpg"
+  },
+
+  "ending": {
+    "lines": ["Still", "making."],
+    "name": "Ajit Shitole",
+    "role": "Design Lead · Product · UI/UX · Creative",
+    "place": "Pune / Mumbai",
+    "links": [
+      { "label": "Resume", "href": "https://ajitart.github.io/resume/" },
+      { "label": "Email", "href": "mailto:ajitart@gmail.com" },
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/ajeet-shitole-74716110/" },
+      { "label": "Behance", "href": "https://www.behance.net/kreativechunk" }
+    ],
+    "last": "The archive continues."
+  },
+
+  "index": [
+    { "label": "The beginning", "target": "timeline" },
+    { "label": "Advertising", "target": "ch-1" },
+    { "label": "Digital", "target": "ch-2" },
+    { "label": "Creative direction", "target": "ch-3" },
+    { "label": "Product", "target": "ch-4" },
+    { "label": "CCTech", "target": "work" },
+    { "label": "The archive", "target": "archive" },
+    { "label": "The making", "target": "making" },
+    { "label": "About", "target": "about" },
+    { "label": "Contact", "target": "ending" }
+  ],
+
+  "categories": ["Brand", "Digital", "Campaign", "Product", "UI/UX", "Motion", "Personal"],
+  "eras": [
+    { "label": "2003—2010", "from": 2003, "to": 2010 },
+    { "label": "2011—2020", "from": 2011, "to": 2020 },
+    { "label": "2021—Now", "from": 2021, "to": 2100 }
+  ],
+  "story": [
+    { "key": "problem", "title": "The problem" },
+    { "key": "context", "title": "The context" },
+    { "key": "users", "title": "The users" },
+    { "key": "complexity", "title": "The complexity" },
+    { "key": "system", "title": "The system" },
+    { "key": "design", "title": "The design" },
+    { "key": "interaction", "title": "The interaction" },
+    { "key": "outcome", "title": "The outcome" }
+  ]
+}

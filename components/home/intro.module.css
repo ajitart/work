@@ -1,0 +1,121 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  color: var(--white);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The particle mark sits centred at 39% of the viewport height, 26% tall (see LOGO_INTRO). */
+.mark,
+.begin {
+  position: absolute;
+  left: 50%;
+  top: 39%;
+  height: 26vh;
+  transform: translate(-50%, -50%);
+}
+
+.mark {
+  width: auto;
+  aspect-ratio: 83.76 / 114.34;
+  opacity: 0.92;
+  transition: opacity 1.2s var(--ease);
+}
+
+:global(html[data-webgl="on"]) .mark {
+  opacity: 0;
+}
+
+.begin {
+  width: max(30vh, 220px);
+  height: 46vh;
+  top: 45%;
+  border-radius: 24px;
+}
+
+.begin:focus-visible {
+  outline-offset: 0;
+}
+
+.name {
+  position: absolute;
+  left: 50%;
+  top: 59%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 0.24em;
+  padding-left: 0.24em;
+  font-size: clamp(2.2rem, 6.4vh, 4.6rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  font-variation-settings: "wdth" 125;
+  pointer-events: none;
+}
+
+.name span {
+  display: inline-block;
+}
+
+.sub {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 67%;
+  text-align: center;
+  pointer-events: none;
+}
+
+.line {
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-variation-settings: "wdth" 120;
+}
+
+.years {
+  margin-top: 0.4em;
+  font-size: var(--step--1);
+  font-variation-settings: "wdth" 120;
+  letter-spacing: 0.04em;
+  color: var(--grey);
+}
+
+.cta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: max(28px, 6vh);
+  text-align: center;
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-variation-settings: "wdth" 120;
+  color: var(--grey);
+  pointer-events: none;
+}
+
+.cta::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 28px;
+  margin: 14px auto 0;
+  background: linear-gradient(var(--grey), transparent);
+  animation: drip 2.4s var(--ease) infinite;
+  transform-origin: top;
+}
+
+@keyframes drip {
+  0% { transform: scaleY(0); opacity: 1; }
+  60% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+@media (max-height: 520px) {
+  .sub { top: 70%; }
+  .cta { bottom: 12px; }
+  .cta::after { display: none; }
+}

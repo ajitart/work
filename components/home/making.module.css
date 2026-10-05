@@ -1,0 +1,111 @@
+.making {
+  position: relative;
+  z-index: 2;
+  background: var(--black);
+  padding-bottom: clamp(80px, 12vh, 140px);
+}
+
+.intro {
+  padding: clamp(96px, 16vh, 180px) var(--gutter) 0;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.heading {
+  margin: clamp(28px, 6vh, 72px) 0 clamp(24px, 4vh, 48px);
+  font-size: 10vw;
+}
+
+.heading span {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.stage {
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 56px);
+  padding: 0 var(--gutter);
+  will-change: transform;
+}
+
+.frame {
+  flex: none;
+  width: clamp(240px, 30vw, 520px);
+}
+
+.frame[data-size="1"] {
+  width: clamp(200px, 22vw, 380px);
+}
+
+.frame[data-size="2"] {
+  width: clamp(260px, 36vw, 620px);
+}
+
+.plate {
+  position: relative;
+}
+
+.stamp {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 4px 10px;
+  border: 1px solid var(--white);
+  font-size: var(--step--1);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-variation-settings: "wdth" 125;
+  transform: rotate(-6deg);
+  background: var(--black);
+}
+
+.caption {
+  display: grid;
+  gap: 2px;
+  margin-top: 12px;
+  font-size: var(--step--1);
+}
+
+.kind {
+  color: var(--white);
+}
+
+.desc {
+  color: var(--grey);
+}
+
+@media (max-width: 760px), (prefers-reduced-motion: reduce) {
+  .stage {
+    height: auto;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    padding: 24px 0;
+  }
+  .frame {
+    scroll-snap-align: center;
+    width: 76vw;
+  }
+  .frame[data-size="1"] {
+    width: 62vw;
+  }
+  .frame[data-size="2"] {
+    width: 82vw;
+  }
+}

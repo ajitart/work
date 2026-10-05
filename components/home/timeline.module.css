@@ -1,0 +1,184 @@
+.timeline {
+  --span: 0.8;
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+@media (max-width: 699px) {
+  .timeline {
+    --span: 0.84;
+  }
+}
+
+.head {
+  position: absolute;
+  left: var(--gutter);
+  top: max(84px, 13vh);
+}
+
+.year {
+  margin-top: 0.3em;
+  font-size: var(--step-3);
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: "wdth" 80;
+  color: var(--grey);
+}
+
+.titles {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: calc(50% + max(72px, 9vh));
+  height: 1.8em;
+  font-size: clamp(2.6rem, 8.6vw, 9.5rem);
+}
+
+.title {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 1em;
+  max-width: 14ch;
+  visibility: hidden;
+}
+
+/* A crisp line under the particles, also the only line when WebGL is off. */
+.rule {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - var(--span) * 50%);
+  width: calc(var(--span) * 100%);
+  height: 1px;
+  background: var(--line);
+}
+
+.rule span {
+  position: absolute;
+  inset: 0;
+  background: var(--grey-dim);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+:global(html[data-webgl="on"]) .rule {
+  opacity: 0.35;
+}
+
+.nodes li {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + var(--x) * var(--span) * 50%);
+  visibility: hidden;
+}
+
+.node {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.node::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px;
+  border-radius: 50%;
+  background: var(--grey-dim);
+  transition: background-color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+:global(html[data-webgl="on"]) .node::before {
+  background: transparent;
+}
+
+.nodes li[data-active] .node::before {
+  background: var(--white);
+}
+
+.node:hover::before {
+  transform: scale(1.8);
+}
+
+.nodeYear,
+.nodeTitle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--grey-dim);
+  transition: color 0.5s var(--ease);
+}
+
+.nodeYear {
+  bottom: calc(100% - 4px);
+  font-size: var(--step-1);
+  font-variation-settings: "wdth" 90;
+  letter-spacing: -0.01em;
+}
+
+.nodeTitle {
+  top: calc(100% - 4px);
+  font-size: var(--step--1);
+  font-variation-settings: "wdth" 115;
+  max-width: 16ch;
+  white-space: normal;
+  text-align: center;
+  width: max-content;
+  line-height: 1.3;
+}
+
+.nodes li[data-active] .nodeYear,
+.nodes li[data-active] .nodeTitle,
+.node:hover .nodeYear,
+.node:hover .nodeTitle {
+  color: var(--white);
+}
+
+/* Keep the first and last labels inside the screen: they align to the node instead of centring on it. */
+.nodes li:first-child .nodeYear,
+.nodes li:first-child .nodeTitle {
+  left: 50%;
+  transform: translateX(-8px);
+  text-align: left;
+}
+
+.nodes li:last-child .nodeYear,
+.nodes li:last-child .nodeTitle {
+  left: auto;
+  right: 50%;
+  transform: translateX(8px);
+  text-align: right;
+}
+
+.hint {
+  position: absolute;
+  left: var(--gutter);
+  bottom: max(24px, 5vh);
+}
+
+@media (max-width: 699px) {
+  .nodeTitle {
+    display: none;
+  }
+  .nodeYear {
+    font-size: var(--step--1);
+  }
+  .node {
+    width: 48px;
+    height: 48px;
+  }
+}

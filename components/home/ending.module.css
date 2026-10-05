@@ -1,0 +1,84 @@
+/* The particle mark re-forms in the top third (LOGO_ENDING): the text starts below it. */
+.ending {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 40vh var(--gutter) max(24px, 4vh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.heading {
+  width: min(100%, 1100px);
+  font-size: 9vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading span {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.sign {
+  margin-top: clamp(24px, 4vh, 48px);
+}
+
+.name {
+  font-size: var(--step-1);
+}
+
+.role,
+.place {
+  color: var(--grey);
+  font-size: var(--step--1);
+  font-variation-settings: "wdth" 115;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 28px;
+  margin-top: clamp(20px, 3vh, 36px);
+}
+
+.link {
+  display: inline-block;
+  padding: 10px 0;
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-variation-settings: "wdth" 120;
+  border-bottom: 1px solid var(--grey-dim);
+  line-height: 1.1;
+  transition: border-color 0.3s var(--ease);
+}
+
+a.link:hover {
+  border-color: var(--white);
+}
+
+.foot {
+  margin-top: auto;
+  padding-top: clamp(32px, 6vh, 64px);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.restart {
+  color: var(--white);
+  padding: 10px 0;
+}
+
+.restart:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

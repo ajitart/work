@@ -1,0 +1,198 @@
+.chapter {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(96px, 16vh, 180px) var(--gutter) clamp(96px, 14vh, 160px);
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.period {
+  color: var(--white);
+  font-variant-numeric: tabular-nums;
+}
+
+.headline {
+  position: relative;
+  margin: clamp(32px, 8vh, 96px) 0 clamp(48px, 10vh, 120px);
+  font-size: 12vw;
+  width: 100%;
+}
+
+.mask {
+  display: block;
+  overflow: hidden;
+  /* room for descenders and the slide-up */
+  padding-bottom: 0.04em;
+  margin-bottom: -0.04em;
+}
+
+[data-motion="drift"] .mask,
+[data-motion="settle"] .mask {
+  overflow: visible;
+}
+
+.line {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.letter {
+  display: inline-block;
+  font-variation-settings: "wdth" var(--wdth, 100);
+}
+
+/* Chapter 04: the letters sit on drawn grid lines. */
+.grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  pointer-events: none;
+}
+
+.grid span {
+  display: block;
+  border-bottom: 1px solid var(--line);
+  transform-origin: left;
+}
+
+[data-motion="grid"] .mask {
+  height: 0.86em;
+  overflow: visible;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: clamp(24px, 4vw, 64px);
+  margin-top: auto;
+}
+
+.disciplines {
+  font-size: var(--step-1);
+  line-height: 1.35;
+  color: var(--grey);
+}
+
+.record {
+  max-width: 62ch;
+}
+
+.roles li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.roles li:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.role {
+  font-size: var(--step-0);
+}
+
+.org {
+  color: var(--grey);
+}
+
+.years {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.note {
+  margin-top: 24px;
+  color: var(--grey);
+  max-width: 54ch;
+}
+
+@media (max-width: 760px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+  .disciplines {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.9em;
+    font-size: var(--step-0);
+  }
+  .roles li {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
+/* ---------- docked timeline ---------- */
+.rail {
+  position: fixed;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: max(14px, 2.4vh);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: var(--step--1);
+  font-variation-settings: "wdth" 118;
+  font-variant-numeric: tabular-nums;
+  color: var(--grey);
+  opacity: 0;
+  transform: translateY(8px);
+  padding: 18px 0 0;
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  pointer-events: none;
+}
+
+.rail::before {
+  content: "";
+  position: absolute;
+  inset: -24px calc(var(--gutter) * -1) calc(max(14px, 2.4vh) * -1);
+  background: linear-gradient(transparent, var(--black) 60%);
+  z-index: -1;
+}
+
+.railOn {
+  opacity: 1;
+  transform: none;
+}
+
+.railYear {
+  color: var(--white);
+  min-width: 4ch;
+}
+
+.railTrack {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.railFill {
+  position: absolute;
+  inset: 0;
+  background: var(--white);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.railTick {
+  position: absolute;
+  top: -3px;
+  width: 1px;
+  height: 7px;
+  background: var(--grey-dim);
+}

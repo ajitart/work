@@ -1,0 +1,11 @@
+[
+  { "id": "sketches", "kind": "Sketch", "title": "", "project": "", "status": "", "year": "", "media": [] },
+  { "id": "wireframes", "kind": "Wireframe", "title": "", "project": "", "status": "", "year": "", "media": [] },
+  { "id": "moodboards", "kind": "Moodboard", "title": "", "project": "", "status": "", "year": "", "media": [] },
+  { "id": "rejected", "kind": "Rejected concept", "title": "", "project": "", "status": "Rejected", "year": "", "media": [] },
+  { "id": "figma", "kind": "Figma exploration", "title": "", "project": "", "status": "", "year": "", "media": [] },
+  { "id": "type", "kind": "Typography experiment", "title": "", "project": "", "status": "", "year": "", "media": [] },
+  { "id": "ai", "kind": "AI experiment", "title": "", "project": "", "status": "", "year": "", "media": [] },
+  { "id": "early", "kind": "Early concept", "title": "", "project": "", "status": "", "year": "", "media": [] },
+  { "id": "unfinished", "kind": "Unfinished work", "title": "", "project": "", "status": "Unfinished", "year": "", "media": [] }
+]

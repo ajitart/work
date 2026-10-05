@@ -1,0 +1,30 @@
+.media {
+  width: 100%;
+  height: auto;
+  background: var(--plate);
+}
+
+.slot {
+  position: relative;
+  width: 100%;
+  background: var(--plate);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.slot::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed var(--line);
+}
+
+.slotLabel {
+  position: relative;
+  font-size: var(--step--1);
+  font-variation-settings: "wdth" 118;
+  color: var(--grey-dim);
+  padding: 0 1rem;
+  text-align: center;
+}
