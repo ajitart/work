@@ -645,5 +645,72 @@
     "cover": "",
     "story": {},
     "media": []
+  },
+  {
+    "slug": "cheezy-momo-mia",
+    "title": "Cheezy Momo Mia by Pizzahut",
+    "subtitle": "",
+    "client": "",
+    "studio": "",
+    "period": "",
+    "start": null,
+    "categories": [],
+    "featured": false,
+    "statement": "",
+    "description": "",
+    "cover": "media/projects/cheezy-momo-mia/ph-228-mo-pizza-outdoor-price-1-x-1-r4.jpg",
+    "story": {},
+    "media": [
+      {
+        "id": "xklitabs",
+        "src": "media/projects/cheezy-momo-mia/ph-228-mo-pizza-outdoor-price-1-x-1-r4.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "wide",
+        "width": 3000,
+        "height": 3000
+      },
+      {
+        "id": "emwpptdv",
+        "src": "media/projects/cheezy-momo-mia/ph-228-mo-pizza-outdoor-price-2-x-1-r4.jpg",
+        "type": "image",
+        "caption": "Hoarding",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 6000,
+        "height": 3000
+      },
+      {
+        "id": "m9b7asyv",
+        "src": "media/projects/cheezy-momo-mia/ph-228-mo-pizza-die-cut-standee-price-2-5-x-4-ft.jpg",
+        "type": "image",
+        "caption": "Standee design ",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3591,
+        "height": 5144
+      },
+      {
+        "id": "m4m3uh4j",
+        "src": "media/projects/cheezy-momo-mia/ph-228-mo-pizza-die-cut-price-2-x-1.jpg",
+        "type": "image",
+        "caption": "Hoarding",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 6094,
+        "height": 3291
+      },
+      {
+        "id": "010w9v6s",
+        "src": "media/projects/cheezy-momo-mia/ph-228-mo-pizza-standee-2-5-x-4-ft-r4.jpg",
+        "type": "image",
+        "caption": "Standee",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3000,
+        "height": 4800
+      }
+    ]
   }
 ]
