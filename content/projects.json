@@ -7,7 +7,10 @@
     "studio": "CCTech",
     "period": "2025 — Present",
     "start": 2025,
-    "categories": ["Product", "UI/UX"],
+    "categories": [
+      "Product",
+      "UI/UX"
+    ],
     "featured": true,
     "statement": "Designing a digital operating system for large-scale renewable energy projects.",
     "description": "",
@@ -23,7 +26,10 @@
     "studio": "",
     "period": "",
     "start": null,
-    "categories": ["Product", "UI/UX"],
+    "categories": [
+      "Product",
+      "UI/UX"
+    ],
     "featured": true,
     "statement": "",
     "description": "",
@@ -39,7 +45,10 @@
     "studio": "CCTech",
     "period": "2025 — Present",
     "start": 2025,
-    "categories": ["Product", "UI/UX"],
+    "categories": [
+      "Product",
+      "UI/UX"
+    ],
     "featured": true,
     "statement": "",
     "description": "",
@@ -55,7 +64,10 @@
     "studio": "CCTech",
     "period": "2025 — Present",
     "start": 2025,
-    "categories": ["Product", "UI/UX"],
+    "categories": [
+      "Product",
+      "UI/UX"
+    ],
     "featured": true,
     "statement": "",
     "description": "",
@@ -71,7 +83,10 @@
     "studio": "OgilvyOne Worldwide",
     "period": "2015 — 2016",
     "start": 2015,
-    "categories": ["Campaign", "Digital"],
+    "categories": [
+      "Campaign",
+      "Digital"
+    ],
     "featured": true,
     "statement": "",
     "description": "Taken from concept to execution at OgilvyOne Worldwide.",
@@ -92,7 +107,10 @@
     "studio": "",
     "period": "Coming soon",
     "start": 2026,
-    "categories": ["Product", "UI/UX"],
+    "categories": [
+      "Product",
+      "UI/UX"
+    ],
     "featured": true,
     "statement": "",
     "description": "Independently conceptualizing and developing a medicine reminder application designed specifically around the needs of senior citizens.",
@@ -100,7 +118,6 @@
     "story": {},
     "media": []
   },
-
   {
     "slug": "ventures-government-campaigns",
     "title": "Government-sector campaigns",
@@ -109,9 +126,15 @@
     "studio": "Ventures Advertising",
     "period": "2024 — 2025",
     "start": 2024,
-    "categories": ["Campaign"],
+    "categories": [
+      "Campaign"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "brane-product-ui",
@@ -121,9 +144,16 @@
     "studio": "Brane Enterprises",
     "period": "2023 — 2024",
     "start": 2023,
-    "categories": ["Product", "UI/UX"],
+    "categories": [
+      "Product",
+      "UI/UX"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "brane-brand",
@@ -133,9 +163,16 @@
     "studio": "Brane Enterprises",
     "period": "2023 — 2024",
     "start": 2023,
-    "categories": ["Brand", "Digital"],
+    "categories": [
+      "Brand",
+      "Digital"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "brane-brand-video",
@@ -145,9 +182,15 @@
     "studio": "Brane Enterprises",
     "period": "2023 — 2024",
     "start": 2023,
-    "categories": ["Motion"],
+    "categories": [
+      "Motion"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "pizza-hut",
@@ -157,9 +200,15 @@
     "studio": "Creativeland Asia",
     "period": "2021 — 2023",
     "start": 2021,
-    "categories": ["Campaign"],
+    "categories": [
+      "Campaign"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "netflix",
@@ -169,9 +218,15 @@
     "studio": "Creativeland Asia",
     "period": "2021 — 2023",
     "start": 2021,
-    "categories": ["Campaign"],
+    "categories": [
+      "Campaign"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "park-avenue",
@@ -181,9 +236,27 @@
     "studio": "Creativeland Asia",
     "period": "2021 — 2023",
     "start": 2021,
-    "categories": ["Campaign"],
+    "categories": [
+      "Campaign",
+      "Brand"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "media/projects/park-avenue/pa-006-raymond-park-avenue-vm-adapt-kv1-r2-1-x-1.jpg",
+    "story": {},
+    "media": [
+      {
+        "id": "s3uu5vcu",
+        "src": "media/projects/park-avenue/pa-006-raymond-park-avenue-vm-adapt-kv1-r2-1-x-1.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1500,
+        "height": 1500
+      }
+    ]
   },
   {
     "slug": "big-bazaar",
@@ -193,9 +266,15 @@
     "studio": "VMLY&R",
     "period": "2019 — 2021",
     "start": 2019,
-    "categories": ["Digital"],
+    "categories": [
+      "Digital"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "pantaloons",
@@ -205,9 +284,15 @@
     "studio": "VMLY&R",
     "period": "2019 — 2021",
     "start": 2019,
-    "categories": ["Digital"],
+    "categories": [
+      "Digital"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "icici-bank",
@@ -217,9 +302,15 @@
     "studio": "VMLY&R",
     "period": "2019 — 2021",
     "start": 2019,
-    "categories": ["Digital"],
+    "categories": [
+      "Digital"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "axis-bank",
@@ -229,9 +320,15 @@
     "studio": "The Digital Street",
     "period": "2017 — 2019",
     "start": 2017,
-    "categories": ["Digital"],
+    "categories": [
+      "Digital"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "dolby",
@@ -241,9 +338,15 @@
     "studio": "The Digital Street",
     "period": "2017 — 2019",
     "start": 2017,
-    "categories": ["Digital"],
+    "categories": [
+      "Digital"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "mtr-foods",
@@ -253,9 +356,15 @@
     "studio": "The Digital Street",
     "period": "2017 — 2019",
     "start": 2017,
-    "categories": ["Digital"],
+    "categories": [
+      "Digital"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "dhl",
@@ -265,9 +374,15 @@
     "studio": "The Digital Street",
     "period": "2017 — 2019",
     "start": 2017,
-    "categories": ["Digital"],
+    "categories": [
+      "Digital"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "vodafone-sustainability-report",
@@ -277,11 +392,18 @@
     "studio": "OgilvyOne Worldwide",
     "period": "2015",
     "start": 2015,
-    "categories": ["Brand"],
+    "categories": [
+      "Brand"
+    ],
     "featured": false,
-    "statement": "", "description": "",
-    "recognition": ["DMAI, Art Direction, Bronze, 2015"],
-    "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "recognition": [
+      "DMAI, Art Direction, Bronze, 2015"
+    ],
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "rgi-roadside-assistance",
@@ -291,11 +413,20 @@
     "studio": "OgilvyOne Worldwide",
     "period": "2014",
     "start": 2014,
-    "categories": ["Motion", "Digital"],
+    "categories": [
+      "Motion",
+      "Digital"
+    ],
     "featured": false,
-    "statement": "", "description": "",
-    "recognition": ["DMA Asia ECHO, Bronze, 2014", "ECHO International, Finalist, 2014"],
-    "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "recognition": [
+      "DMA Asia ECHO, Bronze, 2014",
+      "ECHO International, Finalist, 2014"
+    ],
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "economist-emailers",
@@ -305,11 +436,18 @@
     "studio": "",
     "period": "2014",
     "start": 2014,
-    "categories": ["Digital"],
+    "categories": [
+      "Digital"
+    ],
     "featured": false,
-    "statement": "", "description": "",
-    "recognition": ["ECHO, Effectiveness, Bronze, 2014"],
-    "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "recognition": [
+      "ECHO, Effectiveness, Bronze, 2014"
+    ],
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "mp-tourism",
@@ -319,9 +457,16 @@
     "studio": "OgilvyOne Worldwide",
     "period": "2013 — 2017",
     "start": 2013,
-    "categories": ["Digital", "Campaign"],
+    "categories": [
+      "Digital",
+      "Campaign"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "westside-direct",
@@ -331,11 +476,18 @@
     "studio": "",
     "period": "2010",
     "start": 2010,
-    "categories": ["Campaign"],
+    "categories": [
+      "Campaign"
+    ],
     "featured": false,
-    "statement": "", "description": "",
-    "recognition": ["Abby, Direct Marketing, Shortlist, 2010"],
-    "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "recognition": [
+      "Abby, Direct Marketing, Shortlist, 2010"
+    ],
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "sketchbook",
@@ -345,9 +497,15 @@
     "studio": "",
     "period": "",
     "start": null,
-    "categories": ["Personal"],
+    "categories": [
+      "Personal"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   },
   {
     "slug": "photography",
@@ -357,8 +515,14 @@
     "studio": "",
     "period": "",
     "start": null,
-    "categories": ["Personal"],
+    "categories": [
+      "Personal"
+    ],
     "featured": false,
-    "statement": "", "description": "", "cover": "", "story": {}, "media": []
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": []
   }
 ]
