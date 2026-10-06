@@ -717,5 +717,77 @@
         "height": 4800
       }
     ]
+  },
+  {
+    "slug": "flavour-fun-pizza",
+    "title": "Flavour Fun PIzza by PizzaHut",
+    "subtitle": "",
+    "client": "PizzaHut",
+    "studio": "",
+    "period": "",
+    "start": null,
+    "categories": [
+      "Brand",
+      "Digital",
+      "Campaign",
+      "Product"
+    ],
+    "featured": false,
+    "statement": "",
+    "description": "",
+    "cover": "media/projects/flavour-fun-pizza/ph-235-diwali-print-ad-32-8x25cm-r3.jpg",
+    "story": {},
+    "media": [
+      {
+        "id": "bjc83p5k",
+        "src": "media/projects/flavour-fun-pizza/ph-235-diwali-print-ad-32-8x25cm-r3.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3874,
+        "height": 2953
+      },
+      {
+        "id": "xti1m6pp",
+        "src": "media/projects/flavour-fun-pizza/ph-223-flavour-fun-print-ad-release-32-8x25cm-r6-ctc.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3874,
+        "height": 2953
+      },
+      {
+        "id": "2b0lgl8o",
+        "src": "media/projects/flavour-fun-pizza/ph-229-festive-season-print-ad-w12cm-x-h20cm-marathi-r2.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1417,
+        "height": 2362
+      },
+      {
+        "id": "bxq8fzo7",
+        "src": "media/projects/flavour-fun-pizza/ph-230-print-ads-for-festive-season-toi-english-32-8x25cm-r2.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3874,
+        "height": 2953
+      },
+      {
+        "id": "yjbs8ok1",
+        "src": "media/projects/flavour-fun-pizza/pizza-hut-swipe-1x1-10sec.mp4",
+        "type": "video",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1080,
+        "height": 1080
+      }
+    ]
   }
 ]
