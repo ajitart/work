@@ -851,5 +851,62 @@
         "height": 1080
       }
     ]
+  },
+  {
+    "slug": "cat-netflix-series",
+    "title": "CAT - Netflix Series",
+    "subtitle": "",
+    "client": "",
+    "studio": "",
+    "period": "",
+    "start": null,
+    "categories": [],
+    "featured": false,
+    "statement": "",
+    "description": "",
+    "cover": "media/projects/cat-netflix-series/final-cat-logo-rbg.jpg",
+    "story": {},
+    "media": [
+      {
+        "id": "4mc1y2zo",
+        "src": "media/projects/cat-netflix-series/final-cat-logo-rbg.jpg",
+        "type": "image",
+        "caption": "Title Designing",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1234,
+        "height": 1000
+      },
+      {
+        "id": "livuu2ne",
+        "src": "media/projects/cat-netflix-series/cat-netflix.jpg",
+        "type": "image",
+        "caption": "Poster 01",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 2114,
+        "height": 2114
+      },
+      {
+        "id": "ehjalqni",
+        "src": "media/projects/cat-netflix-series/poster-car-02.jpg",
+        "type": "image",
+        "caption": "Poster 02",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1000,
+        "height": 1236
+      },
+      {
+        "id": "3x7rl5vn",
+        "src": "media/projects/cat-netflix-series/cat.mp4",
+        "type": "video",
+        "caption": "Cat logo animation",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1280,
+        "height": 720
+      }
+    ]
   }
 ]
