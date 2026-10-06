@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { MediaItem, Project } from "@/lib/types";
-import { coverOf, site } from "@/lib/content";
+import { coverOf, hasCaseStudy, site } from "@/lib/content";
 import { gsap, prefersReducedMotion } from "@/lib/motion";
 import { useTransitionTo } from "@/components/shell/Transition";
 import { Media, MediaSlot } from "@/components/Media";
@@ -76,16 +76,17 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
 
   const cover = coverOf(p);
   const hero = p.media.filter((m) => m.placement === "hero" && m.src !== cover?.src);
-  const gallery = p.media.filter((m) => !m.placement || m.placement === "gallery");
-  const hasStory = Object.values(p.story).some(Boolean) || p.media.some((m) => site.story.some((s) => s.key === m.placement));
-  const showStory = p.featured || hasStory;
+  const showStory = hasCaseStudy(p);
+  const isBeat = (m: MediaItem) => site.story.some((s) => s.key === m.placement);
+  // Without a case study, anything placed in a story beat joins the gallery.
+  const gallery = p.media.filter((m) => !m.placement || m.placement === "gallery" || (!showStory && isBeat(m)));
   const steps = site.story;
 
   // Everything that can open full screen, in the order it appears on the page.
   const viewable = useMemo(() => {
-    const inBeats = site.story.flatMap((s) => p.media.filter((m) => m.placement === s.key));
+    const inBeats = showStory ? site.story.flatMap((s) => p.media.filter((m) => m.placement === s.key)) : [];
     return [...(cover ? [cover] : []), ...hero, ...inBeats, ...gallery].filter((m) => m.type !== "embed");
-  }, [p.media, cover, hero, gallery]);
+  }, [p.media, cover, hero, gallery, showStory]);
   const [viewing, setViewing] = useState<number | null>(null);
   const open: Open = (m) => {
     const i = viewable.findIndex((v) => v.id === m.id);
@@ -169,9 +170,11 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
           <h1 ref={title} className={`display ${styles.title}`} data-hero>
             {p.title}
           </h1>
-          <p className={styles.statement} data-hero>
-            {p.statement || <span className="placeholder-text">[Project statement]</span>}
-          </p>
+          {(p.statement || showStory) && (
+            <p className={styles.statement} data-hero>
+              {p.statement || <span className="placeholder-text">[Project statement]</span>}
+            </p>
+          )}
           <dl className={styles.meta} data-hero>
             {meta.map((m) => (
               <div key={m.label}>
@@ -261,9 +264,7 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
         </section>
       )}
 
-      {!showStory && gallery.length === 0 && !cover && (
-        <p className={`${styles.pending} placeholder-text`}>[Images and videos for this work will be added here]</p>
-      )}
+      {/* Nothing yet: the empty cover frame already says so. */}
 
       <footer className={styles.next}>
         {next && (

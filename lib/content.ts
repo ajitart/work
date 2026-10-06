@@ -30,6 +30,12 @@ export function coverOf(p: Project): MediaItem | undefined {
   return files.find((m) => m.placement === "hero") ?? files[0];
 }
 
+/** Only UI/UX projects get the eight-beat case study; everything else is cover, details and gallery. */
+export const CASE_STUDY_CATEGORY = "UI/UX";
+export function hasCaseStudy(p: Pick<Project, "categories">) {
+  return p.categories.includes(CASE_STUDY_CATEGORY);
+}
+
 /** Prefix a /public path with the GitHub Pages base path. */
 export function asset(src: string): string {
   if (/^(https?:|data:|blob:)/.test(src)) return src;
