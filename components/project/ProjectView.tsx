@@ -5,7 +5,6 @@ import Link from "next/link";
 import type { MediaItem, Project } from "@/lib/types";
 import { coverOf, site } from "@/lib/content";
 import { gsap, prefersReducedMotion } from "@/lib/motion";
-import { useFit } from "@/lib/useFit";
 import { useTransitionTo } from "@/components/shell/Transition";
 import { Media, MediaSlot } from "@/components/Media";
 import { Lightbox } from "./Lightbox";
@@ -63,7 +62,6 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
   const title = useRef<HTMLHeadingElement>(null);
   const strip = useRef<HTMLDivElement>(null);
   const go = useTransitionTo();
-  useFit(title, { maxHeight: 0.42, max: 320 });
 
   const cover = coverOf(p);
   const hero = p.media.filter((m) => m.placement === "hero" && m.src !== cover?.src);
@@ -139,14 +137,27 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
 
   return (
     <article ref={root} className={styles.project}>
+      {/* First screen: the cover, whole, on the left; everything about the project on the right. */}
       <header className={styles.hero}>
-        <p className={`meta ${styles.kicker}`} data-hero>
-          {p.subtitle}
-        </p>
-        <h1 ref={title} className={`display ${styles.title}`}>
-          <span data-fit-line>{p.title}</span>
-        </h1>
-        <div className={styles.lede}>
+        <div className={styles.heroMedia} data-reveal>
+          {cover ? (
+            <Frame item={cover} onOpen={open}>
+              <Media item={cover} eager sizes="(max-width: 900px) 100vw, 58vw" />
+            </Frame>
+          ) : (
+            <div className={styles.frame}>
+              <MediaSlot label="[Cover image or video]" ratio="4 / 3" />
+            </div>
+          )}
+        </div>
+
+        <div className={styles.heroText}>
+          <p className={`meta ${styles.kicker}`} data-hero>
+            {p.subtitle}
+          </p>
+          <h1 ref={title} className={`display ${styles.title}`} data-hero>
+            {p.title}
+          </h1>
           <p className={styles.statement} data-hero>
             {p.statement || <span className="placeholder-text">[Project statement]</span>}
           </p>
@@ -160,18 +171,6 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
           </dl>
         </div>
       </header>
-
-      <div className={styles.cover} data-reveal data-tall={cover && isTall(cover) ? "" : undefined}>
-        {cover ? (
-          <Frame item={cover} onOpen={open}>
-            <Media item={cover} eager sizes="100vw" />
-          </Frame>
-        ) : (
-          <div className={styles.frame}>
-            <MediaSlot label="[Cover image or video]" ratio="16 / 8" />
-          </div>
-        )}
-      </div>
 
       {(p.description || p.recognition?.length) && (
         <section className={styles.overview}>

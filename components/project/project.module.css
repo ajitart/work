@@ -3,8 +3,50 @@
   min-height: 100vh;
 }
 
+/* ---------- first screen: cover left, details right ---------- */
 .hero {
-  padding: clamp(110px, 20vh, 220px) var(--gutter) clamp(32px, 6vh, 64px);
+  --hero-top: clamp(88px, 12vh, 128px);
+  --hero-bottom: clamp(28px, 6vh, 64px);
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  grid-template-areas: "media text";
+  gap: clamp(28px, 4.5vw, 80px);
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: var(--hero-top) var(--gutter) var(--hero-bottom);
+}
+
+.heroMedia {
+  grid-area: media;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+
+/* The cover is shown whole and never taller than the screen. */
+.heroMedia > .frame {
+  width: auto;
+  max-width: 100%;
+  background: transparent;
+}
+
+.heroMedia .frame > img,
+.heroMedia .frame > video {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: calc(100svh - var(--hero-top) - var(--hero-bottom));
+  object-fit: contain;
+}
+
+.heroText {
+  grid-area: text;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vh, 32px);
 }
 
 .kicker {
@@ -12,30 +54,22 @@
   padding-top: 14px;
 }
 
+/* Long names wrap over two or three lines rather than shrinking to fit one. */
 .title {
-  margin: clamp(24px, 5vh, 56px) 0 clamp(28px, 6vh, 72px);
-  font-size: 14vw;
-}
-
-.title span {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.lede {
-  display: grid;
-  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
-  gap: clamp(24px, 4vw, 72px);
-  align-items: end;
+  font-size: clamp(2.6rem, 1rem + 4.2vw, 6.5rem);
+  line-height: 0.9;
+  overflow-wrap: break-word;
+  hyphens: manual;
+  text-wrap: balance;
 }
 
 .statement {
-  font-size: var(--step-3);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
+  font-size: var(--step-2);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
   font-weight: 450;
   font-variation-settings: "wdth" 92;
-  max-width: 22ch;
+  max-width: 26ch;
 }
 
 .meta {
@@ -52,13 +86,37 @@
   font-size: var(--step--1);
 }
 
+.meta div:first-child {
+  border-top: 1px solid var(--line);
+}
+
 .meta dt {
   color: var(--grey);
   font-variation-settings: "wdth" 118;
 }
 
-.cover {
-  padding: 0 var(--gutter);
+/* Phones and small tablets: title and statement, then the cover, then the details. */
+@media (max-width: 900px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    gap: 20px;
+  }
+  .heroText {
+    display: contents;
+  }
+  .heroMedia {
+    order: 1;
+  }
+  .meta {
+    order: 2;
+  }
+  .heroMedia .frame > img,
+  .heroMedia .frame > video {
+    max-height: 75svh;
+  }
 }
 
 .frame {
@@ -198,7 +256,7 @@
   margin-top: clamp(32px, 6vh, 72px);
 }
 
-.cover + .mediaBlock,
+.hero + .mediaBlock,
 .overview + .mediaBlock {
   padding: 0 var(--gutter);
 }
@@ -325,7 +383,6 @@
 }
 
 @media (max-width: 760px) {
-  .lede,
   .overview,
   .story {
     grid-template-columns: 1fr;
