@@ -62,14 +62,46 @@
 }
 
 .frame {
+  display: block;
+  width: 100%;
   overflow: hidden;
   background: var(--plate);
 }
 
 .frame > img,
-.frame > video {
+.frame > video,
+.frame > iframe {
   width: 100%;
   height: auto;
+}
+
+.frameButton {
+  padding: 0;
+  text-align: inherit;
+}
+
+.frameButton > img,
+.frameButton > video {
+  transition: transform 1.2s var(--ease);
+}
+
+.frameButton:hover > img,
+.frameButton:hover > video {
+  transform: scale(1.015);
+}
+
+/* Tall creatives (standees, posters) fit inside the screen instead of running off it. */
+[data-tall] > .frame,
+[data-tall] > .frameButton {
+  background: transparent;
+}
+
+[data-tall] .frame > img,
+[data-tall] .frame > video {
+  width: auto;
+  max-width: 100%;
+  max-height: 88vh;
+  margin: 0 auto;
 }
 
 .overview {
@@ -209,9 +241,12 @@
 }
 
 /* ---------- gallery strip ---------- */
+/* One row, one height; each slide is as wide as its own image, so the whole creative shows. */
 .gallery {
-  padding: clamp(80px, 12vh, 140px) 0 0;
+  --slide-h: min(70vh, 780px);
+  margin-top: clamp(64px, 10vh, 120px);
   height: 100vh;
+  height: 100svh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -219,26 +254,40 @@
 
 .strip {
   display: flex;
-  gap: clamp(16px, 2vw, 32px);
+  gap: clamp(16px, 2.4vw, 40px);
   padding: 0 var(--gutter);
-  align-items: center;
+  align-items: flex-start;
 }
 
 .slide {
   flex: none;
-  width: clamp(280px, 52vw, 960px);
+  height: auto;
+  width: calc(var(--slide-h) * var(--ratio));
+  max-width: 88vw;
 }
 
-.slide img,
-.slide video {
+.slide .frame {
+  aspect-ratio: var(--ratio);
+  background: transparent;
+}
+
+.slide .frame > img,
+.slide .frame > video,
+.slide .frame > iframe {
   width: 100%;
-  max-height: 72vh;
+  height: 100%;
   object-fit: contain;
-  background: var(--plate);
 }
 
-.slide figcaption {
-  margin-top: 10px;
+.slideCaption {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.slideCaption span:first-child {
+  color: var(--grey-dim);
+  font-variant-numeric: tabular-nums;
 }
 
 .pending {
@@ -292,12 +341,14 @@
     grid-column: 1 / -1;
   }
   .gallery {
+    --slide-h: 58svh;
     height: auto;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
+    padding: 8px 0;
   }
   .slide {
-    width: 82vw;
     scroll-snap-align: center;
   }
 }

@@ -10,7 +10,14 @@ export const site = siteJson as SiteContent;
 export const projects = projectsJson as Project[];
 export const making = makingJson as MakingItem[];
 
-export const featuredProjects = projects.filter((p) => p.featured);
+/**
+ * Selected work: the projects ticked "Show in Selected work", or, if none are
+ * ticked, every project newest first (so the section and "Next project" never break).
+ */
+const ticked = projects.filter((p) => p.featured);
+export const featuredProjects = ticked.length
+  ? ticked
+  : [...projects].sort((a, b) => (b.start ?? -1) - (a.start ?? -1));
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);

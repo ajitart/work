@@ -180,8 +180,8 @@ export function githubBackend(token: string): EditorBackend {
   };
 }
 
-/** Follow the deploy workflow for a commit. Resolves false if it fails or can't be followed. */
-async function watchDeploy(token: string, sha: string): Promise<boolean> {
+/** Follow the deploy workflow for a commit: true when live, false if it failed, null if it can't be followed. */
+async function watchDeploy(token: string, sha: string): Promise<boolean | null> {
   const repo = `/repos/${REPO.owner}/${REPO.name}`;
   for (let i = 0; i < 40; i++) {
     await new Promise((r) => setTimeout(r, 8000));
@@ -193,8 +193,8 @@ async function watchDeploy(token: string, sha: string): Promise<boolean> {
       const run = runs.workflow_runs[0];
       if (run?.status === "completed") return run.conclusion === "success";
     } catch {
-      return false; // token without Actions access: we just can't tell
+      return null; // token without Actions access: we just can't tell
     }
   }
-  return false;
+  return null;
 }

@@ -15,7 +15,7 @@ export function Media({
   className,
   sizes,
   eager = false,
-  fit = "cover",
+  fit,
 }: {
   item: MediaItem;
   className?: string;
@@ -45,7 +45,8 @@ export function Media({
     return () => io.disconnect();
   }, [src, item.controls]);
 
-  const style = { aspectRatio: ratio, objectFit: fit } as React.CSSProperties;
+  // Cropping is decided by the surrounding layout (CSS) unless a caller asks for it explicitly.
+  const style = { aspectRatio: ratio, ...(fit ? { objectFit: fit } : {}) } as React.CSSProperties;
 
   if (item.type === "embed") {
     const player = embedUrl(item.src);

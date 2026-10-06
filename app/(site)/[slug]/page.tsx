@@ -23,7 +23,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   // "Next" walks the selected work in order; archive entries lead back into it.
   const i = featuredProjects.findIndex((p) => p.slug === slug);
-  const next = featuredProjects[(i + 1) % featuredProjects.length];
+  const next = featuredProjects.length > 1 || i < 0 ? featuredProjects[(i + 1) % featuredProjects.length] : undefined;
 
   return <ProjectView project={project} next={next} />;
 }

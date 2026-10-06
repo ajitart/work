@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { MediaItem, Project } from "@/lib/types";
 import { coverOf, site } from "@/lib/content";
@@ -8,17 +8,45 @@ import { gsap, prefersReducedMotion } from "@/lib/motion";
 import { useFit } from "@/lib/useFit";
 import { useTransitionTo } from "@/components/shell/Transition";
 import { Media, MediaSlot } from "@/components/Media";
+import { Lightbox } from "./Lightbox";
 import styles from "./project.module.css";
 
-function MediaBlock({ items }: { items: MediaItem[] }) {
+type Open = (m: MediaItem) => void;
+
+/** Square, portrait and near-square images would be taller than the screen at full width. */
+const isTall = (m: MediaItem) => !!(m.width && m.height && m.height >= m.width * 0.75);
+
+/** A frame you can click to see the whole image full screen (players stay playable in place). */
+function Frame({ item, onOpen, children }: { item: MediaItem; onOpen: Open; children: React.ReactNode }) {
+  if (item.type === "embed") return <div className={styles.frame}>{children}</div>;
+  return (
+    <button
+      type="button"
+      className={`${styles.frame} ${styles.frameButton}`}
+      data-cursor="View"
+      aria-label={`View ${item.caption || "image"} full screen`}
+      onClick={() => onOpen(item)}
+    >
+      {children}
+    </button>
+  );
+}
+
+function MediaBlock({ items, onOpen }: { items: MediaItem[]; onOpen: Open }) {
   if (!items.length) return null;
   return (
     <div className={styles.mediaBlock}>
       {items.map((m) => (
-        <figure key={m.id} className={styles.figure} data-layout={m.layout ?? "full"} data-reveal>
-          <div className={styles.frame}>
+        <figure
+          key={m.id}
+          className={styles.figure}
+          data-layout={m.layout ?? "full"}
+          data-tall={isTall(m) ? "" : undefined}
+          data-reveal
+        >
+          <Frame item={m} onOpen={onOpen}>
             <Media item={m} sizes={m.layout === "half" || m.layout === "detail" ? "50vw" : "100vw"} />
-          </div>
+          </Frame>
           {m.caption && <figcaption className="meta">{m.caption}</figcaption>}
         </figure>
       ))}
@@ -30,7 +58,7 @@ function MediaBlock({ items }: { items: MediaItem[] }) {
  * A case study told in eight beats. Each beat can hold text and any number of
  * images or videos (placed through the Studio). Missing text shows its slot.
  */
-export function ProjectView({ project: p, next }: { project: Project; next: Project }) {
+export function ProjectView({ project: p, next }: { project: Project; next?: Project }) {
   const root = useRef<HTMLElement>(null);
   const title = useRef<HTMLHeadingElement>(null);
   const strip = useRef<HTMLDivElement>(null);
@@ -43,6 +71,17 @@ export function ProjectView({ project: p, next }: { project: Project; next: Proj
   const hasStory = Object.values(p.story).some(Boolean) || p.media.some((m) => site.story.some((s) => s.key === m.placement));
   const showStory = p.featured || hasStory;
   const steps = site.story;
+
+  // Everything that can open full screen, in the order it appears on the page.
+  const viewable = useMemo(() => {
+    const inBeats = site.story.flatMap((s) => p.media.filter((m) => m.placement === s.key));
+    return [...(cover ? [cover] : []), ...hero, ...inBeats, ...gallery].filter((m) => m.type !== "embed");
+  }, [p.media, cover, hero, gallery]);
+  const [viewing, setViewing] = useState<number | null>(null);
+  const open: Open = (m) => {
+    const i = viewable.findIndex((v) => v.id === m.id);
+    if (i >= 0) setViewing(i);
+  };
 
   useEffect(() => {
     const el = root.current!;
@@ -122,8 +161,16 @@ export function ProjectView({ project: p, next }: { project: Project; next: Proj
         </div>
       </header>
 
-      <div className={styles.cover} data-reveal>
-        <div className={styles.frame}>{cover ? <Media item={cover} eager sizes="100vw" /> : <MediaSlot label="[Cover image or video]" ratio="16 / 8" />}</div>
+      <div className={styles.cover} data-reveal data-tall={cover && isTall(cover) ? "" : undefined}>
+        {cover ? (
+          <Frame item={cover} onOpen={open}>
+            <Media item={cover} eager sizes="100vw" />
+          </Frame>
+        ) : (
+          <div className={styles.frame}>
+            <MediaSlot label="[Cover image or video]" ratio="16 / 8" />
+          </div>
+        )}
       </div>
 
       {(p.description || p.recognition?.length) && (
@@ -142,7 +189,7 @@ export function ProjectView({ project: p, next }: { project: Project; next: Proj
         </section>
       )}
 
-      <MediaBlock items={hero} />
+      <MediaBlock items={hero} onOpen={open} />
 
       {showStory && (
         <div className={styles.story}>
@@ -168,7 +215,7 @@ export function ProjectView({ project: p, next }: { project: Project; next: Proj
                     {s.title}
                   </h2>
                   <p className={styles.beatText}>{text || <span className="placeholder-text">[Project description]</span>}</p>
-                  <MediaBlock items={items} />
+                  <MediaBlock items={items} onOpen={open} />
                 </section>
               );
             })}
@@ -179,10 +226,20 @@ export function ProjectView({ project: p, next }: { project: Project; next: Proj
       {gallery.length > 0 && (
         <section className={styles.gallery} aria-label="Gallery">
           <div ref={strip} className={styles.strip}>
-            {gallery.map((m) => (
-              <figure key={m.id} className={styles.slide}>
-                <Media item={m} sizes="60vw" />
-                {m.caption && <figcaption className="meta">{m.caption}</figcaption>}
+            {gallery.map((m, i) => (
+              // Every slide is the same height and as wide as its own image: nothing is cropped.
+              <figure
+                key={m.id}
+                className={styles.slide}
+                style={{ "--ratio": m.width && m.height ? m.width / m.height : 16 / 9 } as React.CSSProperties}
+              >
+                <Frame item={m} onOpen={open}>
+                  <Media item={m} sizes="70vw" />
+                </Frame>
+                <figcaption className={`meta ${styles.slideCaption}`}>
+                  <span>{String(i + 1).padStart(2, "0")}</span>
+                  {m.caption && <span>{m.caption}</span>}
+                </figcaption>
               </figure>
             ))}
           </div>
@@ -194,6 +251,8 @@ export function ProjectView({ project: p, next }: { project: Project; next: Proj
       )}
 
       <footer className={styles.next}>
+        {next && (
+          <>
         <p className="meta">Next project</p>
         <Link
           href={`/${next.slug}/`}
@@ -207,10 +266,13 @@ export function ProjectView({ project: p, next }: { project: Project; next: Proj
         >
           {next.title}
         </Link>
+          </>
+        )}
         <Link href="/#work" className={`meta ${styles.back}`}>
           All selected work
         </Link>
       </footer>
+      {viewing !== null && <Lightbox items={viewable} index={viewing} onIndex={setViewing} onClose={() => setViewing(null)} />}
     </article>
   );
 }

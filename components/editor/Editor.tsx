@@ -284,7 +284,11 @@ export function Editor({
       deletes.current.clear();
       setDirty(false);
       setStatus(result.note);
-      result.live?.then((ok) => setStatus(ok ? "Live on ajitart.github.io/work. Reload a page to see it." : result.note));
+      result.live?.then((ok) => {
+        if (ok === true) setStatus("Live on ajitart.github.io/work. Reload a page to see it.");
+        else if (ok === false) setError("Saved to GitHub, but the site build failed, so this change isn't live yet. Ask Claude to look at the latest deploy.");
+        else setStatus(result.note);
+      });
     } catch (e) {
       setError((e as Error).message);
       setStatus("");

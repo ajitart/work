@@ -16,8 +16,8 @@ export interface SaveRequest extends ContentData {
 export interface SaveResult {
   /** Shown after saving, e.g. "Published. Live in about a minute." */
   note: string;
-  /** Resolves when the change is live, if the backend can tell. */
-  live?: Promise<boolean>;
+  /** true once the change is live, false if the deploy failed, null if it can't be told. */
+  live?: Promise<boolean | null>;
 }
 
 /**
