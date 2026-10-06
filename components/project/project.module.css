@@ -41,6 +41,11 @@
   object-fit: contain;
 }
 
+/* No cover yet: the empty frame fills the column so the layout keeps its balance. */
+.heroMedia > .heroSlot {
+  width: 100%;
+}
+
 .heroText {
   grid-area: text;
   min-width: 0;
@@ -79,7 +84,7 @@
 
 .meta div {
   display: grid;
-  grid-template-columns: 9ch 1fr;
+  grid-template-columns: 11ch 1fr;
   gap: 12px;
   padding: 9px 0;
   border-bottom: 1px solid var(--line);
@@ -175,14 +180,32 @@
   max-width: 34ch;
 }
 
+/* Recognition: a row in the details list, one award per line. */
+.recognitionRow dd {
+  min-width: 0;
+}
+
 .recognition {
-  margin-top: 10px;
+  display: grid;
+  gap: 6px;
 }
 
 .recognition li {
-  padding: 9px 0;
-  border-bottom: 1px solid var(--line);
-  font-size: var(--step--1);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+
+.awardIcon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
 }
 
 /* ---------- story ---------- */
@@ -310,11 +333,14 @@
   overflow: hidden;
 }
 
+/* Centred when the slides don't fill the screen (one video, two images); otherwise it scrolls sideways. */
 .strip {
   display: flex;
   gap: clamp(16px, 2.4vw, 40px);
   padding: 0 var(--gutter);
   align-items: flex-start;
+  width: max-content;
+  margin-inline: auto;
 }
 
 .slide {

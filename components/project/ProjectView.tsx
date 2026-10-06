@@ -12,6 +12,17 @@ import styles from "./project.module.css";
 
 type Open = (m: MediaItem) => void;
 
+/** The same award rosette as the chapter notes. */
+function AwardIcon() {
+  return (
+    <svg className={styles.awardIcon} viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="9" r="6" />
+      <circle cx="12" cy="9" r="2.6" />
+      <path d="M8.2 13.6 6.5 21l5.5-2.6 5.5 2.6-1.7-7.4" />
+    </svg>
+  );
+}
+
 /** Square, portrait and near-square images would be taller than the screen at full width. */
 const isTall = (m: MediaItem) => !!(m.width && m.height && m.height >= m.width * 0.75);
 
@@ -145,8 +156,8 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
               <Media item={cover} eager sizes="(max-width: 900px) 100vw, 58vw" />
             </Frame>
           ) : (
-            <div className={styles.frame}>
-              <MediaSlot label="[Cover image or video]" ratio="4 / 3" />
+            <div className={`${styles.frame} ${styles.heroSlot}`}>
+              <MediaSlot label="[Cover image]" ratio="4 / 3" />
             </div>
           )}
         </div>
@@ -168,23 +179,28 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
                 <dd>{m.value}</dd>
               </div>
             ))}
+            {p.recognition?.length ? (
+              <div className={styles.recognitionRow}>
+                <dt>Recognition</dt>
+                <dd>
+                  <ul className={styles.recognition}>
+                    {p.recognition.map((r) => (
+                      <li key={r}>
+                        <AwardIcon />
+                        <span>{r}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            ) : null}
           </dl>
         </div>
       </header>
 
-      {(p.description || p.recognition?.length) && (
+      {p.description && (
         <section className={styles.overview}>
-          {p.description && <p className={styles.description}>{p.description}</p>}
-          {p.recognition?.length ? (
-            <div>
-              <p className="meta">Recognition</p>
-              <ul className={styles.recognition}>
-                {p.recognition.map((r) => (
-                  <li key={r}>{r}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
+          <p className={styles.description}>{p.description}</p>
         </section>
       )}
 
