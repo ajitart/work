@@ -19,6 +19,17 @@ export function Chrome() {
   const panel = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLButtonElement>(null);
   const onHome = pathname === "/";
+  // Back returns to where you were if you came from inside the site; otherwise to Selected work.
+  const firstPath = useRef(pathname);
+  const movedWithinSite = useRef(false);
+  useEffect(() => {
+    if (pathname !== firstPath.current) movedWithinSite.current = true;
+  }, [pathname]);
+
+  const back = () => {
+    if (movedWithinSite.current) router.back();
+    else router.push("/#work");
+  };
 
   const goto = useCallback(
     (target: string) => {
@@ -84,6 +95,12 @@ export function Chrome() {
   return (
     <>
       <header className={styles.chrome}>
+        <div className={styles.left}>
+          {!onHome && (
+            <button type="button" className={styles.back} onClick={back}>
+              <span aria-hidden="true">←</span> Back
+            </button>
+          )}
         <Link
           href="/"
           className={styles.home}
@@ -96,6 +113,7 @@ export function Chrome() {
         >
           Ajit <span aria-hidden="true">/</span> Work
         </Link>
+        </div>
         <button
           ref={button}
           type="button"

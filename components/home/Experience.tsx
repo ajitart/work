@@ -114,7 +114,8 @@ export function Experience() {
 
   /** The opening: black, then the field, then the particles gather into the mark. */
   useEffect(() => {
-    if (phase !== "intro") return;
+    // phaseRef is updated synchronously by begin(), so a skipped intro never re-locks the page.
+    if (phase !== "intro" || phaseRef.current !== "intro") return;
     const el = intro.current!;
     const initial = firstRun.current;
     firstRun.current = false;

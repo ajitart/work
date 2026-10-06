@@ -124,10 +124,17 @@ void main() {
   float tl = ease(clamp(uLine * 1.8 - nx * 0.8, 0.0, 1.0));
   p = mix(p, line, tl);
 
-  // Cursor: particles part around the pointer.
+  // Cursor: a wide warp. Particles are pushed out of a large circle around the
+  // pointer and swirl a little around it, falling off smoothly at the edge.
   vec2 d = p.xy - uMouse;
   float dl = length(d);
-  p.xy += (d / (dl + 0.001)) * smoothstep(1.3, 0.0, dl) * 0.42 * uMouseForce * (1.0 - tl * 0.8);
+  float warp = smoothstep(2.6, 0.0, dl);
+  warp *= warp * (3.0 - 2.0 * warp);
+  vec2 dir = d / (dl + 0.001);
+  vec2 swirl = vec2(-dir.y, dir.x);
+  float force = uMouseForce * (1.0 - tl * 0.8);
+  p.xy += (dir * 1.05 + swirl * 0.35) * warp * force;
+  p.z += warp * force * 0.8;
 
   vec4 mv = modelViewMatrix * vec4(p, 1.0);
   gl_Position = projectionMatrix * mv;
