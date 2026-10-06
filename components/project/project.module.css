@@ -17,12 +17,16 @@
   padding: var(--hero-top) var(--gutter) var(--hero-bottom);
 }
 
+/* The cover stays in view while a long overview is read alongside it. */
 .heroMedia {
   grid-area: media;
   display: flex;
   justify-content: center;
   align-items: center;
   min-width: 0;
+  align-self: start;
+  position: sticky;
+  top: var(--hero-top);
 }
 
 /* The cover is shown whole and never taller than the screen. */
@@ -114,6 +118,7 @@
   }
   .heroMedia {
     order: 1;
+    position: static;
   }
   .meta {
     order: 2;
@@ -178,6 +183,13 @@
   font-size: var(--step-2);
   line-height: 1.25;
   max-width: 34ch;
+}
+
+/* Overview: a row in the details list, same size as Client and Studio. */
+.overviewRow dd {
+  line-height: 1.5;
+  max-width: 52ch;
+  white-space: pre-line;
 }
 
 /* Recognition: a row in the details list, one award per line. */

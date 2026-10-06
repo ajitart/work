@@ -197,15 +197,17 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
                 </dd>
               </div>
             ) : null}
+            {p.description && (
+              <div className={styles.overviewRow}>
+                <dt>Overview</dt>
+                <dd>{p.description}</dd>
+              </div>
+            )}
           </dl>
         </div>
       </header>
 
-      {p.description && (
-        <section className={styles.overview}>
-          <p className={styles.description}>{p.description}</p>
-        </section>
-      )}
+
 
       <MediaBlock items={hero} onOpen={open} />
 
