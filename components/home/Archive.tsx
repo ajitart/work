@@ -12,9 +12,6 @@ import styles from "./archive.module.css";
 
 const ALL = "All";
 
-/** Plate shapes used until real images (with their own proportions) are added. */
-const RHYTHM = ["wide", "tall", "square", "square", "tall", "wide", "square", "tall", "square"] as const;
-
 /** Newest first; undated work goes last. */
 const ordered = [...projects].sort((a, b) => (b.start ?? -1) - (a.start ?? -1));
 
@@ -95,14 +92,12 @@ export function Archive() {
       <ol ref={grid} className={styles.grid}>
         {ordered.map((p, i) => {
           const cover = coverOf(p);
-          const shape = cover?.width && cover?.height ? (cover.width / cover.height > 1.3 ? "wide" : cover.width / cover.height < 0.9 ? "tall" : "square") : RHYTHM[i % RHYTHM.length];
           return (
             <li
               key={p.slug}
               className={styles.entry}
               data-entry
               data-flip-id={p.slug}
-              data-shape={shape}
               hidden={!visible.has(p.slug)}
             >
               <Link
