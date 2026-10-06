@@ -255,21 +255,63 @@
   },
   {
     "slug": "netflix",
-    "title": "Netflix",
+    "title": "Class Netflix Series",
     "subtitle": "Integrated campaigns",
     "client": "Netflix",
     "studio": "Creativeland Asia",
     "period": "2021 — 2023",
     "start": 2021,
     "categories": [
-      "Campaign"
+      "Campaign",
+      "Digital"
     ],
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "",
+    "cover": "media/projects/netflix/class-01.mp4",
     "story": {},
-    "media": []
+    "media": [
+      {
+        "id": "38gbhke7",
+        "src": "media/projects/netflix/class-01.mp4",
+        "type": "video",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 720,
+        "height": 720
+      },
+      {
+        "id": "qwvt3519",
+        "src": "media/projects/netflix/class-02.mp4",
+        "type": "video",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 720,
+        "height": 720
+      },
+      {
+        "id": "u0a8kdfk",
+        "src": "media/projects/netflix/class-03.mp4",
+        "type": "video",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 720,
+        "height": 720
+      },
+      {
+        "id": "tlfzw2gx",
+        "src": "media/projects/netflix/class-04.mp4",
+        "type": "video",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 720,
+        "height": 720
+      }
+    ]
   },
   {
     "slug": "park-avenue",
