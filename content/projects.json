@@ -266,13 +266,14 @@
     "slug": "cheezy-momo-mia",
     "title": "Cheezy Momo Mia by Pizzahut",
     "subtitle": "",
-    "client": "",
-    "studio": "",
-    "period": "",
-    "start": null,
+    "client": "PizzaHut",
+    "studio": "Creativeland Asia",
+    "period": "Aug 2021 – Jul 2023",
+    "start": 2021,
     "categories": [
       "Brand",
-      "Campaign"
+      "Campaign",
+      "Digital"
     ],
     "featured": false,
     "statement": "",
@@ -284,7 +285,7 @@
         "id": "xklitabs",
         "src": "media/projects/cheezy-momo-mia/ph-228-mo-pizza-outdoor-price-1-x-1-r4.jpg",
         "type": "image",
-        "caption": "",
+        "caption": "Social media post",
         "placement": "gallery",
         "layout": "full",
         "width": 3000,
