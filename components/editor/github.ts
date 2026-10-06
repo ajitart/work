@@ -39,6 +39,8 @@ export class GitHubError extends Error {
 
 async function gh<T>(token: string, path: string, init: RequestInit = {}): Promise<T> {
   const res = await fetch(`${API}${path}`, {
+    // Never reuse a cached answer: a stale branch head makes the publish fail as "not a fast forward".
+    cache: "no-store",
     ...init,
     headers: {
       Accept: "application/vnd.github+json",
@@ -113,10 +115,7 @@ export function githubBackend(token: string): EditorBackend {
 
     // One commit with every new file, every removal and both JSON files.
     async save(req: SaveRequest): Promise<SaveResult> {
-      const ref = await gh<{ object: { sha: string } }>(token, `${repo}/git/ref/heads/${REPO.branch}`);
-      const parent = ref.object.sha;
-      const parentCommit = await gh<{ tree: { sha: string } }>(token, `${repo}/git/commits/${parent}`);
-
+      // Upload the files first (the slow part), then build the commit on the current branch head.
       const tree: { path: string; mode: "100644"; type: "blob"; sha: string | null }[] = [];
       for (const u of req.uploads) {
         const blob = await gh<{ sha: string }>(token, `${repo}/git/blobs`, {
@@ -138,20 +137,29 @@ export function githubBackend(token: string): EditorBackend {
       }
       for (const d of req.deletes) tree.push({ path: `public/${d}`, mode: "100644", type: "blob", sha: null });
 
-      const newTree = await gh<{ sha: string }>(token, `${repo}/git/trees`, {
-        method: "POST",
-        body: JSON.stringify({ base_tree: parentCommit.tree.sha, tree }),
-      });
-      const commit = await gh<{ sha: string }>(token, `${repo}/git/commits`, {
-        method: "POST",
-        body: JSON.stringify({ message: req.message, tree: newTree.sha, parents: [parent] }),
-      });
-      await gh(token, `${repo}/git/refs/heads/${REPO.branch}`, {
-        method: "PATCH",
-        body: JSON.stringify({ sha: commit.sha }),
-      });
-
-      return { note: "Published. The site updates in about a minute.", live: watchDeploy(token, commit.sha) };
+      // If the branch moves while we're working (another publish, a deploy commit), rebuild on the new head and retry.
+      for (let attempt = 0; ; attempt++) {
+        const ref = await gh<{ object: { sha: string } }>(token, `${repo}/git/ref/heads/${REPO.branch}`);
+        const parent = ref.object.sha;
+        const parentCommit = await gh<{ tree: { sha: string } }>(token, `${repo}/git/commits/${parent}`);
+        const newTree = await gh<{ sha: string }>(token, `${repo}/git/trees`, {
+          method: "POST",
+          body: JSON.stringify({ base_tree: parentCommit.tree.sha, tree }),
+        });
+        const commit = await gh<{ sha: string }>(token, `${repo}/git/commits`, {
+          method: "POST",
+          body: JSON.stringify({ message: req.message, tree: newTree.sha, parents: [parent] }),
+        });
+        try {
+          await gh(token, `${repo}/git/refs/heads/${REPO.branch}`, {
+            method: "PATCH",
+            body: JSON.stringify({ sha: commit.sha }),
+          });
+          return { note: "Published. The site updates in about a minute.", live: watchDeploy(token, commit.sha) };
+        } catch (e) {
+          if (!(e instanceof GitHubError) || e.status !== 422 || attempt >= 2) throw e;
+        }
+      }
     },
 
     // Fresh uploads aren't on the live site until the deploy finishes, so preview from the repository.
