@@ -491,5 +491,36 @@
         "height": 632
       }
     ]
+  },
+  {
+    "slug": "darktraveltales",
+    "title": "#DarkTravelTales ",
+    "subtitle": "",
+    "client": "Reliance General Insurence",
+    "studio": "OgilvyOne",
+    "period": "2013-2017",
+    "start": null,
+    "categories": [
+      "Brand",
+      "Digital",
+      "Campaign"
+    ],
+    "featured": true,
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": [
+      {
+        "id": "o7z2gj70",
+        "src": "https://vimeo.com/176560245?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 16,
+        "height": 9
+      }
+    ]
   }
 ]
