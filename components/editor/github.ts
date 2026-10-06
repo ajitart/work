@@ -180,18 +180,27 @@ export function githubBackend(token: string): EditorBackend {
   };
 }
 
-/** Follow the deploy workflow for a commit: true when live, false if it failed, null if it can't be followed. */
+/**
+ * Follow the deploy for a commit: true when live, false if it failed, null if it can't be followed.
+ * Publishing again quickly cancels the older build (the newer one contains both changes), so a
+ * cancelled build hands over to the latest build on the branch instead of counting as a failure.
+ */
 async function watchDeploy(token: string, sha: string): Promise<boolean | null> {
   const repo = `/repos/${REPO.owner}/${REPO.name}`;
-  for (let i = 0; i < 40; i++) {
+  type Run = { id: number; status: string; conclusion: string | null; created_at: string };
+  let follow: string = `${repo}/actions/runs?head_sha=${sha}&per_page=1`;
+  for (let i = 0; i < 60; i++) {
     await new Promise((r) => setTimeout(r, 8000));
     try {
-      const runs = await gh<{ workflow_runs: { status: string; conclusion: string | null }[] }>(
-        token,
-        `${repo}/actions/runs?head_sha=${sha}&per_page=1`,
-      );
+      const runs = await gh<{ workflow_runs: Run[] }>(token, follow);
       const run = runs.workflow_runs[0];
-      if (run?.status === "completed") return run.conclusion === "success";
+      if (run?.status !== "completed") continue;
+      if (run.conclusion === "success") return true;
+      if (run.conclusion === "cancelled") {
+        follow = `${repo}/actions/runs?branch=${REPO.branch}&event=push&per_page=1`;
+        continue;
+      }
+      return false;
     } catch {
       return null; // token without Actions access: we just can't tell
     }
