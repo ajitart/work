@@ -787,6 +787,16 @@
         "layout": "full",
         "width": 1080,
         "height": 1080
+      },
+      {
+        "id": "x567niri",
+        "src": "media/projects/flavour-fun-pizza/1x1-box-of-4-10-sec-install-now-mov.mp4",
+        "type": "video",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 990,
+        "height": 990
       }
     ]
   }
