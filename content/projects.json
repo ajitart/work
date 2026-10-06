@@ -194,7 +194,7 @@
   },
   {
     "slug": "pizza-hut",
-    "title": "Pizza Hut",
+    "title": "LIMO Pizza by Pizza Hut",
     "subtitle": "Integrated campaigns",
     "client": "Pizza Hut",
     "studio": "Creativeland Asia",
@@ -206,9 +206,50 @@
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "",
+    "cover": "media/projects/pizza-hut/ph-227-limo-creatives-1x1-r3.jpg",
     "story": {},
-    "media": []
+    "media": [
+      {
+        "id": "atn71mpy",
+        "src": "media/projects/pizza-hut/ph-227-limo-creatives-1x1-r3.jpg",
+        "type": "image",
+        "caption": "Social Media post",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3000,
+        "height": 3000
+      },
+      {
+        "id": "g19736tr",
+        "src": "media/projects/pizza-hut/ph-227-limo-creatives-2-5ft-x-4ft-standee-r4.jpg",
+        "type": "image",
+        "caption": "Standee Design",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3543,
+        "height": 5669
+      },
+      {
+        "id": "kb3middw",
+        "src": "media/projects/pizza-hut/ph-227-limo-creatives-2ft-x-1ft-r4.jpg",
+        "type": "image",
+        "caption": "Hoarding Desgin ",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 2480,
+        "height": 1299
+      },
+      {
+        "id": "me6omtz8",
+        "src": "media/projects/pizza-hut/ph-229-limo-pizza-die-cut-2-5ft-x-4ft-standee-02.jpg",
+        "type": "image",
+        "caption": "Standee 02",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 4746,
+        "height": 6499
+      }
+    ]
   },
   {
     "slug": "netflix",
