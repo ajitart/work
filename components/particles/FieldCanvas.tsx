@@ -53,5 +53,12 @@ export function FieldCanvas() {
     };
   }, []);
 
-  return <canvas ref={canvas} aria-hidden="true" style={{ position: "fixed", inset: 0, width: "100%", height: "100%", zIndex: 0, display: "block" }} />;
+  // Sized to the *large* viewport (100lvh) so the phone's address bar sliding in and out never resizes it.
+  return (
+    <canvas
+      ref={canvas}
+      aria-hidden="true"
+      style={{ position: "fixed", left: 0, top: 0, width: "100%", height: "100lvh", zIndex: 0, display: "block", pointerEvents: "none" }}
+    />
+  );
 }

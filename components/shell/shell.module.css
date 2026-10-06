@@ -11,6 +11,14 @@
   mix-blend-mode: difference;
 }
 
+/* Safari/iOS repaints blended fixed layers over WebGL badly (flicker): plain white with a soft shadow on touch screens. */
+@media (hover: none), (pointer: coarse) {
+  .chrome {
+    mix-blend-mode: normal;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+  }
+}
+
 .left {
   display: flex;
   align-items: center;

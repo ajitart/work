@@ -248,9 +248,17 @@ export class ParticleField {
     this.geometry.setAttribute("aRole", new THREE.BufferAttribute(role, 1));
   }
 
+  private size = { w: 0, h: 0 };
+
   private resize = () => {
     const w = this.canvas.clientWidth || window.innerWidth;
     const h = this.canvas.clientHeight || window.innerHeight;
+    // Resizing clears the WebGL canvas for a frame. On phones the height changes constantly while
+    // scrolling (the address bar), which reads as flicker: only react to real changes.
+    const touch = window.matchMedia("(pointer: coarse)").matches;
+    if (touch && this.size.w === w && Math.abs(this.size.h - h) < 160) return;
+    if (this.size.w === w && this.size.h === h) return;
+    this.size = { w, h };
     const dpr = Math.min(window.devicePixelRatio || 1, this.degraded ? 1 : w < 700 ? 1.5 : 1.75);
     this.renderer.setPixelRatio(dpr);
     this.renderer.setSize(w, h, false);
@@ -357,6 +365,7 @@ export class ParticleField {
     if (avg > 1 / 40) {
       this.degraded = true;
       this.geometry.setDrawRange(0, Math.floor(this.count * 0.55));
+      this.size = { w: 0, h: 0 }; // force the lower pixel ratio to apply
       this.resize();
     }
   }
