@@ -32,10 +32,11 @@ export function Cursor() {
         ringPos.x = pos.x;
         ringPos.y = pos.y;
         shown = true;
-        root.dataset.cursor = "on";
+        root.dataset.cursorVisible = "";
       }
+      // Only real controls and elements inside the page body count (never <html> itself).
       const target = (e.target as Element | null)?.closest<HTMLElement>(
-        "a, button, [role='button'], input, select, textarea, label, [data-cursor]",
+        "body a, body button, body [role='button'], body input, body select, body textarea, body label, body [data-cursor]",
       );
       const label = target?.dataset.cursor ?? "";
       const state = label ? "label" : target ? "hover" : "idle";
@@ -45,7 +46,7 @@ export function Cursor() {
     };
     const leave = () => {
       shown = false;
-      root.dataset.cursor = "off";
+      delete root.dataset.cursorVisible;
     };
     const down = () => ring.current?.setAttribute("data-down", "");
     const up = () => ring.current?.removeAttribute("data-down");
