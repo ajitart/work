@@ -286,7 +286,7 @@
         "type": "image",
         "caption": "",
         "placement": "gallery",
-        "layout": "wide",
+        "layout": "full",
         "width": 3000,
         "height": 3000
       },
