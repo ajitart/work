@@ -79,12 +79,14 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
   const showStory = hasCaseStudy(p);
   const isBeat = (m: MediaItem) => site.story.some((s) => s.key === m.placement);
   // Without a case study, anything placed in a story beat joins the gallery.
-  const gallery = p.media.filter((m) => !m.placement || m.placement === "gallery" || (!showStory && isBeat(m)));
+  // The cover is used only as the cover; it never repeats further down the page.
+  const notCover = (m: MediaItem) => m.src !== cover?.src;
+  const gallery = p.media.filter((m) => notCover(m) && (!m.placement || m.placement === "gallery" || (!showStory && isBeat(m))));
   const steps = site.story;
 
   // Everything that can open full screen, in the order it appears on the page.
   const viewable = useMemo(() => {
-    const inBeats = showStory ? site.story.flatMap((s) => p.media.filter((m) => m.placement === s.key)) : [];
+    const inBeats = showStory ? site.story.flatMap((s) => p.media.filter((m) => m.placement === s.key && m.src !== cover?.src)) : [];
     return [...(cover ? [cover] : []), ...hero, ...inBeats, ...gallery].filter((m) => m.type !== "embed");
   }, [p.media, cover, hero, gallery, showStory]);
   const [viewing, setViewing] = useState<number | null>(null);
@@ -227,7 +229,7 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
           <div className={styles.beats}>
             {steps.map((s, i) => {
               const text = p.story[s.key];
-              const items = p.media.filter((m) => m.placement === s.key);
+              const items = p.media.filter((m) => m.placement === s.key && notCover(m));
               return (
                 <section key={s.key} id={s.key} className={styles.beat} data-step aria-labelledby={`${s.key}-h`}>
                   <p className={`meta ${styles.beatNo}`}>{String(i + 1).padStart(2, "0")}</p>

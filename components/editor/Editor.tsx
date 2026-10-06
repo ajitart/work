@@ -521,7 +521,10 @@ export function Editor({
                         <span>Caption</span>
                         <input value={m.caption ?? ""} placeholder="Optional. Also used as the alt text." onChange={(e) => updateMedia(m.id, { caption: e.target.value })} />
                       </label>
-                      {project && (
+                      {project && project.cover === m.src && (
+                        <p className={styles.hint}>Cover only: shown on the left of the project&apos;s first screen and as its Archive thumbnail, not repeated in the page.</p>
+                      )}
+                      {project && project.cover !== m.src && (
                         <div className={styles.row}>
                           <label className={styles.field}>
                             <span>Place in page</span>
