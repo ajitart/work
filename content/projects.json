@@ -797,6 +797,16 @@
         "layout": "full",
         "width": 990,
         "height": 990
+      },
+      {
+        "id": "aejm3vdi",
+        "src": "media/projects/flavour-fun-pizza/pizza-hut-p-p-1x1-10sec.mp4",
+        "type": "video",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1080,
+        "height": 1080
       }
     ]
   }
