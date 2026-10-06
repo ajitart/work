@@ -42,7 +42,7 @@
 /* All titles share one grid cell; the block is as tall as the tallest one. */
 .titles {
   display: grid;
-  font-size: clamp(2.6rem, min(8.6vw, 12vh), 100px);
+  font-size: clamp(2.2rem, min(7.3vw, 10.2vh), 85px);
 }
 
 .title {
