@@ -864,7 +864,7 @@
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "media/projects/cat-netflix-series/final-cat-logo-rbg.jpg",
+    "cover": "media/projects/cat-netflix-series/thumb-netflix-01.jpg",
     "story": {},
     "media": [
       {
@@ -906,6 +906,16 @@
         "layout": "full",
         "width": 1280,
         "height": 720
+      },
+      {
+        "id": "xrpxow8u",
+        "src": "media/projects/cat-netflix-series/thumb-netflix-01.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 808,
+        "height": 632
       }
     ]
   }
