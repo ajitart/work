@@ -14,9 +14,9 @@ export type MediaLayout = "full" | "wide" | "half" | "detail";
 
 export interface MediaItem {
   id: string;
-  /** Path under /public, e.g. "media/projects/drs/overview.jpg". */
+  /** Path under /public, e.g. "media/projects/drs/overview.jpg"; for "embed", a YouTube or Vimeo URL. */
   src: string;
-  type: "image" | "video";
+  type: "image" | "video" | "embed";
   caption?: string;
   placement?: MediaPlacement;
   layout?: MediaLayout;

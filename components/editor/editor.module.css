@@ -248,7 +248,8 @@
 }
 
 .preview img,
-.preview video {
+.preview video,
+.preview iframe {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -412,4 +413,21 @@
   left: auto;
   right: 8px;
   background: var(--white);
+}
+
+.preview iframe {
+  border: 0;
+}
+
+.linkRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.close:disabled {
+  color: var(--grey-dim);
+  border-color: #222;
+  cursor: default;
 }

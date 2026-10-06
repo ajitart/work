@@ -2,6 +2,7 @@ import siteJson from "@/content/site.json";
 import projectsJson from "@/content/projects.json";
 import makingJson from "@/content/making.json";
 import type { MakingItem, MediaItem, Project, SiteContent } from "./types";
+export { embedUrl } from "./embed";
 
 // All content lives in /content as JSON so it can be edited by hand or through
 // the local Studio (/studio, dev only) without touching components.
@@ -15,9 +16,11 @@ export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }
 
+/** The cover: a chosen image or video file (never an embedded player, which can't be a thumbnail). */
 export function coverOf(p: Project): MediaItem | undefined {
-  if (p.cover) return p.media.find((m) => m.src === p.cover);
-  return p.media.find((m) => m.placement === "hero") ?? p.media[0];
+  const files = p.media.filter((m) => m.type !== "embed");
+  if (p.cover) return files.find((m) => m.src === p.cover);
+  return files.find((m) => m.placement === "hero") ?? files[0];
 }
 
 /** Prefix a /public path with the GitHub Pages base path. */

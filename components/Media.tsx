@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import type { MediaItem } from "@/lib/types";
-import { asset } from "@/lib/content";
+import { asset, embedUrl } from "@/lib/content";
 import styles from "./media.module.css";
 
 /**
@@ -46,6 +46,22 @@ export function Media({
   }, [src, item.controls]);
 
   const style = { aspectRatio: ratio, objectFit: fit } as React.CSSProperties;
+
+  if (item.type === "embed") {
+    const player = embedUrl(item.src);
+    if (!player) return null;
+    return (
+      <iframe
+        className={`${styles.media} ${styles.embed} ${className ?? ""}`}
+        src={player}
+        title={item.caption || "Video"}
+        loading="lazy"
+        allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+        allowFullScreen
+        style={{ aspectRatio: ratio ?? "16 / 9" }}
+      />
+    );
+  }
 
   if (item.type === "video") {
     return (

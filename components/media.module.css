@@ -4,6 +4,12 @@
   background: var(--plate);
 }
 
+.embed {
+  display: block;
+  border: 0;
+  aspect-ratio: 16 / 9;
+}
+
 .slot {
   position: relative;
   width: 100%;

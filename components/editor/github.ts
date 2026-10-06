@@ -118,10 +118,21 @@ export function githubBackend(token: string): EditorBackend {
       // Upload the files first (the slow part), then build the commit on the current branch head.
       const tree: { path: string; mode: "100644"; type: "blob"; sha: string | null }[] = [];
       for (const u of req.uploads) {
-        const blob = await gh<{ sha: string }>(token, `${repo}/git/blobs`, {
-          method: "POST",
-          body: JSON.stringify({ content: await toBase64(u.file), encoding: "base64" }),
-        });
+        let blob: { sha: string };
+        try {
+          blob = await gh<{ sha: string }>(token, `${repo}/git/blobs`, {
+            method: "POST",
+            body: JSON.stringify({ content: await toBase64(u.file), encoding: "base64" }),
+          });
+        } catch (e) {
+          const mb = (u.file.size / 1048576).toFixed(1);
+          if (e instanceof GitHubError && e.status === 422) {
+            throw new Error(
+              `${u.file.name} (${mb} MB) is too large to publish from the browser. Delete it here, compress it (for videos: HandBrake, "Fast 1080p30") and add it again, or add the video as a YouTube/Vimeo link. Nothing was published.`,
+            );
+          }
+          throw new Error(`${u.file.name}: ${(e as Error).message}`);
+        }
         tree.push({ path: `public/${u.src}`, mode: "100644", type: "blob", sha: blob.sha });
       }
       const json = [

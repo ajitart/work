@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { MakingItem, MediaItem, MediaLayout, MediaPlacement, Project, StoryKey } from "@/lib/types";
 import siteJson from "@/content/site.json";
+import { embedUrl } from "@/lib/embed";
 import type { SiteContent } from "@/lib/types";
 
 // Read site.json directly (not lib/content): saving projects.json in the Studio then doesn't reload this page.
@@ -18,7 +19,10 @@ const EXTENSIONS = new Map([
   ["jpg", "image"], ["jpeg", "image"], ["png", "image"], ["gif", "image"], ["webp", "image"], ["avif", "image"],
   ["mp4", "video"], ["webm", "video"], ["mov", "video"],
 ] as const);
-const MAX_BYTES = 95 * 1024 * 1024;
+/** GitHub refuses larger files when they're sent from a browser. */
+const MAX_BYTES = 30 * 1024 * 1024;
+/** Photos are resized to this many pixels on the longest side before upload. */
+const MAX_EDGE = 2560;
 
 const LAYOUTS: { value: MediaLayout; label: string }[] = [
   { value: "full", label: "Full column" },
@@ -68,6 +72,45 @@ function probe(file: File): Promise<{ width?: number; height?: number }> {
 }
 
 /**
+ * Shrink large JPG/PNG/WebP photos before upload: longest side 2560px, re-encoded
+ * (JPEG, or WebP when the image has transparency). GIFs keep their animation and
+ * are left alone, as are files already small enough.
+ */
+async function optimizeImage(file: File): Promise<File> {
+  if (!/^image\/(jpeg|png|webp)$/.test(file.type)) return file;
+  const bitmap = await createImageBitmap(file).catch(() => null);
+  if (!bitmap) return file;
+  const scale = Math.min(1, MAX_EDGE / Math.max(bitmap.width, bitmap.height));
+  if (scale === 1 && file.size < 1.5 * 1024 * 1024) {
+    bitmap.close();
+    return file;
+  }
+  const w = Math.round(bitmap.width * scale);
+  const h = Math.round(bitmap.height * scale);
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d")!;
+  ctx.drawImage(bitmap, 0, 0, w, h);
+  bitmap.close();
+  let transparent = false;
+  if (file.type !== "image/jpeg") {
+    const data = ctx.getImageData(0, 0, w, h).data;
+    for (let i = 3; i < data.length; i += 4 * 64) {
+      if (data[i] < 250) {
+        transparent = true;
+        break;
+      }
+    }
+  }
+  const type = transparent ? "image/webp" : "image/jpeg";
+  const blob = await new Promise<Blob | null>((r) => canvas.toBlob(r, type, 0.86));
+  if (!blob || blob.size >= file.size) return file;
+  const name = file.name.replace(/\.[^.]+$/, transparent ? ".webp" : ".jpg");
+  return new File([blob], name, { type });
+}
+
+/**
  * Add, arrange and remove images and videos, and edit project text.
  * Nothing is written until "Publish"/"Save": then every change goes out together.
  */
@@ -91,6 +134,7 @@ export function Editor({
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
   const [dragging, setDragging] = useState(false);
+  const [link, setLink] = useState("");
   // Files waiting to be published, keyed by their final src, plus their local preview URLs.
   const pending = useRef(new Map<string, { file: File; url: string }>());
   const deletes = useRef(new Set<string>());
@@ -151,21 +195,29 @@ export function Editor({
     const folder = `media/${tab}/${keyOf(entry)}`;
     const added: MediaItem[] = [];
     const problems: string[] = [];
-    for (const file of Array.from(files)) {
-      const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+    setStatus(files.length > 1 ? "Preparing files…" : "Preparing file…");
+    for (const original of Array.from(files)) {
+      const ext = original.name.split(".").pop()?.toLowerCase() ?? "";
       const type = EXTENSIONS.get(ext as never);
       if (!type) {
-        problems.push(`${file.name}: use JPG, PNG, GIF, WebP, AVIF, MP4, WebM or MOV`);
+        problems.push(`${original.name}: use JPG, PNG, GIF, WebP, AVIF, MP4, WebM or MOV`);
         continue;
       }
+      const file = type === "image" ? await optimizeImage(original) : original;
       if (file.size > MAX_BYTES) {
-        problems.push(`${file.name}: over 95 MB. Compress it and try again`);
+        const mb = Math.round(file.size / 1048576);
+        problems.push(
+          type === "video"
+            ? `${original.name} is ${mb} MB; the limit is 30 MB. Compress it (HandBrake, "Fast 1080p30") or add it as a YouTube/Vimeo link below`
+            : `${original.name} is ${mb} MB; the limit is 30 MB`,
+        );
         continue;
       }
       const src = uniqueSrc(folder, file.name);
       pending.current.set(src, { file, url: URL.createObjectURL(file) });
       added.push({ id: shortId(), src, type, caption: "", placement: "gallery", layout: "full", ...(await probe(file)) });
     }
+    setStatus("");
     if (problems.length) setError(problems.join(". ") + ".");
     if (!added.length) return;
     patch((e) => {
@@ -175,13 +227,26 @@ export function Editor({
     });
   };
 
+  const addLink = () => {
+    if (!entry) return;
+    const url = link.trim();
+    if (!embedUrl(url)) {
+      setError("That isn't a YouTube or Vimeo video link. Copy the link from the video's page or its Share button.");
+      return;
+    }
+    setError("");
+    setLink("");
+    setMedia((ms) => [...ms, { id: shortId(), src: url, type: "embed", caption: "", placement: "gallery", layout: "full", width: 16, height: 9 }]);
+  };
+
   const removeMedia = (m: MediaItem) => {
-    if (!confirm(`Remove ${m.src.split("/").pop()}? It's deleted from the site when you ${publishLabel.toLowerCase()}.`)) return;
+    const label = m.type === "embed" ? "this video link" : m.src.split("/").pop();
+    if (!confirm(`Remove ${label}? It's deleted from the site when you ${publishLabel.toLowerCase()}.`)) return;
     const p = pending.current.get(m.src);
     if (p) {
       URL.revokeObjectURL(p.url);
       pending.current.delete(m.src);
-    } else {
+    } else if (m.type !== "embed") {
       deletes.current.add(m.src);
     }
     patch((e) => {
@@ -279,7 +344,7 @@ export function Editor({
     if (!confirm(`Delete “${name}” and its ${entry.media.length} file(s) from the site?`)) return;
     entry.media.forEach((m) => {
       if (pending.current.has(m.src)) pending.current.delete(m.src);
-      else deletes.current.add(m.src);
+      else if (m.type !== "embed") deletes.current.add(m.src);
     });
     if (tab === "projects") setProjects((ps) => ps && ps.filter((_, i) => i !== selected));
     else setMaking((ms) => ms.filter((_, i) => i !== selected));
@@ -394,7 +459,8 @@ export function Editor({
                   .
                 </p>
                 <p className={styles.hint}>
-                  Up to 95 MB each. Videos without controls play muted on a loop, like a GIF. Nothing goes live until you press {publishLabel}.
+                  Up to 30 MB each; large photos are resized to 2560px automatically. Videos without controls play muted on a loop, like a GIF.
+                  Nothing goes live until you press {publishLabel}.
                 </p>
                 <input
                   ref={fileInput}
@@ -409,11 +475,28 @@ export function Editor({
                 />
               </div>
 
+              <div className={styles.linkRow}>
+                <label className={styles.field}>
+                  <span>Or add a YouTube or Vimeo video (no size limit)</span>
+                  <input
+                    value={link}
+                    placeholder="https://www.youtube.com/watch?v=…"
+                    onChange={(e) => setLink(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && addLink()}
+                  />
+                </label>
+                <button className={styles.close} onClick={addLink} disabled={!link.trim()}>
+                  Add video link
+                </button>
+              </div>
+
               <ol className={styles.media}>
                 {entry.media.map((m, i) => (
                   <li key={m.id} className={styles.card}>
                     <div className={styles.preview}>
-                      {m.type === "video" ? (
+                      {m.type === "embed" ? (
+                        <iframe src={embedUrl(m.src) ?? undefined} title={m.caption || "Video"} loading="lazy" allowFullScreen />
+                      ) : m.type === "video" ? (
                         <video src={preview(m.src)} muted loop playsInline autoPlay preload="metadata" />
                       ) : (
                         // eslint-disable-next-line @next/next/no-img-element
@@ -424,8 +507,8 @@ export function Editor({
                     </div>
                     <div className={styles.cardBody}>
                       <p className={styles.file}>
-                        {m.src.split("/").pop()}
-                        {m.width ? ` · ${m.width}×${m.height}` : ""}
+                        {m.type === "embed" ? m.src : m.src.split("/").pop()}
+                        {m.width && m.type !== "embed" ? ` · ${m.width}×${m.height}` : ""}
                       </p>
                       <label className={styles.field}>
                         <span>Caption</span>
@@ -462,7 +545,7 @@ export function Editor({
                         </label>
                       )}
                       <div className={styles.cardActions}>
-                        {project && project.cover !== m.src && (
+                        {project && project.cover !== m.src && m.type !== "embed" && (
                           <button className={styles.link} onClick={() => setField("cover", m.src)}>
                             Use as cover
                           </button>
