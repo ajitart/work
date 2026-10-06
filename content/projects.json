@@ -268,7 +268,7 @@
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "media/projects/netflix/class-01.mp4",
+    "cover": "media/projects/netflix/thumb-class.jpg",
     "story": {},
     "media": [
       {
@@ -310,6 +310,16 @@
         "layout": "full",
         "width": 720,
         "height": 720
+      },
+      {
+        "id": "eg6rahue",
+        "src": "media/projects/netflix/thumb-class.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "detail",
+        "width": 808,
+        "height": 632
       }
     ]
   },
