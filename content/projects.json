@@ -930,5 +930,42 @@
         "height": 1156
       }
     ]
+  },
+  {
+    "slug": "mtr-ipl-t20-campaign",
+    "title": "MTR: IPL T20 Campaign",
+    "subtitle": "",
+    "client": "",
+    "studio": "",
+    "period": "",
+    "start": null,
+    "categories": [],
+    "featured": false,
+    "statement": "",
+    "description": "",
+    "cover": "media/projects/mtr-ipl-t20-campaign/mtr-copy.png",
+    "story": {},
+    "media": [
+      {
+        "id": "d170bwky",
+        "src": "media/projects/mtr-ipl-t20-campaign/mtr-copy.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "evamph6s",
+        "src": "media/projects/mtr-ipl-t20-campaign/cover2-1.mp4",
+        "type": "video",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 820,
+        "height": 312
+      }
+    ]
   }
 ]
