@@ -295,7 +295,7 @@
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "media/projects/cheezy-momo-mia/ph-228-mo-pizza-outdoor-price-1-x-1-r4.jpg",
+    "cover": "media/projects/cheezy-momo-mia/ph-momo-copy.png",
     "story": {},
     "media": [
       {
@@ -347,6 +347,16 @@
         "layout": "full",
         "width": 3000,
         "height": 4800
+      },
+      {
+        "id": "9pt8deyx",
+        "src": "media/projects/cheezy-momo-mia/ph-momo-copy.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 800,
+        "height": 800
       }
     ]
   },
