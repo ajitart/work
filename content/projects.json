@@ -934,12 +934,16 @@
   {
     "slug": "mtr-ipl-t20-campaign",
     "title": "MTR: IPL T20 Campaign",
-    "subtitle": "",
-    "client": "",
-    "studio": "",
-    "period": "",
+    "subtitle": "T20 Campaign ",
+    "client": "MTR",
+    "studio": "Digital Street",
+    "period": "2018",
     "start": null,
-    "categories": [],
+    "categories": [
+      "Brand",
+      "Digital",
+      "Campaign"
+    ],
     "featured": false,
     "statement": "",
     "description": "",
@@ -965,6 +969,246 @@
         "layout": "full",
         "width": 820,
         "height": 312
+      },
+      {
+        "id": "rbtuq9tb",
+        "src": "media/projects/mtr-ipl-t20-campaign/24-apr-shaw.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "lpe2vfhq",
+        "src": "media/projects/mtr-ipl-t20-campaign/temp-17-bat.mp4",
+        "type": "video",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "j0vk95uy",
+        "src": "media/projects/mtr-ipl-t20-campaign/20-apr-chris.gif",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "h5qkq3j1",
+        "src": "media/projects/mtr-ipl-t20-campaign/8-apr-catch-drop.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "6zjy2i6r",
+        "src": "media/projects/mtr-ipl-t20-campaign/9-apr-fastest-50.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "e1w5xks8",
+        "src": "media/projects/mtr-ipl-t20-campaign/10-apr-partnership-02.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "9tdo7kpf",
+        "src": "media/projects/mtr-ipl-t20-campaign/11-apr-sixes.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "56d89o28",
+        "src": "media/projects/mtr-ipl-t20-campaign/13-apr-last-ball.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "g83adqq6",
+        "src": "media/projects/mtr-ipl-t20-campaign/14-may-catch.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "210xja4n",
+        "src": "media/projects/mtr-ipl-t20-campaign/15-apr-rain.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "i7cnhoxp",
+        "src": "media/projects/mtr-ipl-t20-campaign/17-apr-daredevils.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "hel9xvh3",
+        "src": "media/projects/mtr-ipl-t20-campaign/21-apr-whatson.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "917p6jbp",
+        "src": "media/projects/mtr-ipl-t20-campaign/25-apr-low-gambhir.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "2e7w789a",
+        "src": "media/projects/mtr-ipl-t20-campaign/26-may-khan.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "ula8x5go",
+        "src": "media/projects/mtr-ipl-t20-campaign/butler.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "n1c544ry",
+        "src": "media/projects/mtr-ipl-t20-campaign/last-one.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "zix51mvz",
+        "src": "media/projects/mtr-ipl-t20-campaign/mi-win-4-3.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "3bp7yqld",
+        "src": "media/projects/mtr-ipl-t20-campaign/temp-19-sachin-anim.mp4",
+        "type": "video",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "67mzk48j",
+        "src": "media/projects/mtr-ipl-t20-campaign/8-apr-catch-drop.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "20w61t1h",
+        "src": "media/projects/mtr-ipl-t20-campaign/12-may-buttler.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "g3ty4r2e",
+        "src": "media/projects/mtr-ipl-t20-campaign/16-may-top-3.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "w0d5pkfz",
+        "src": "media/projects/mtr-ipl-t20-campaign/17-may-ghoom-b.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "k6j7mvgo",
+        "src": "media/projects/mtr-ipl-t20-campaign/23-may.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
+      },
+      {
+        "id": "yzuvqurl",
+        "src": "media/projects/mtr-ipl-t20-campaign/23-may-ab.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 600,
+        "height": 600
       }
     ]
   }
