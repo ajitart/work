@@ -234,7 +234,7 @@
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "media/projects/pizza-hut/ph-227-limo-creatives-1x1-r3.jpg",
+    "cover": "media/projects/pizza-hut/ph-limo-copy.png",
     "story": {},
     "media": [
       {
@@ -276,6 +276,16 @@
         "layout": "full",
         "width": 4746,
         "height": 6499
+      },
+      {
+        "id": "meighrtr",
+        "src": "media/projects/pizza-hut/ph-limo-copy.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 800,
+        "height": 800
       }
     ]
   },
