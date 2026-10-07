@@ -847,9 +847,19 @@
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "",
+    "cover": "media/projects/rgi-tvc-digital/rgi-tvc-copy.png",
     "story": {},
     "media": [
+      {
+        "id": "4q9s5j9g",
+        "src": "media/projects/rgi-tvc-digital/rgi-tvc-copy.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 800,
+        "height": 800
+      },
       {
         "id": "d8gz2ldy",
         "src": "https://vimeo.com/176709846?share=copy&fl=sv&fe=ci",
