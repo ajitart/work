@@ -752,5 +752,96 @@
         "height": 9
       }
     ]
+  },
+  {
+    "slug": "pantaloons-grand-fashion-sale",
+    "title": "Pantaloons: Grand Fashion SALE",
+    "subtitle": "Emailers",
+    "client": "Pantaloons",
+    "studio": "VML",
+    "period": "2019",
+    "start": null,
+    "categories": [
+      "Brand",
+      "Digital",
+      "Campaign"
+    ],
+    "featured": false,
+    "statement": "",
+    "description": "",
+    "cover": "media/projects/pantaloons-grand-fashion-sale/panta-sale-copy.png",
+    "story": {},
+    "media": [
+      {
+        "id": "cr8hivs8",
+        "src": "media/projects/pantaloons-grand-fashion-sale/panta-sale-copy.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "rnsfuhky",
+        "src": "media/projects/pantaloons-grand-fashion-sale/emailer-05-santa.gif",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 640,
+        "height": 861
+      },
+      {
+        "id": "c886su3z",
+        "src": "media/projects/pantaloons-grand-fashion-sale/emailer-01-save-the-date.gif",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 640,
+        "height": 938
+      },
+      {
+        "id": "23asrfuy",
+        "src": "media/projects/pantaloons-grand-fashion-sale/emailer-02-greenacard-user.gif",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 640,
+        "height": 960
+      },
+      {
+        "id": "5xdh6gts",
+        "src": "media/projects/pantaloons-grand-fashion-sale/emailer-03-active-consumers.gif",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 640,
+        "height": 953
+      },
+      {
+        "id": "idu2fxox",
+        "src": "media/projects/pantaloons-grand-fashion-sale/emailer-04-inactive-customers.gif",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 640,
+        "height": 1005
+      },
+      {
+        "id": "yn9a7v23",
+        "src": "media/projects/pantaloons-grand-fashion-sale/emailer-06-new-year-greeting.gif",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 640,
+        "height": 938
+      }
+    ]
   }
 ]
