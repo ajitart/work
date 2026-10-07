@@ -487,7 +487,7 @@
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "media/projects/park-avenue/pa-006-raymond-park-avenue-vm-adapt-kv1-r2-1-x-1.jpg",
+    "cover": "media/projects/park-avenue/park-avenue-copy.png",
     "story": {},
     "media": [
       {
@@ -579,6 +579,16 @@
         "layout": "full",
         "width": 3001,
         "height": 1500
+      },
+      {
+        "id": "t58al3d4",
+        "src": "media/projects/park-avenue/park-avenue-copy.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 800,
+        "height": 800
       }
     ]
   },
