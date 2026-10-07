@@ -863,5 +863,72 @@
         "height": 938
       }
     ]
+  },
+  {
+    "slug": "pbl-emailers",
+    "title": "PBL: Emailers",
+    "subtitle": "",
+    "client": "",
+    "studio": "",
+    "period": "",
+    "start": null,
+    "categories": [],
+    "featured": false,
+    "statement": "",
+    "description": "",
+    "cover": "media/projects/pbl-emailers/pbl-emailer-copy.png",
+    "story": {},
+    "media": [
+      {
+        "id": "v1gbl3ls",
+        "src": "media/projects/pbl-emailers/pbl-emailer-copy.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "idng4spg",
+        "src": "media/projects/pbl-emailers/edm-1.jpg",
+        "type": "image",
+        "caption": "Emailer Design",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 700,
+        "height": 1156
+      },
+      {
+        "id": "0w20lpsq",
+        "src": "media/projects/pbl-emailers/edm-horizontal.jpg",
+        "type": "image",
+        "caption": "Emailer Design",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1068,
+        "height": 698
+      },
+      {
+        "id": "f8q2g9py",
+        "src": "media/projects/pbl-emailers/edm.jpg",
+        "type": "image",
+        "caption": "Emailer Design",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 700,
+        "height": 1156
+      },
+      {
+        "id": "mn29kanb",
+        "src": "media/projects/pbl-emailers/edm3.jpg",
+        "type": "image",
+        "caption": "Emailer Design",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 700,
+        "height": 1156
+      }
+    ]
   }
 ]
