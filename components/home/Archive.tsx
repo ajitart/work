@@ -12,8 +12,8 @@ import styles from "./archive.module.css";
 
 const ALL = "All";
 
-/** Newest first; undated work goes last. */
-const ordered = [...projects].sort((a, b) => (b.start ?? -1) - (a.start ?? -1));
+/** The order set in the editor (drag or arrows in the project list). */
+const ordered = projects;
 
 function matches(p: Project, category: string, era: string) {
   if (category !== ALL && !p.categories.includes(category)) return false;

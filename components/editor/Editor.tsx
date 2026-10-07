@@ -138,6 +138,8 @@ export function Editor({
   const [error, setError] = useState("");
   const [dragging, setDragging] = useState(false);
   const [link, setLink] = useState("");
+  const [dragFrom, setDragFrom] = useState<number | null>(null);
+  const [dragOver, setDragOver] = useState<number | null>(null);
   // Files waiting to be published, keyed by their final src, plus their local preview URLs.
   const pending = useRef(new Map<string, { file: File; url: string }>());
   const deletes = useRef(new Set<string>());
@@ -323,6 +325,23 @@ export function Editor({
     onClose?.();
   };
 
+  /** Move an entry in the list; the site shows projects in this order. */
+  const reorder = (from: number, to: number) => {
+    if (from === to || to < 0 || to >= list.length) return;
+    const move = <T,>(arr: T[]) => {
+      const copy = [...arr];
+      const [item] = copy.splice(from, 1);
+      copy.splice(to, 0, item);
+      return copy;
+    };
+    if (tab === "projects") setProjects((ps) => ps && move(ps));
+    else setMaking((ms) => move(ms));
+    // Keep the same entry selected after it moves.
+    setSelected((s) => (s === from ? to : from < s && to >= s ? s - 1 : from > s && to <= s ? s + 1 : s));
+    setDirty(true);
+    setStatus("");
+  };
+
   const addEntry = () => {
     if (tab === "projects") {
       const title = prompt("Project name");
@@ -397,9 +416,39 @@ export function Editor({
             </button>
           ))}
         </div>
+        <p className={styles.listHint}>Drag or use the arrows to set the order on the site.</p>
         <ol className={styles.list}>
           {list.map((e, i) => (
-            <li key={keyOf(e)}>
+            <li
+              key={keyOf(e)}
+              className={styles.listRow}
+              draggable
+              data-dragging={dragFrom === i || undefined}
+              data-over={dragOver === i && dragFrom !== null && dragFrom !== i ? (dragFrom < i ? "below" : "above") : undefined}
+              onDragStart={(ev) => {
+                setDragFrom(i);
+                ev.dataTransfer.effectAllowed = "move";
+                ev.dataTransfer.setData("text/plain", String(i));
+              }}
+              onDragOver={(ev) => {
+                if (dragFrom === null) return;
+                ev.preventDefault();
+                setDragOver(i);
+              }}
+              onDrop={(ev) => {
+                ev.preventDefault();
+                if (dragFrom !== null) reorder(dragFrom, i);
+                setDragFrom(null);
+                setDragOver(null);
+              }}
+              onDragEnd={() => {
+                setDragFrom(null);
+                setDragOver(null);
+              }}
+            >
+              <span className={styles.grip} aria-hidden="true">
+                ⋮⋮
+              </span>
               <button className={styles.listItem} aria-current={i === selected} onClick={() => setSelected(i)}>
                 <span>{"slug" in e ? e.title : e.title || e.kind}</span>
                 <span className={styles.count}>
@@ -407,6 +456,19 @@ export function Editor({
                   {e.media.length} {e.media.length === 1 ? "file" : "files"}
                 </span>
               </button>
+              <span className={styles.arrows}>
+                <button className={styles.arrow} onClick={() => reorder(i, i - 1)} disabled={i === 0} aria-label={`Move ${"title" in e ? e.title : ""} up`}>
+                  ↑
+                </button>
+                <button
+                  className={styles.arrow}
+                  onClick={() => reorder(i, i + 1)}
+                  disabled={i === list.length - 1}
+                  aria-label={`Move ${"title" in e ? e.title : ""} down`}
+                >
+                  ↓
+                </button>
+              </span>
             </li>
           ))}
         </ol>

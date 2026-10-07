@@ -431,3 +431,80 @@
   border-color: #222;
   cursor: default;
 }
+
+/* Reorderable project list */
+.listHint {
+  padding: 10px 20px 0;
+  font-size: 12px;
+  color: var(--grey);
+}
+
+.listRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 2px;
+  border-radius: 6px;
+}
+
+.listRow[data-dragging] {
+  opacity: 0.4;
+}
+
+.listRow[data-over="above"]::before,
+.listRow[data-over="below"]::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.listRow[data-over="above"]::before {
+  top: -1px;
+}
+
+.listRow[data-over="below"]::after {
+  bottom: -1px;
+}
+
+.grip {
+  color: var(--grey-dim);
+  font-size: 11px;
+  letter-spacing: -2px;
+  text-align: center;
+  cursor: grab !important;
+  user-select: none;
+}
+
+.arrows {
+  display: flex;
+  gap: 2px;
+  opacity: 0.35;
+  transition: opacity 0.2s;
+}
+
+.listRow:hover .arrows,
+.listRow:focus-within .arrows {
+  opacity: 1;
+}
+
+.arrow {
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 13px;
+}
+
+.arrow:hover:not(:disabled) {
+  background: #222;
+  color: var(--accent);
+}
+
+.arrow:disabled {
+  color: var(--grey-dim);
+  cursor: default !important;
+}
