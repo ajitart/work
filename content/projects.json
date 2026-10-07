@@ -387,7 +387,7 @@
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "media/projects/flavour-fun-pizza/ph-235-diwali-print-ad-32-8x25cm-r3.jpg",
+    "cover": "media/projects/flavour-fun-pizza/ph-ff-copy.png",
     "story": {},
     "media": [
       {
@@ -459,6 +459,16 @@
         "layout": "full",
         "width": 1080,
         "height": 1080
+      },
+      {
+        "id": "uitimy4z",
+        "src": "media/projects/flavour-fun-pizza/ph-ff-copy.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 800,
+        "height": 800
       }
     ]
   },
