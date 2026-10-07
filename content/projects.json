@@ -602,9 +602,19 @@
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "",
+    "cover": "media/projects/solutions-case-studies/thumbnail.jpg",
     "story": {},
     "media": [
+      {
+        "id": "nd0few1v",
+        "src": "media/projects/solutions-case-studies/thumbnail.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 720,
+        "height": 720
+      },
       {
         "id": "jn1jmlaj",
         "src": "https://vimeo.com/1233602721?fl=tl&fe=ec",
@@ -640,6 +650,16 @@
         "src": "https://vimeo.com/1233602721?share=copy&fl=sv&fe=ci",
         "type": "embed",
         "caption": "Adaptor ",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 16,
+        "height": 9
+      },
+      {
+        "id": "ihypoyj8",
+        "src": "https://vimeo.com/1233606089?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "Who we are",
         "placement": "gallery",
         "layout": "full",
         "width": 16,
