@@ -705,5 +705,52 @@
         "height": 9
       }
     ]
+  },
+  {
+    "slug": "rgi-tvc-digital",
+    "title": "RGI - TVC - Digital",
+    "subtitle": "There's a smarter way out ",
+    "client": "Reliance General Insurance",
+    "studio": "OgilvyOne",
+    "period": "2013-2017",
+    "start": null,
+    "categories": [],
+    "featured": false,
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": [
+      {
+        "id": "d8gz2ldy",
+        "src": "https://vimeo.com/176709846?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "There's a smarter way out - 24x7 Road Side Assitance",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 16,
+        "height": 9
+      },
+      {
+        "id": "wyy8gio6",
+        "src": "https://vimeo.com/151757212?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "There's a smarter way out - 24x7 Road Side Assitance",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 16,
+        "height": 9
+      },
+      {
+        "id": "jp372mft",
+        "src": "https://vimeo.com/151757712?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "There's a smarter way out - 24x7 Road Side Assitance",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 16,
+        "height": 9
+      }
+    ]
   }
 ]
