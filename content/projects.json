@@ -81,6 +81,115 @@
     ]
   },
   {
+    "slug": "brane-referral-circuit",
+    "title": "Brane Referral Circuit",
+    "subtitle": "",
+    "client": "",
+    "studio": "",
+    "period": "",
+    "start": null,
+    "categories": [
+      "Campaign"
+    ],
+    "featured": false,
+    "statement": "",
+    "description": "",
+    "cover": "media/projects/brane-referral-circuit/brain-reff-copy.jpg",
+    "story": {},
+    "media": [
+      {
+        "id": "q28eru13",
+        "src": "media/projects/brane-referral-circuit/brain-reff-copy.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "id": "1d9gme0m",
+        "src": "media/projects/brane-referral-circuit/01-hr-referral-dangler-bengaluru-copy-01.png",
+        "type": "image",
+        "caption": "Poster 01",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1241,
+        "height": 1686
+      },
+      {
+        "id": "n9u2jog0",
+        "src": "media/projects/brane-referral-circuit/01-hr-referral-dangler-bengaluru-copy-02.png",
+        "type": "image",
+        "caption": "Poster 02",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1241,
+        "height": 1686
+      },
+      {
+        "id": "o70r8hg4",
+        "src": "media/projects/brane-referral-circuit/01-hr-referral-dangler-bengaluru-copy-03.png",
+        "type": "image",
+        "caption": "Poster 03",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1241,
+        "height": 1686
+      },
+      {
+        "id": "boka4wn7",
+        "src": "media/projects/brane-referral-circuit/02-hr-referral-standee-bengaluru-01.png",
+        "type": "image",
+        "caption": "Standy 01",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1241,
+        "height": 2474
+      },
+      {
+        "id": "kb6maqzm",
+        "src": "media/projects/brane-referral-circuit/02-hr-referral-standee-bengaluru-02.png",
+        "type": "image",
+        "caption": "Standy 02",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1241,
+        "height": 2474
+      },
+      {
+        "id": "frvudmp0",
+        "src": "media/projects/brane-referral-circuit/02-hr-referral-standee-bengaluru-03.png",
+        "type": "image",
+        "caption": "Standy 03",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1241,
+        "height": 2474
+      },
+      {
+        "id": "gv0do836",
+        "src": "media/projects/brane-referral-circuit/02-hr-referral-standee-bengaluru-04.png",
+        "type": "image",
+        "caption": "Standy 04",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1241,
+        "height": 2474
+      },
+      {
+        "id": "h4wt9dl7",
+        "src": "media/projects/brane-referral-circuit/02-hr-referral-standee-bengaluru-05.png",
+        "type": "image",
+        "caption": "Standy 05",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1241,
+        "height": 2474
+      }
+    ]
+  },
+  {
     "slug": "netflix",
     "title": "Class Netflix Series",
     "subtitle": "Integrated campaigns",
@@ -1209,113 +1318,6 @@
         "layout": "full",
         "width": 600,
         "height": 600
-      }
-    ]
-  },
-  {
-    "slug": "brane-referral-circuit",
-    "title": "Brane Referral Circuit",
-    "subtitle": "",
-    "client": "",
-    "studio": "",
-    "period": "",
-    "start": null,
-    "categories": [],
-    "featured": false,
-    "statement": "",
-    "description": "",
-    "cover": "media/projects/brane-referral-circuit/brain-reff-copy.jpg",
-    "story": {},
-    "media": [
-      {
-        "id": "q28eru13",
-        "src": "media/projects/brane-referral-circuit/brain-reff-copy.jpg",
-        "type": "image",
-        "caption": "",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 800,
-        "height": 800
-      },
-      {
-        "id": "1d9gme0m",
-        "src": "media/projects/brane-referral-circuit/01-hr-referral-dangler-bengaluru-copy-01.png",
-        "type": "image",
-        "caption": "Poster 01",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1241,
-        "height": 1686
-      },
-      {
-        "id": "n9u2jog0",
-        "src": "media/projects/brane-referral-circuit/01-hr-referral-dangler-bengaluru-copy-02.png",
-        "type": "image",
-        "caption": "Poster 02",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1241,
-        "height": 1686
-      },
-      {
-        "id": "o70r8hg4",
-        "src": "media/projects/brane-referral-circuit/01-hr-referral-dangler-bengaluru-copy-03.png",
-        "type": "image",
-        "caption": "Poster 03",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1241,
-        "height": 1686
-      },
-      {
-        "id": "boka4wn7",
-        "src": "media/projects/brane-referral-circuit/02-hr-referral-standee-bengaluru-01.png",
-        "type": "image",
-        "caption": "Standy 01",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1241,
-        "height": 2474
-      },
-      {
-        "id": "kb6maqzm",
-        "src": "media/projects/brane-referral-circuit/02-hr-referral-standee-bengaluru-02.png",
-        "type": "image",
-        "caption": "Standy 02",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1241,
-        "height": 2474
-      },
-      {
-        "id": "frvudmp0",
-        "src": "media/projects/brane-referral-circuit/02-hr-referral-standee-bengaluru-03.png",
-        "type": "image",
-        "caption": "Standy 03",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1241,
-        "height": 2474
-      },
-      {
-        "id": "gv0do836",
-        "src": "media/projects/brane-referral-circuit/02-hr-referral-standee-bengaluru-04.png",
-        "type": "image",
-        "caption": "Standy 04",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1241,
-        "height": 2474
-      },
-      {
-        "id": "h4wt9dl7",
-        "src": "media/projects/brane-referral-circuit/02-hr-referral-standee-bengaluru-05.png",
-        "type": "image",
-        "caption": "Standy 05",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1241,
-        "height": 2474
       }
     ]
   }
