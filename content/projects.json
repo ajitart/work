@@ -1,62 +1,83 @@
 [
   {
-    "slug": "pizza-hut",
-    "title": "LIMO Pizza by Pizza Hut",
-    "subtitle": "Integrated campaigns",
-    "client": "Pizza Hut",
-    "studio": "Creativeland Asia",
-    "period": "2021 — 2023",
-    "start": 2021,
+    "slug": "solutions-case-studies",
+    "title": "Solution Case study",
+    "subtitle": "",
+    "client": "Inhouse Product",
+    "studio": "Brane",
+    "period": "2024",
+    "start": 2024,
     "categories": [
-      "Campaign",
-      "Brand",
-      "Digital"
+      "Digital",
+      "Product",
+      "UI/UX",
+      "Motion"
     ],
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "media/projects/pizza-hut/ph-227-limo-creatives-1x1-r3.jpg",
+    "cover": "media/projects/solutions-case-studies/thumbnail.jpg",
     "story": {},
     "media": [
       {
-        "id": "atn71mpy",
-        "src": "media/projects/pizza-hut/ph-227-limo-creatives-1x1-r3.jpg",
+        "id": "nd0few1v",
+        "src": "media/projects/solutions-case-studies/thumbnail.jpg",
         "type": "image",
-        "caption": "Social Media post",
+        "caption": "",
         "placement": "gallery",
         "layout": "full",
-        "width": 3000,
-        "height": 3000
+        "width": 720,
+        "height": 720
       },
       {
-        "id": "g19736tr",
-        "src": "media/projects/pizza-hut/ph-227-limo-creatives-2-5ft-x-4ft-standee-r4.jpg",
-        "type": "image",
-        "caption": "Standee Design",
+        "id": "jn1jmlaj",
+        "src": "https://vimeo.com/1233602721?fl=tl&fe=ec",
+        "type": "embed",
+        "caption": "Instant Modernisation Solution",
         "placement": "gallery",
         "layout": "full",
-        "width": 3543,
-        "height": 5669
+        "width": 16,
+        "height": 9
       },
       {
-        "id": "kb3middw",
-        "src": "media/projects/pizza-hut/ph-227-limo-creatives-2ft-x-1ft-r4.jpg",
-        "type": "image",
-        "caption": "Hoarding Desgin ",
+        "id": "mxowo3dz",
+        "src": "https://vimeo.com/1233602983?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "NPO",
         "placement": "gallery",
         "layout": "full",
-        "width": 2480,
-        "height": 1299
+        "width": 16,
+        "height": 9
       },
       {
-        "id": "me6omtz8",
-        "src": "media/projects/pizza-hut/ph-229-limo-pizza-die-cut-2-5ft-x-4ft-standee-02.jpg",
-        "type": "image",
-        "caption": "Standee 02",
+        "id": "gel5jln8",
+        "src": "https://vimeo.com/1233602904?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "EMRI Case Study",
         "placement": "gallery",
         "layout": "full",
-        "width": 4746,
-        "height": 6499
+        "width": 16,
+        "height": 9
+      },
+      {
+        "id": "3gcvr21j",
+        "src": "https://vimeo.com/1233602721?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "Adaptor ",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 16,
+        "height": 9
+      },
+      {
+        "id": "ihypoyj8",
+        "src": "https://vimeo.com/1233606089?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "Who we are",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 16,
+        "height": 9
       }
     ]
   },
@@ -132,112 +153,130 @@
     ]
   },
   {
-    "slug": "park-avenue",
-    "title": "Park Avenue Campaign",
+    "slug": "cat-netflix-series",
+    "title": "CAT - Netflix Series",
+    "subtitle": "",
+    "client": "",
+    "studio": "",
+    "period": "",
+    "start": null,
+    "categories": [],
+    "featured": false,
+    "statement": "",
+    "description": "",
+    "cover": "media/projects/cat-netflix-series/thumb-netflix-01.jpg",
+    "story": {},
+    "media": [
+      {
+        "id": "4mc1y2zo",
+        "src": "media/projects/cat-netflix-series/final-cat-logo-rbg.jpg",
+        "type": "image",
+        "caption": "Title Designing",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1234,
+        "height": 1000
+      },
+      {
+        "id": "livuu2ne",
+        "src": "media/projects/cat-netflix-series/cat-netflix.jpg",
+        "type": "image",
+        "caption": "Poster 01",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 2114,
+        "height": 2114
+      },
+      {
+        "id": "ehjalqni",
+        "src": "media/projects/cat-netflix-series/poster-car-02.jpg",
+        "type": "image",
+        "caption": "Poster 02",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1000,
+        "height": 1236
+      },
+      {
+        "id": "3x7rl5vn",
+        "src": "media/projects/cat-netflix-series/cat.mp4",
+        "type": "video",
+        "caption": "Cat logo animation",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "id": "xrpxow8u",
+        "src": "media/projects/cat-netflix-series/thumb-netflix-01.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 808,
+        "height": 632
+      }
+    ]
+  },
+  {
+    "slug": "pizza-hut",
+    "title": "LIMO Pizza by Pizza Hut",
     "subtitle": "Integrated campaigns",
-    "client": "Park Avenue",
+    "client": "Pizza Hut",
     "studio": "Creativeland Asia",
     "period": "2021 — 2023",
     "start": 2021,
     "categories": [
       "Campaign",
-      "Brand"
+      "Brand",
+      "Digital"
     ],
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "media/projects/park-avenue/pa-006-raymond-park-avenue-vm-adapt-kv1-r2-1-x-1.jpg",
+    "cover": "media/projects/pizza-hut/ph-227-limo-creatives-1x1-r3.jpg",
     "story": {},
     "media": [
       {
-        "id": "s3uu5vcu",
-        "src": "media/projects/park-avenue/pa-006-raymond-park-avenue-vm-adapt-kv1-r2-1-x-1.jpg",
+        "id": "atn71mpy",
+        "src": "media/projects/pizza-hut/ph-227-limo-creatives-1x1-r3.jpg",
         "type": "image",
-        "caption": "",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1500,
-        "height": 1500
-      },
-      {
-        "id": "bhzxt9fi",
-        "src": "media/projects/park-avenue/pa-004-raymond-park-avenue-kv-2-ooh-2-x-1.jpg",
-        "type": "image",
-        "caption": "",
+        "caption": "Social Media post",
         "placement": "gallery",
         "layout": "full",
         "width": 3000,
-        "height": 1500
+        "height": 3000
       },
       {
-        "id": "04029t53",
-        "src": "media/projects/park-avenue/pa-005-raymond-park-avenue-kv-3-ooh-2-x-1-1.jpg",
+        "id": "g19736tr",
+        "src": "media/projects/pizza-hut/ph-227-limo-creatives-2-5ft-x-4ft-standee-r4.jpg",
         "type": "image",
-        "caption": "",
+        "caption": "Standee Design",
         "placement": "gallery",
         "layout": "full",
-        "width": 3000,
-        "height": 1500
+        "width": 3543,
+        "height": 5669
       },
       {
-        "id": "dfprsadc",
-        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr1.jpg",
+        "id": "kb3middw",
+        "src": "media/projects/pizza-hut/ph-227-limo-creatives-2ft-x-1ft-r4.jpg",
         "type": "image",
-        "caption": "",
+        "caption": "Hoarding Desgin ",
         "placement": "gallery",
         "layout": "full",
-        "width": 3001,
-        "height": 1501
+        "width": 2480,
+        "height": 1299
       },
       {
-        "id": "i1dk4ded",
-        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr3.jpg",
+        "id": "me6omtz8",
+        "src": "media/projects/pizza-hut/ph-229-limo-pizza-die-cut-2-5ft-x-4ft-standee-02.jpg",
         "type": "image",
-        "caption": "",
+        "caption": "Standee 02",
         "placement": "gallery",
         "layout": "full",
-        "width": 3000,
-        "height": 1500
-      },
-      {
-        "id": "i1a7f29g",
-        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr4.jpg",
-        "type": "image",
-        "caption": "",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 3000,
-        "height": 1501
-      },
-      {
-        "id": "g9w7o1ro",
-        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr5.jpg",
-        "type": "image",
-        "caption": "",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 3001,
-        "height": 1501
-      },
-      {
-        "id": "421jr7yc",
-        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr6.jpg",
-        "type": "image",
-        "caption": "",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 3001,
-        "height": 1500
-      },
-      {
-        "id": "wm1ptfgp",
-        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr8.jpg",
-        "type": "image",
-        "caption": "",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 3001,
-        "height": 1500
+        "width": 4746,
+        "height": 6499
       }
     ]
   },
@@ -405,69 +444,112 @@
     ]
   },
   {
-    "slug": "cat-netflix-series",
-    "title": "CAT - Netflix Series",
-    "subtitle": "",
-    "client": "",
-    "studio": "",
-    "period": "",
-    "start": null,
-    "categories": [],
+    "slug": "park-avenue",
+    "title": "Park Avenue Campaign",
+    "subtitle": "Integrated campaigns",
+    "client": "Park Avenue",
+    "studio": "Creativeland Asia",
+    "period": "2021 — 2023",
+    "start": 2021,
+    "categories": [
+      "Campaign",
+      "Brand"
+    ],
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "media/projects/cat-netflix-series/thumb-netflix-01.jpg",
+    "cover": "media/projects/park-avenue/pa-006-raymond-park-avenue-vm-adapt-kv1-r2-1-x-1.jpg",
     "story": {},
     "media": [
       {
-        "id": "4mc1y2zo",
-        "src": "media/projects/cat-netflix-series/final-cat-logo-rbg.jpg",
-        "type": "image",
-        "caption": "Title Designing",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1234,
-        "height": 1000
-      },
-      {
-        "id": "livuu2ne",
-        "src": "media/projects/cat-netflix-series/cat-netflix.jpg",
-        "type": "image",
-        "caption": "Poster 01",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 2114,
-        "height": 2114
-      },
-      {
-        "id": "ehjalqni",
-        "src": "media/projects/cat-netflix-series/poster-car-02.jpg",
-        "type": "image",
-        "caption": "Poster 02",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1000,
-        "height": 1236
-      },
-      {
-        "id": "3x7rl5vn",
-        "src": "media/projects/cat-netflix-series/cat.mp4",
-        "type": "video",
-        "caption": "Cat logo animation",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 1280,
-        "height": 720
-      },
-      {
-        "id": "xrpxow8u",
-        "src": "media/projects/cat-netflix-series/thumb-netflix-01.jpg",
+        "id": "s3uu5vcu",
+        "src": "media/projects/park-avenue/pa-006-raymond-park-avenue-vm-adapt-kv1-r2-1-x-1.jpg",
         "type": "image",
         "caption": "",
         "placement": "gallery",
         "layout": "full",
-        "width": 808,
-        "height": 632
+        "width": 1500,
+        "height": 1500
+      },
+      {
+        "id": "bhzxt9fi",
+        "src": "media/projects/park-avenue/pa-004-raymond-park-avenue-kv-2-ooh-2-x-1.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3000,
+        "height": 1500
+      },
+      {
+        "id": "04029t53",
+        "src": "media/projects/park-avenue/pa-005-raymond-park-avenue-kv-3-ooh-2-x-1-1.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3000,
+        "height": 1500
+      },
+      {
+        "id": "dfprsadc",
+        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr1.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3001,
+        "height": 1501
+      },
+      {
+        "id": "i1dk4ded",
+        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr3.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3000,
+        "height": 1500
+      },
+      {
+        "id": "i1a7f29g",
+        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr4.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3000,
+        "height": 1501
+      },
+      {
+        "id": "g9w7o1ro",
+        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr5.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3001,
+        "height": 1501
+      },
+      {
+        "id": "421jr7yc",
+        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr6.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3001,
+        "height": 1500
+      },
+      {
+        "id": "wm1ptfgp",
+        "src": "media/projects/park-avenue/pa-007-park-avenue-vm-2-x-1-cr8.jpg",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 3001,
+        "height": 1500
       }
     ]
   },
@@ -588,88 +670,6 @@
         "src": "https://www.youtube.com/watch?v=dUZZT9PAXr0",
         "type": "embed",
         "caption": "#OpenDoors with Home Insurance",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 16,
-        "height": 9
-      }
-    ]
-  },
-  {
-    "slug": "solutions-case-studies",
-    "title": "Solution Case study",
-    "subtitle": "",
-    "client": "Inhouse Product",
-    "studio": "Brane",
-    "period": "2024",
-    "start": 2024,
-    "categories": [
-      "Digital",
-      "Product",
-      "UI/UX",
-      "Motion"
-    ],
-    "featured": false,
-    "statement": "",
-    "description": "",
-    "cover": "media/projects/solutions-case-studies/thumbnail.jpg",
-    "story": {},
-    "media": [
-      {
-        "id": "nd0few1v",
-        "src": "media/projects/solutions-case-studies/thumbnail.jpg",
-        "type": "image",
-        "caption": "",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 720,
-        "height": 720
-      },
-      {
-        "id": "jn1jmlaj",
-        "src": "https://vimeo.com/1233602721?fl=tl&fe=ec",
-        "type": "embed",
-        "caption": "Instant Modernisation Solution",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 16,
-        "height": 9
-      },
-      {
-        "id": "mxowo3dz",
-        "src": "https://vimeo.com/1233602983?share=copy&fl=sv&fe=ci",
-        "type": "embed",
-        "caption": "NPO",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 16,
-        "height": 9
-      },
-      {
-        "id": "gel5jln8",
-        "src": "https://vimeo.com/1233602904?share=copy&fl=sv&fe=ci",
-        "type": "embed",
-        "caption": "EMRI Case Study",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 16,
-        "height": 9
-      },
-      {
-        "id": "3gcvr21j",
-        "src": "https://vimeo.com/1233602721?share=copy&fl=sv&fe=ci",
-        "type": "embed",
-        "caption": "Adaptor ",
-        "placement": "gallery",
-        "layout": "full",
-        "width": 16,
-        "height": 9
-      },
-      {
-        "id": "ihypoyj8",
-        "src": "https://vimeo.com/1233606089?share=copy&fl=sv&fe=ci",
-        "type": "embed",
-        "caption": "Who we are",
         "placement": "gallery",
         "layout": "full",
         "width": 16,
