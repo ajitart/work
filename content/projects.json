@@ -584,5 +584,67 @@
         "height": 9
       }
     ]
+  },
+  {
+    "slug": "solutions-case-studies",
+    "title": "Solution demo Videos",
+    "subtitle": "",
+    "client": "Inhouse Product",
+    "studio": "Brane",
+    "period": "2024",
+    "start": 2024,
+    "categories": [
+      "Digital",
+      "Product",
+      "UI/UX",
+      "Motion"
+    ],
+    "featured": false,
+    "statement": "",
+    "description": "",
+    "cover": "",
+    "story": {},
+    "media": [
+      {
+        "id": "jn1jmlaj",
+        "src": "https://vimeo.com/1233602721?fl=tl&fe=ec",
+        "type": "embed",
+        "caption": "Instant Modernisation Solution",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 16,
+        "height": 9
+      },
+      {
+        "id": "mxowo3dz",
+        "src": "https://vimeo.com/1233602983?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "NPO",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 16,
+        "height": 9
+      },
+      {
+        "id": "gel5jln8",
+        "src": "https://vimeo.com/1233602904?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "EMRI Case Study",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 16,
+        "height": 9
+      },
+      {
+        "id": "3gcvr21j",
+        "src": "https://vimeo.com/1233602721?share=copy&fl=sv&fe=ci",
+        "type": "embed",
+        "caption": "Adaptor ",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 16,
+        "height": 9
+      }
+    ]
   }
 ]
