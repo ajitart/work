@@ -163,7 +163,7 @@
     "featured": false,
     "statement": "",
     "description": "",
-    "cover": "media/projects/cat-netflix-series/thumb-netflix-01.jpg",
+    "cover": "media/projects/cat-netflix-series/net-cat-copy.png",
     "story": {},
     "media": [
       {
@@ -207,14 +207,14 @@
         "height": 720
       },
       {
-        "id": "xrpxow8u",
-        "src": "media/projects/cat-netflix-series/thumb-netflix-01.jpg",
+        "id": "basdwssc",
+        "src": "media/projects/cat-netflix-series/net-cat-copy.png",
         "type": "image",
         "caption": "",
-        "placement": "gallery",
+        "placement": "hero",
         "layout": "full",
-        "width": 808,
-        "height": 632
+        "width": 800,
+        "height": 800
       }
     ]
   },
