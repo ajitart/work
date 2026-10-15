@@ -3,10 +3,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { MediaItem, Project } from "@/lib/types";
-import { coverOf, hasCaseStudy, site } from "@/lib/content";
+import { coverOf, site } from "@/lib/content";
 import { gsap, prefersReducedMotion } from "@/lib/motion";
 import { useTransitionTo } from "@/components/shell/Transition";
-import { Media, MediaSlot } from "@/components/Media";
+import { Media } from "@/components/Media";
 import { Lightbox } from "./Lightbox";
 import styles from "./project.module.css";
 
@@ -76,19 +76,19 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
 
   const cover = coverOf(p);
   const hero = p.media.filter((m) => m.placement === "hero" && m.src !== cover?.src);
-  const showStory = hasCaseStudy(p);
-  const isBeat = (m: MediaItem) => site.story.some((s) => s.key === m.placement);
-  // Without a case study, anything placed in a story beat joins the gallery.
   // The cover is used only as the cover; it never repeats further down the page.
   const notCover = (m: MediaItem) => m.src !== cover?.src;
-  const gallery = p.media.filter((m) => notCover(m) && (!m.placement || m.placement === "gallery" || (!showStory && isBeat(m))));
-  const steps = site.story;
+  // Only what has been filled in is shown: a case-study section appears only with text or media.
+  const beatMedia = (key: string) => p.media.filter((m) => m.placement === key && notCover(m));
+  const steps = site.story.filter((s) => (p.story[s.key] ?? "").trim() || beatMedia(s.key).length);
+  const showStory = steps.length > 0;
+  const gallery = p.media.filter((m) => notCover(m) && (!m.placement || m.placement === "gallery"));
 
   // Everything that can open full screen, in the order it appears on the page.
   const viewable = useMemo(() => {
-    const inBeats = showStory ? site.story.flatMap((s) => p.media.filter((m) => m.placement === s.key && m.src !== cover?.src)) : [];
+    const inBeats = steps.flatMap((s) => p.media.filter((m) => m.placement === s.key && m.src !== cover?.src));
     return [...(cover ? [cover] : []), ...hero, ...inBeats, ...gallery].filter((m) => m.type !== "embed");
-  }, [p.media, cover, hero, gallery, showStory]);
+  }, [p.media, cover, hero, gallery, steps]);
   const [viewing, setViewing] = useState<number | null>(null);
   const open: Open = (m) => {
     const i = viewable.findIndex((v) => v.id === m.id);
@@ -152,29 +152,25 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
   return (
     <article ref={root} className={styles.project}>
       {/* First screen: the cover, whole, on the left; everything about the project on the right. */}
-      <header className={styles.hero}>
-        <div className={styles.heroMedia} data-reveal>
-          {cover ? (
+      <header className={styles.hero} data-no-cover={cover ? undefined : ""}>
+        {cover && (
+          <div className={styles.heroMedia} data-reveal>
             <Frame item={cover} onOpen={open}>
               <Media item={cover} eager sizes="(max-width: 900px) 100vw, 58vw" />
             </Frame>
-          ) : (
-            <div className={`${styles.frame} ${styles.heroSlot}`}>
-              <MediaSlot label="[Cover image]" ratio="4 / 3" />
-            </div>
-          )}
-        </div>
+          </div>
+        )}
 
         <div className={styles.heroText}>
           <p className={`meta ${styles.kicker}`} data-hero>
-            {p.subtitle}
+            {p.subtitle || "\u00a0"}
           </p>
           <h1 ref={title} className={`display ${styles.title}`} data-hero>
             {p.title}
           </h1>
-          {(p.statement || showStory) && (
+          {p.statement && (
             <p className={styles.statement} data-hero>
-              {p.statement || <span className="placeholder-text">[Project statement]</span>}
+              {p.statement}
             </p>
           )}
           <dl className={styles.meta} data-hero>
@@ -228,15 +224,15 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
           </nav>
           <div className={styles.beats}>
             {steps.map((s, i) => {
-              const text = p.story[s.key];
-              const items = p.media.filter((m) => m.placement === s.key && notCover(m));
+              const text = (p.story[s.key] ?? "").trim();
+              const items = beatMedia(s.key);
               return (
                 <section key={s.key} id={s.key} className={styles.beat} data-step aria-labelledby={`${s.key}-h`}>
                   <p className={`meta ${styles.beatNo}`}>{String(i + 1).padStart(2, "0")}</p>
                   <h2 id={`${s.key}-h`} className={`display ${styles.beatTitle}`}>
                     {s.title}
                   </h2>
-                  <p className={styles.beatText}>{text || <span className="placeholder-text">[Project description]</span>}</p>
+                  {text && <p className={styles.beatText}>{text}</p>}
                   <MediaBlock items={items} onOpen={open} />
                 </section>
               );

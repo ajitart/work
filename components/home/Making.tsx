@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { getProject, making } from "@/lib/content";
+import { getProject, makingShown } from "@/lib/content";
 import { gsap } from "@/lib/motion";
 import { Media, MediaSlot } from "@/components/Media";
 import { useFit } from "@/lib/useFit";
@@ -11,7 +11,7 @@ import styles from "./making.module.css";
  * Process work on a long table. On wide screens the strip slides sideways as
  * you scroll down; on phones it is a swipeable row.
  */
-export function Making() {
+function MakingSection() {
   const root = useRef<HTMLElement>(null);
   const track = useRef<HTMLOListElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -70,7 +70,7 @@ export function Making() {
 
       <div className={styles.stage} data-stage>
         <ol ref={track} className={styles.track}>
-          {making.map((m, i) => {
+          {makingShown.map((m, i) => {
             const project = m.project ? getProject(m.project) : undefined;
             const first = m.media[0];
             return (
@@ -94,4 +94,9 @@ export function Making() {
       </div>
     </section>
   );
+}
+
+/** Hidden until there is process work with images, so the site never looks unfinished. */
+export function Making() {
+  return makingShown.length > 0 ? <MakingSection /> : null;
 }

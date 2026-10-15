@@ -10,6 +10,12 @@ export const site = siteJson as SiteContent;
 export const projects = projectsJson as Project[];
 export const making = makingJson as MakingItem[];
 
+/** The making shows only process work that has images; with none, the section is hidden. */
+export const makingShown = making.filter((m) => m.media.length > 0);
+
+/** Index entries, minus sections that are hidden because they're empty. */
+export const indexItems = (siteJson as SiteContent).index.filter((i) => i.target !== "making" || makingShown.length > 0);
+
 /**
  * Selected work: the projects ticked "Show in Selected work", in the order set in
  * the editor; if none are ticked, every project (so the section and "Next project" never break).
@@ -26,12 +32,6 @@ export function coverOf(p: Project): MediaItem | undefined {
   const files = p.media.filter((m) => m.type !== "embed");
   if (p.cover) return files.find((m) => m.src === p.cover);
   return files.find((m) => m.placement === "hero") ?? files[0];
-}
-
-/** Only UI/UX projects get the eight-beat case study; everything else is cover, details and gallery. */
-export const CASE_STUDY_CATEGORY = "UI/UX";
-export function hasCaseStudy(p: Pick<Project, "categories">) {
-  return p.categories.includes(CASE_STUDY_CATEGORY);
 }
 
 /** Prefix a /public path with the GitHub Pages base path. */

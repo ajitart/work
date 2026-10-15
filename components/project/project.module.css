@@ -45,9 +45,16 @@
   object-fit: contain;
 }
 
-/* No cover yet: the empty frame fills the column so the layout keeps its balance. */
-.heroMedia > .heroSlot {
-  width: 100%;
+/* No cover: the details take the whole width instead of leaving an empty frame. */
+.hero[data-no-cover] {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "text";
+  align-items: end;
+  min-height: 70vh;
+}
+
+.hero[data-no-cover] .heroText {
+  max-width: 900px;
 }
 
 .heroText {

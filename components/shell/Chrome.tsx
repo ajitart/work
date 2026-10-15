@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { site } from "@/lib/content";
+import { indexItems } from "@/lib/content";
 import { gsap, prefersReducedMotion } from "@/lib/motion";
 import { SETTINGS_EVENT } from "@/components/editor/events";
 import styles from "./shell.module.css";
@@ -138,7 +138,7 @@ export function Chrome() {
       >
         <nav aria-label="Sections">
           <ol className={styles.indexList}>
-            {site.index.map((item, i) => (
+            {indexItems.map((item, i) => (
               <li key={item.target}>
                 <button
                   type="button"

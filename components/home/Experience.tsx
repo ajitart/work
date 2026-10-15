@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { site } from "@/lib/content";
+import { indexItems, site } from "@/lib/content";
 import { field, journey } from "@/lib/field";
 import { gsap, prefersReducedMotion, ScrollTrigger } from "@/lib/motion";
 import { LOGO_ENDING, LOGO_INTRO } from "@/components/particles/layout";
@@ -226,7 +226,7 @@ export function Experience() {
 
   /** Which section is on screen, for the Index. */
   useEffect(() => {
-    const ids = site.index.map((i) => i.target);
+    const ids = indexItems.map((i) => i.target);
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((en) => {

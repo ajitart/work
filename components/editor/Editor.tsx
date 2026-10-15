@@ -5,8 +5,6 @@ import type { MakingItem, MediaItem, MediaLayout, MediaPlacement, Project, Story
 import siteJson from "@/content/site.json";
 import { embedUrl } from "@/lib/embed";
 
-/** Mirrors lib/content: only UI/UX projects have the eight-beat case study. */
-const hasCaseStudy = (p: { categories: string[] }) => p.categories.includes("UI/UX");
 import type { SiteContent } from "@/lib/types";
 
 // Read site.json directly (not lib/content): saving projects.json in the Studio then doesn't reload this page.
@@ -591,10 +589,10 @@ export function Editor({
                           <label className={styles.field}>
                             <span>Place in page</span>
                             <select
-                              value={!hasCaseStudy(project) && site.story.some((st) => st.key === m.placement) ? "gallery" : (m.placement ?? "gallery")}
+                              value={m.placement ?? "gallery"}
                               onChange={(e) => updateMedia(m.id, { placement: e.target.value as MediaPlacement })}
                             >
-                              {PLACEMENTS.filter((pl) => hasCaseStudy(project) || !site.story.some((s) => s.key === pl.value)).map((p) => (
+                              {PLACEMENTS.map((p) => (
                                 <option key={p.value} value={p.value}>
                                   {p.label}
                                 </option>
@@ -685,10 +683,10 @@ export function Editor({
               </section>
             )}
 
-            {project && hasCaseStudy(project) && (
+            {project && (
               <section className={styles.panel}>
                 <h2 className={styles.h2}>Case study</h2>
-                <p className={styles.hint}>Leave a beat empty to show its placeholder. Media placed in a beat appears under its text.</p>
+                <p className={styles.hint}>Optional. Only sections you fill in (text, or an image placed there) appear on the page; empty ones are hidden.</p>
                 {site.story.map((s) => (
                   <Area
                     key={s.key}
