@@ -78,6 +78,66 @@
         "layout": "full",
         "width": 1440,
         "height": 1000
+      },
+      {
+        "id": "g4r9bxtj",
+        "src": "media/projects/sarathi-application/06.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "id": "fxhwyuto",
+        "src": "media/projects/sarathi-application/07.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "id": "utydb13b",
+        "src": "media/projects/sarathi-application/08.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "id": "s3oky52y",
+        "src": "media/projects/sarathi-application/09.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "id": "gu6a62vi",
+        "src": "media/projects/sarathi-application/10.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "id": "ws68cxbh",
+        "src": "media/projects/sarathi-application/11.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
       }
     ]
   },
