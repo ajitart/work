@@ -58,6 +58,26 @@
         "layout": "full",
         "width": 1440,
         "height": 1000
+      },
+      {
+        "id": "bvk9vdo7",
+        "src": "media/projects/sarathi-application/04.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "id": "bqcyaaym",
+        "src": "media/projects/sarathi-application/05.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
       }
     ]
   },
