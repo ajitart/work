@@ -1330,5 +1330,47 @@
         "height": 600
       }
     ]
+  },
+  {
+    "slug": "sarathi-application",
+    "title": "Sarathi application",
+    "subtitle": "Medicine reminder app for Senior Citizen",
+    "client": "Personal ",
+    "studio": "Personal",
+    "period": "2026",
+    "start": 2026,
+    "categories": [
+      "Brand",
+      "Digital",
+      "Product",
+      "UI/UX"
+    ],
+    "featured": true,
+    "statement": "",
+    "description": "",
+    "cover": "media/projects/sarathi-application/sarathi.png",
+    "story": {},
+    "media": [
+      {
+        "id": "1fpskorc",
+        "src": "media/projects/sarathi-application/sarathi.png",
+        "type": "image",
+        "caption": "Sarathi application Case stusy",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 300,
+        "height": 300
+      },
+      {
+        "id": "ne1wxkya",
+        "src": "media/projects/sarathi-application/01.png",
+        "type": "image",
+        "caption": "",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1001
+      }
+    ]
   }
 ]
