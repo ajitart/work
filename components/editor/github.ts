@@ -16,6 +16,7 @@ export const tokenStore = {
   set(token: string) {
     try {
       localStorage.setItem(TOKEN_KEY, token);
+      localStorage.setItem("skipgc", "t"); // your own visits aren't counted in GoatCounter
     } catch {
       /* private mode: stays connected for this page only */
     }
@@ -23,6 +24,7 @@ export const tokenStore = {
   clear() {
     try {
       localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem("skipgc");
     } catch {
       /* ignore */
     }

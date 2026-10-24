@@ -27,7 +27,15 @@ export function EditMode() {
   const pathname = usePathname();
 
   useEffect(() => {
-    setToken(tokenStore.get());
+    const existing = tokenStore.get();
+    setToken(existing);
+    if (existing) {
+      try {
+        localStorage.setItem("skipgc", "t");
+      } catch {
+        /* ignore */
+      }
+    }
     const open = () => setSettingsOpen(true);
     window.addEventListener(SETTINGS_EVENT, open);
     return () => window.removeEventListener(SETTINGS_EVENT, open);
