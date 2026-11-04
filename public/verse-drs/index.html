@@ -58,6 +58,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 /* top bar */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+@media(min-width:1280px){.top .back-link{position:absolute;left:20px;top:50%;transform:translateY(-50%);margin:0!important}}
 .top .wrap{display:flex;align-items:center;gap:14px;height:56px}
 .brand{display:inline-flex;align-items:center;gap:8px;font:700 19px var(--product);color:var(--fg);text-decoration:none;white-space:nowrap;letter-spacing:-.02em}
 .brand i{width:13px;height:13px;border-radius:3px;background:var(--accent)}
@@ -302,6 +303,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <header class="top">
   <div class="wrap">
+    <a class="back-link" href="../" style="font:500 13px Inter,sans-serif;color:inherit;text-decoration:none;padding:6px 10px;border:1px solid var(--line);border-radius:999px;margin-right:12px;flex:none;white-space:nowrap">← Portfolio</a>
     <a class="brand" href="#top" aria-label="Back to top"><i aria-hidden="true"></i>verse<small>DRS · UX case study</small></a>
     <nav class="toc" aria-label="Sections"><ol>
       <li><a href="#about">About</a></li>
@@ -320,8 +322,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <li><a href="#iteration">Iteration</a></li>
       <li><a href="#reflection">Reflection</a></li>
     </ol></nav>
-    <a class="back-link" href="../" style="font:500 13px Inter,sans-serif;color:inherit;text-decoration:none;padding:6px 10px;border:1px solid var(--line);border-radius:999px;margin-left:auto;white-space:nowrap">← Portfolio</a>
-    <button class="theme" id="themeBtn" type="button" aria-label="Switch to dark theme">
+        <button class="theme" id="themeBtn" type="button" aria-label="Switch to dark theme">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
     </button>
   </div>
