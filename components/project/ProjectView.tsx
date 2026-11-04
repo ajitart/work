@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { MediaItem, Project } from "@/lib/types";
-import { coverOf, site } from "@/lib/content";
+import { asset, coverOf, site } from "@/lib/content";
 import { gsap, prefersReducedMotion } from "@/lib/motion";
 import { useTransitionTo } from "@/components/shell/Transition";
 import { Media } from "@/components/Media";
@@ -189,6 +189,20 @@ export function ProjectView({ project: p, next }: { project: Project; next?: Pro
                       <li key={r}>
                         <AwardIcon />
                         <span>{r}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            ) : null}
+            {p.links && p.links.length > 0 ? (
+              <div>
+                <dt>Links</dt>
+                <dd>
+                  <ul className={styles.links}>
+                    {p.links.map((l) => (
+                      <li key={l.href}>
+                        <a href={asset(l.href)}>{l.label} →</a>
                       </li>
                     ))}
                   </ul>

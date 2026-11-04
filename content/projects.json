@@ -14,7 +14,7 @@
     ],
     "featured": true,
     "statement": "One platform that takes a solar plant from project creation to work measurement certificate, built for people who live in Excel.",
-    "description": "I led the product design of DRS end to end: process mapping, roles and access, the plant map, a keyboard-first interface, the design system and an interactive prototype. Live since mid-2026. Full case study: ajitart.github.io/work/drs-case-study/ · Interactive demo: ajitart.github.io/work/drs-demo/",
+    "description": "I led the product design of DRS end to end: process mapping, roles and access, the plant map, a keyboard-first interface, the design system and an interactive prototype. Live since mid-2026.",
     "cover": "media/projects/verse-drs/01-dashboard.png",
     "story": {},
     "media": [
@@ -207,6 +207,16 @@
         "layout": "full",
         "width": 1440,
         "height": 700
+      }
+    ],
+    "links": [
+      {
+        "label": "Read the full case study",
+        "href": "drs-case-study/"
+      },
+      {
+        "label": "Open the interactive demo",
+        "href": "drs-demo/"
       }
     ]
   },

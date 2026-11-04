@@ -199,6 +199,17 @@
   white-space: pre-line;
 }
 
+/* Links: a row in the details list, one link per line. */
+.links {
+  display: grid;
+  gap: 6px;
+}
+
+.links a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* Recognition: a row in the details list, one award per line. */
 .recognitionRow dd {
   min-width: 0;

@@ -41,6 +41,8 @@ export interface Project {
   statement: string;
   description: string;
   recognition?: string[];
+  /** Optional links shown in the details list (paths inside /public, or full URLs). */
+  links?: { label: string; href: string }[];
   /** src of the media item used as the cover, or "". */
   cover: string;
   story: Partial<Record<StoryKey, string>>;
