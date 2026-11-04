@@ -5,8 +5,11 @@ import { ProjectView } from "@/components/project/ProjectView";
 
 export const dynamicParams = false;
 
+/** Projects served as their own static page from /public/<slug>/index.html. */
+const STATIC_PAGES = new Set(["verse-drs"]);
+
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  return projects.filter((p) => !STATIC_PAGES.has(p.slug)).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

@@ -211,10 +211,6 @@
     ],
     "links": [
       {
-        "label": "Read the full case study",
-        "href": "drs-case-study/"
-      },
-      {
         "label": "Open the interactive demo",
         "href": "drs-demo/"
       }
