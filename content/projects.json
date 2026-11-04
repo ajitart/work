@@ -1,5 +1,216 @@
 [
   {
+    "slug": "verse-drs",
+    "title": "DRS: Digital Routing System",
+    "subtitle": "Routing BoQ, service orders and material on a solar plant",
+    "client": "Verse (name changed)",
+    "studio": "CCTech",
+    "period": "2025 — 2026",
+    "start": 2025,
+    "categories": [
+      "Digital",
+      "Product",
+      "UI/UX"
+    ],
+    "featured": true,
+    "statement": "One platform that takes a solar plant from project creation to work measurement certificate, built for people who live in Excel.",
+    "description": "I led the product design of DRS end to end: process mapping, roles and access, the plant map, a keyboard-first interface, the design system and an interactive prototype. Live since mid-2026. Full case study: ajitart.github.io/work/drs-case-study/ · Interactive demo: ajitart.github.io/work/drs-demo/",
+    "cover": "media/projects/verse-drs/01-dashboard.png",
+    "story": {},
+    "media": [
+      {
+        "id": "drs00x",
+        "src": "media/projects/verse-drs/01-dashboard.png",
+        "type": "image",
+        "caption": "Project dashboard",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1180
+      },
+      {
+        "id": "drs01x",
+        "src": "media/projects/verse-drs/02-projects.png",
+        "type": "image",
+        "caption": "Projects",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 700
+      },
+      {
+        "id": "drs02x",
+        "src": "media/projects/verse-drs/03-roles.png",
+        "type": "image",
+        "caption": "Roles and access",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "id": "drs03x",
+        "src": "media/projects/verse-drs/04-link-sap.png",
+        "type": "image",
+        "caption": "Link with SAP",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 820
+      },
+      {
+        "id": "drs04x",
+        "src": "media/projects/verse-drs/05-drawings.png",
+        "type": "image",
+        "caption": "Engineering · Drawings",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 760
+      },
+      {
+        "id": "drs05x",
+        "src": "media/projects/verse-drs/06-boq.png",
+        "type": "image",
+        "caption": "Engineering · BoQ files",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "id": "drs06x",
+        "src": "media/projects/verse-drs/07-so-config.png",
+        "type": "image",
+        "caption": "Service order configuration",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "id": "drs07x",
+        "src": "media/projects/verse-drs/08-work-list.png",
+        "type": "image",
+        "caption": "Work management",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 760
+      },
+      {
+        "id": "drs08x",
+        "src": "media/projects/verse-drs/09-map-alloc.png",
+        "type": "image",
+        "caption": "Work area allocation on the plant map",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "id": "drs09x",
+        "src": "media/projects/verse-drs/10-map-done.png",
+        "type": "image",
+        "caption": "Work completion on the plant map",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "id": "drs10x",
+        "src": "media/projects/verse-drs/11-map-mirs.png",
+        "type": "image",
+        "caption": "Material requisition on the plant map",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "id": "drs11x",
+        "src": "media/projects/verse-drs/12-reservations.png",
+        "type": "image",
+        "caption": "Reservations and posting",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "id": "drs12x",
+        "src": "media/projects/verse-drs/13-mrrs.png",
+        "type": "image",
+        "caption": "Material return (MRRS)",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 820
+      },
+      {
+        "id": "drs13x",
+        "src": "media/projects/verse-drs/14-wmc.png",
+        "type": "image",
+        "caption": "Work measurement certificate",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 820
+      },
+      {
+        "id": "drs14x",
+        "src": "media/projects/verse-drs/15-recon.png",
+        "type": "image",
+        "caption": "Reconciliation",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "id": "drs15x",
+        "src": "media/projects/verse-drs/16-status.png",
+        "type": "image",
+        "caption": "Block status",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 1100
+      },
+      {
+        "id": "drs16x",
+        "src": "media/projects/verse-drs/17-login.png",
+        "type": "image",
+        "caption": "Login",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 820
+      },
+      {
+        "id": "drs17x",
+        "src": "media/projects/verse-drs/18-dashboard-dark.png",
+        "type": "image",
+        "caption": "Dashboard · dark theme",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "id": "drs18x",
+        "src": "media/projects/verse-drs/21-act-as.png",
+        "type": "image",
+        "caption": "Act as another role",
+        "placement": "gallery",
+        "layout": "full",
+        "width": 1440,
+        "height": 700
+      }
+    ]
+  },
+  {
     "slug": "sarathi-application",
     "title": "Sarathi application",
     "subtitle": "Medicine reminder app for Senior Citizen",

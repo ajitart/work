@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="UX case study: DRS, a web platform that routes BoQ, service orders and material to the exact table on a solar plant. Client anonymised as Verse.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Verse - DRS UX Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the same portfolio case-study column as the Sarathi case study (hero, about, role, problems/solutions, research, personas, empathy map, flow, type, colour, logo, screens, iteration). Light-first with a dark mode. One teal accent, rounded panels; desktop screens sit in browser frames. */
+:root{
+  --bg:#FFFFFF; --panel:#F6F7F7; --card:#FFFFFF; --line:#E2E6E5; --line-2:#ECEFEE;
+  --fg:#18191B; --soft:#3B3E44; --muted:#5F636B;
+  --accent:#12A594; --accent-ink:#008573; --accent-wash:#E0F8F3; --key-bg:#008573; --on-key:#FFFFFF;
+  --rose:#B23A2B; --rose-wash:#FBEAE7; --green:#1E7A4A; --green-wash:#E5F4EC;
+  --frame:#1C2024;
+  --display:"Poppins", "Avenir Next", system-ui, sans-serif;
+  --body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --product:"Geist", "Inter", system-ui, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121414; --panel:#191C1C; --card:#202424; --line:#2E3434; --line-2:#252A2A;
+    --fg:#EDEEF0; --soft:#C9CCCF; --muted:#A6AAB2;
+    --accent:#12A594; --accent-ink:#0BD8B6; --accent-wash:rgba(18,165,148,.14); --key-bg:#12A594; --on-key:#0D1514;
+    --rose:#F2A69B; --rose-wash:rgba(242,166,155,.12); --green:#7FD8A6; --green-wash:rgba(127,216,166,.12);
+    --frame:#0B0D0D; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121414; --panel:#191C1C; --card:#202424; --line:#2E3434; --line-2:#252A2A;
+  --fg:#EDEEF0; --soft:#C9CCCF; --muted:#A6AAB2;
+  --accent:#12A594; --accent-ink:#0BD8B6; --accent-wash:rgba(18,165,148,.14); --key-bg:#12A594; --on-key:#0D1514;
+  --rose:#F2A69B; --rose-wash:rgba(242,166,155,.12); --green:#7FD8A6; --green-wash:rgba(127,216,166,.12);
+  --frame:#0B0D0D; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(26px,3.4vw,38px);line-height:1.15;font-weight:600}
+h3{font-size:18px;line-height:1.3;font-weight:600}
+p{margin:0}
+img{display:block;max-width:100%;height:auto}
+.tl{color:var(--accent-ink)}
+a{color:var(--accent-ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+.muted{color:var(--muted)}
+.prose{display:grid;gap:14px;color:var(--soft);max-width:64ch}
+.prose strong{color:var(--fg)}
+[hidden]{display:none!important}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:56px}
+.brand{display:inline-flex;align-items:center;gap:8px;font:700 19px var(--product);color:var(--fg);text-decoration:none;white-space:nowrap;letter-spacing:-.02em}
+.brand i{width:13px;height:13px;border-radius:3px;background:var(--accent)}
+.brand small{font:500 13px var(--body);color:var(--muted);margin-left:2px;letter-spacing:0}
+.toc{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc ol{display:flex;gap:2px;list-style:none;margin:0;padding:0;white-space:nowrap}
+.toc a{display:block;padding:7px 10px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:13px}
+.toc a:hover,.toc a.on{color:var(--fg);background:var(--panel)}
+.theme{flex:none;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);display:grid;place-items:center;cursor:pointer}
+
+/* section shell */
+section.s{padding-block:clamp(48px,7vw,88px);scroll-margin-top:64px}
+.panel{background:var(--panel);border:1px solid var(--line-2);border-radius:28px;padding:clamp(20px,4vw,40px)}
+.label{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 10px;border-radius:999px;background:var(--card);border:1px solid var(--line);font:600 13px var(--body);color:var(--fg)}
+.label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.head{display:grid;gap:14px;margin-bottom:28px;justify-items:start}
+
+/* hero */
+.hero{padding-block:clamp(28px,5vw,56px) clamp(40px,6vw,72px)}
+.hero-stage{position:relative;border-radius:32px;overflow:hidden;background:
+  radial-gradient(120% 90% at 50% 100%, color-mix(in srgb,var(--accent) 26%,transparent) 0%, transparent 60%),
+  linear-gradient(180deg,var(--panel),var(--bg));border:1px solid var(--line-2);
+  padding:clamp(28px,5vw,56px) clamp(16px,4vw,40px) 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.6fr) minmax(0,1fr);gap:clamp(12px,2.4vw,28px);align-items:end}
+.hero-stage > *{min-width:0}
+.hero-side{display:grid;gap:12px;padding-bottom:40px;font-size:13px;color:var(--muted)}
+.hero-side.r{text-align:right;justify-items:end}
+.hero-side b{display:block;font:600 14px var(--display);color:var(--fg)}
+.hero-shot{border-radius:16px 16px 0 0;border:8px solid var(--frame);border-bottom:0;overflow:hidden;background:var(--frame);box-shadow:0 -10px 60px rgba(0,0,0,.18)}
+.hero-shot .bbar{background:var(--frame);border-bottom:0;padding:0 6px 6px}
+.hero-shot .bbar span{color:#9aa0a6}
+.hero-shot img{width:100%;aspect-ratio:1440/860;object-fit:cover;object-position:top;border-radius:6px 6px 0 0}
+.hero-chip{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;color:var(--fg);font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,.06);text-align:left}
+.hero-chip i{width:10px;height:10px;border-radius:50%;background:var(--accent);flex:none}
+.title-row{display:flex;align-items:center;gap:18px;margin-top:12px;flex-wrap:wrap}
+.app-icon{width:76px;height:76px;border-radius:20px;background:#1C2024;display:grid;place-items:center;flex:none;box-shadow:0 10px 24px rgba(0,0,0,.15);position:relative}
+.app-icon span{font:700 24px var(--product);color:#fff;letter-spacing:-.02em}
+.app-icon i{position:absolute;top:14px;left:14px;width:12px;height:12px;border-radius:3px;background:#12A594}
+.kicker{font:500 14px var(--body);color:var(--muted)}
+.hero h1{font-size:clamp(34px,5.4vw,56px);line-height:1.05;font-weight:700}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:12px;font:600 14px var(--body);text-decoration:none;border:1px solid var(--line);color:var(--fg);background:var(--card)}
+.btn.pri{background:var(--key-bg);border-color:var(--key-bg);color:var(--on-key)}
+.btn:hover{filter:brightness(.97)}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
+.about > *{min-width:0}
+.big{font:500 clamp(20px,2.4vw,26px)/1.45 var(--display);color:var(--fg)}
+.big .hl{color:var(--accent-ink);font-weight:600}
+.note{font-size:13px;color:var(--muted);display:grid;gap:10px;border-left:2px solid var(--accent);padding-left:14px}
+.src{font-size:12px;color:var(--muted)}
+
+/* role */
+.role{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;align-items:center}
+.role > *{min-width:0}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0}
+.facts div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;min-width:0}
+.facts dt{font:600 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:4px 0 0;font-size:14px;line-height:1.4}
+
+/* problems / solutions */
+.ps-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-bottom:12px}
+.ps-head h3{font-size:20px}
+.ps-head .p{color:var(--rose)} .ps-head .s{color:var(--green)}
+.ps{display:grid;gap:10px}
+.ps-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.ps-row > div{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;font-size:14px;line-height:1.5;color:var(--soft)}
+.ps-row .ic{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:700 13px var(--body)}
+.ps-row .pb .ic{background:var(--rose-wash);color:var(--rose)}
+.ps-row .sl .ic{background:var(--green-wash);color:var(--green)}
+
+/* research */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:6px;align-content:start}
+.stat b{font:700 clamp(28px,3.4vw,38px)/1 var(--display);color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.stat p{font-size:14px;color:var(--soft)}
+.sub{font:600 15px var(--display);color:var(--accent-ink);margin:28px 0 12px}
+.kv{display:grid;gap:10px}
+.kv p{color:var(--soft);font-size:15px}
+.kv p b{color:var(--fg)}
+.asis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.asis div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;gap:8px}
+.asis h3{font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel)}
+.chips.t span{background:var(--accent-wash);border-color:transparent;color:var(--accent-ink);font-weight:600}
+
+/* persona */
+.persona{display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(16px,3vw,32px);align-items:start}
+.persona > *{min-width:0}
+.p-photo{border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.p-art{aspect-ratio:1/1;display:grid;place-items:center;background:
+  repeating-linear-gradient(90deg, color-mix(in srgb,var(--accent) 22%,transparent) 0 10px, transparent 10px 16px),
+  linear-gradient(180deg,var(--accent-wash),var(--card));position:relative}
+.p-art span{width:120px;height:120px;border-radius:50%;background:var(--card);border:4px solid var(--accent);display:grid;place-items:center;font:700 40px var(--display);color:var(--accent-ink)}
+.p-meta{padding:14px 16px;display:grid;gap:4px;font-size:14px}
+.p-meta b{font:600 18px var(--display);color:var(--accent-ink)}
+.p-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.p-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:grid;gap:8px;align-content:start}
+.p-card h3{font-size:16px}
+ul.dots{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14px;color:var(--soft)}
+ul.dots li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:8px}
+ul.dots li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px}
+.others{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.persona2{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.avatar{width:52px;height:52px;border-radius:50%;background:var(--accent-wash);color:var(--accent-ink);display:grid;place-items:center;font:700 20px var(--display)}
+.persona2 h3{font-size:16px}
+.persona2 p{color:var(--soft);font-size:14px;margin-top:4px}
+
+/* empathy map */
+.em{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;position:relative}
+.em .q,.em-foot .q{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:8px;align-content:start;min-height:170px}
+.em .q:nth-of-type(odd){padding-right:60px}.em .q:nth-of-type(even){padding-left:60px}
+.em .q h3,.em-foot .q h3{font-size:16px;color:var(--accent-ink)}
+.em-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:4px solid var(--bg);box-shadow:0 0 0 2px var(--accent);font:700 28px var(--display);color:var(--accent-ink)}
+.em-foot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-top:12px}
+.em-foot .q{min-height:0}
+
+/* user flow */
+.flow{overflow-x:auto;padding-bottom:6px}
+.flow-inner{min-width:900px;display:grid;gap:18px;justify-items:center;font-size:13px}
+.node{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 14px;text-align:center;white-space:nowrap}
+.node small{display:block;font-size:11px;color:var(--muted)}
+.node.key{background:var(--key-bg);border-color:var(--key-bg);color:var(--on-key);font-weight:600}
+.node.key small{color:inherit;opacity:.85}
+.node.alt{background:var(--accent-wash);border-color:transparent;color:var(--accent-ink);font-weight:600}
+.chain{display:flex;align-items:center;gap:0}
+.chain .node + .node{margin-left:24px;position:relative}
+.chain .node + .node::before{content:"";position:absolute;left:-24px;top:50%;width:24px;height:2px;background:var(--line)}
+.branches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;width:100%;position:relative;padding-top:18px}
+.branches::before{content:"";position:absolute;top:0;left:12.5%;right:12.5%;height:2px;background:var(--line)}
+.branch{display:grid;gap:10px;justify-items:center;position:relative}
+.branch::before{content:"";position:absolute;top:-18px;left:50%;width:2px;height:18px;background:var(--line)}
+.branch .node{white-space:normal;width:100%;max-width:210px}
+.branch .stack{display:grid;gap:6px;width:100%;justify-items:center}
+.branch .stack .node{background:var(--panel);font-size:12px}
+.flow-key{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-size:12px;color:var(--muted)}
+.flow-key span{display:inline-flex;align-items:center;gap:6px}
+.flow-key i{width:12px;height:12px;border-radius:4px;display:inline-block;border:1px solid var(--line);background:var(--card)}
+
+/* type */
+.type{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center}
+.type > *{min-width:0}
+.type .giant{font:700 clamp(64px,10vw,120px)/1 var(--product);letter-spacing:-.04em}
+.alpha{font:500 clamp(18px,2.2vw,24px)/1.5 var(--product);overflow-wrap:anywhere}
+.scale{display:grid;gap:8px;margin-top:20px}
+.scale div{display:grid;grid-template-columns:60px minmax(0,1fr);gap:12px;align-items:baseline;border-top:1px solid var(--line);padding-top:8px}
+.scale span{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.scale p{font-family:var(--product)}
+
+/* colours */
+.colors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.col{display:grid;gap:10px;align-content:start}
+.col h3{font-size:14px;color:var(--muted);font-family:var(--body);font-weight:600}
+.sw{height:64px;border-radius:16px;display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding:10px 14px;font:600 13px var(--body);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.shape{display:flex;gap:10px;align-items:center}
+.mk{display:inline-block;width:14px;height:14px;flex:none}
+.mk.d{background:#30A46C}.mk.r{background:#F76B15;clip-path:polygon(50% 0,100% 100%,0 100%)}.mk.b{background:#E5484D;border-radius:50%}.mk.p{border:2px solid #8B8D98}
+
+/* logo */
+.logo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.logo-tile{border-radius:22px;min-height:200px;display:grid;place-items:center;border:1px solid var(--line);overflow:hidden;padding:20px;margin:0}
+.logo-tile.lt{background:#FCFCFD}
+.logo-tile.dk{background:#1C2024}
+.logo-tile.tl2{background:#008573}
+.wm{display:inline-flex;align-items:center;gap:12px;font:700 54px/1 var(--product);letter-spacing:-.04em}
+.wm i{width:34px;height:34px;border-radius:8px}
+.logo-notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px;font-size:14px;color:var(--soft)}
+
+/* screen sets: browser frames */
+.screens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 18px;align-items:start}
+.screens.one{grid-template-columns:minmax(0,1fr)}
+.screens.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.scr{margin:0;display:grid;gap:10px;min-width:0}
+.browser:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
+.lb:focus{outline:none}
+.browser{border-radius:14px;border:1px solid var(--line);overflow:hidden;background:var(--card);box-shadow:0 14px 34px rgba(0,0,0,.10);cursor:zoom-in}
+.bbar{display:flex;align-items:center;gap:6px;height:28px;padding:0 12px;background:var(--panel);border-bottom:1px solid var(--line)}
+.bbar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.bbar span{margin-left:8px;font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser img{width:100%}
+.scr figcaption{font-size:13px;color:var(--muted);line-height:1.45;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.scr figcaption b{color:var(--fg);font-weight:600;margin-right:6px}
+.scr figcaption a{font-weight:600;white-space:nowrap}
+.callouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
+.callouts div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-size:14px;color:var(--soft)}
+.callouts b{display:block;color:var(--fg);margin-bottom:2px}
+
+/* iteration */
+.paper{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:clamp(20px,4vw,48px);align-items:start;margin-bottom:28px}
+.paper > *{min-width:0}
+.files{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.files div{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--soft);display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start}
+.files svg{color:var(--muted);margin-top:2px}
+.files b{display:block;color:var(--fg);font-weight:600}
+.log.p2d span:first-child em{color:var(--muted)} .log.p2d span:last-child em{color:var(--accent-ink)}
+.log{display:grid;gap:8px}
+.log div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1px;background:var(--line);border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.log span{background:var(--card);padding:12px 14px;font-size:14px;color:var(--soft)}
+.log span:last-child{color:var(--fg)}
+.log em{font-style:normal;display:block;font:600 11px var(--body);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.log span:first-child em{color:var(--rose)} .log span:last-child em{color:var(--green)}
+.next{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}
+.next li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;font-size:14px;color:var(--soft)}
+.next b{display:block;color:var(--fg);font-family:var(--display);font-weight:600;margin-bottom:4px}
+
+footer{padding-block:40px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+.lb{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.8);display:grid;place-items:center;padding:24px;cursor:zoom-out}
+.lb img{max-width:min(1440px,100%);max-height:100%;border-radius:10px}
+
+@media (max-width:900px){
+  .about,.role,.type,.persona{grid-template-columns:minmax(0,1fr)}
+  .screens,.screens.three{grid-template-columns:minmax(0,1fr)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .paper,.colors,.logo-grid,.logo-notes,.callouts,.next,.asis,.others{grid-template-columns:minmax(0,1fr)}
+  .hero-stage{grid-template-columns:minmax(0,1fr)}
+  .hero-side{display:none}
+  .persona .p-photo{max-width:260px}
+}
+@media (max-width:620px){
+  .em .q:nth-of-type(n){padding:18px}
+  .ps-head{display:none}
+  .files,.ps-row,.p-grid,.em,.em-foot,.log div,.facts,.stats{grid-template-columns:minmax(0,1fr)}
+  .em-center{display:none}
+}
+
+.dec{display:grid;gap:14px}
+.dec > div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:start}
+.dec .n{font:700 20px var(--head,var(--body));color:var(--accent-ink)}
+.dec h3{font-size:17px;margin-bottom:6px}
+.dec p{font-size:14.5px;color:var(--soft);margin:0 0 4px}
+.dec p b{color:var(--fg)}
+@media(max-width:640px){.dec > div{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Back to top"><i aria-hidden="true"></i>verse<small>DRS · UX case study</small></a>
+    <nav class="toc" aria-label="Sections"><ol>
+      <li><a href="#about">About</a></li>
+      <li><a href="#paper">Before DRS</a></li>
+      <li><a href="#role">My role</a></li>
+      <li><a href="#problems">Problems</a></li>
+      <li><a href="#decisions">Decisions</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#persona">Personas</a></li>
+      <li><a href="#flow">User flow</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#map">Plant map</a></li>
+      <li><a href="#store">Store</a></li>
+      <li><a href="#access">Roles &amp; access</a></li>
+      <li><a href="#typography">Design system</a></li>
+      <li><a href="#iteration">Iteration</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+    </ol></nav>
+    <button class="theme" id="themeBtn" type="button" aria-label="Switch to dark theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-stage">
+        <div class="hero-side">
+          <span class="hero-chip"><i></i>From spreadsheets and files to one platform</span>
+          <span class="hero-chip"><i></i>SAP stays the system of record</span>
+          <div><b>Platform</b>Enterprise web, desktop first</div>
+        </div>
+        <div class="hero-shot"><div class="bbar"><span>DRS · Work area allocation</span></div><img src="screens/09-map-alloc.png" width="1440" height="860" loading="lazy" decoding="async" alt="DRS work area allocation: a plant map of blocks made of tracker tables coloured by status, with 26 tables selected in block B-05" loading="eager"></div>
+        <div class="hero-side r">
+          <span class="hero-chip"><i></i>16 roles · 4 business functions</span>
+          <span class="hero-chip"><i></i>Light and dark themes</span>
+          <div><b>Role</b>Lead Product Designer</div>
+        </div>
+      </div>
+      <p class="kicker" style="margin-top:28px">Bringing solar construction work, from BoQ to service order to material, into one platform</p>
+      <div class="title-row">
+        <div class="app-icon" aria-hidden="true"><i></i><span>DRS</span></div>
+        <h1>Verse <span class="tl">- DRS</span></h1>
+      </div>
+      <div class="cta"><a class="btn pri" href="../drs-demo/" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8Z"/></svg>Open the interactive demo</a><a class="btn" href="#flow">See the user flow</a></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="s" id="about">
+    <div class="wrap">
+      <div class="head"><span class="label">About</span><h2>From scattered files to <span class="tl">one digital platform</span></h2></div>
+      <div class="about">
+        <div style="display:grid;gap:18px">
+          <p class="big">Building this solar plant ran on <span class="hl">spreadsheets and shared files</span>. Excel trackers, AutoCAD drawings, material request forms and signed documents. Only orders and stock lived in SAP. <span class="hl">DRS brings the whole process into one platform</span>: every BoQ, work allocation, material request and quality check is now routed to the exact table on the plant, in one platform.</p>
+          <div class="tags"><span>Files → one platform</span><span>One record for 4 functions</span><span>Routed to every tracker table</span><span>Connected to SAP</span></div>
+        </div>
+        <div class="note">
+          <p>A utility-scale plant is built <b>table by table</b>: plots split into blocks, blocks into rows of tracker tables. Contractors are paid against <b>service orders in SAP</b>, but the work between the order and the ground was tracked by hand.</p>
+          <p>"Routing" is the idea: an order line goes from SAP to a block on the drawing, then to a material request and the store, and comes back as a certificate for billing, without the hand-offs in between.</p>
+          <p class="src">Client, site and all data are anonymised. Verse and the plant location are placeholders; the work is real and covered by an NDA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE: PAPER -->
+  <section class="s" id="paper" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Before DRS</span><h2>A plant run on paper and files</h2></div>
+        <div class="paper">
+          <p class="big" style="font-size:clamp(18px,2vw,22px)">SAP held orders and stock, but the work in between, who builds where, what material goes out, what is finished, moved through <span class="tl">spreadsheets</span> and lived in <span class="tl">shared folders</span>.</p>
+          <div class="files">
+            <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span><b>Layout drawings</b>Blocks marked by hand on AutoCAD prints and files</span></div>
+            <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span><b>Request forms</b>Material requests and returns sent to stores as forms and Excel sheets</span></div>
+            <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span><b>Trackers</b>Store issues and site progress kept in separate Excel trackers</span></div>
+            <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span><b>Signed documents</b>Approvals, measurements and closures held as signed files in folders</span></div>
+          </div>
+        </div>
+        <p class="sub" style="margin-top:0">What that meant every day</p>
+        <div class="kv" style="margin-bottom:24px">
+          <p><b>No single view:</b> the real status of a block was spread across files held by different people and offices.</p>
+          <p><b>Slow and re-keyed:</b> every slip and register entry was typed into SAP again, by hand.</p>
+          <p><b>No trace:</b> a lost or unsigned page meant nobody could show where material went or why extra was issued.</p>
+        </div>
+        <p class="sub">From files to platform</p>
+        <div class="log p2d">
+          <div><span><em>Before</em>Blocks marked on a layout drawing</span><span><em>In DRS</em>Work area allocation on the live plant map</span></div>
+          <div><span><em>Before</em>Material request form sent to stores</span><span><em>In DRS</em>MIRS from the selected tables, checked against limits and stock</span></div>
+          <div><span><em>Before</em>Signatures chased across offices</span><span><em>In DRS</em>Role-based approvals with the reason attached</span></div>
+          <div><span><em>Before</em>Store trackers, later typed into SAP</span><span><em>In DRS</em>Reservations posted in SAP and synced back</span></div>
+          <div><span><em>Before</em>Measurement sheets and certificates in shared folders</span><span><em>In DRS</em>Measurement approval and a generated WMC</span></div>
+          <div><span><em>Before</em>Reconciling files by hand to close an order</span><span><em>In DRS</em>Live reconciliation and a four-check S.O. completion</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLE -->
+  <section class="s" id="role" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">My Role</span></div>
+        <div class="role">
+          <div style="display:grid;gap:16px">
+            <p class="big" style="font-size:clamp(18px,2vw,22px)">End-to-end: I led the product design, from mapping the process with each business function to the design system and an interactive prototype.</p>
+            <div class="tags">
+              <span>Process mapping</span><span>Stakeholder workshops</span><span>Information architecture</span><span>Role and access model</span><span>Personas</span><span>User flows</span><span>Wireframing</span><span>Visual design</span><span>Data-dense UI</span><span>Design system</span><span>Interactive prototype</span>
+            </div>
+          </div>
+          <dl class="facts">
+            <div><dt>Product</dt><dd>DRS web platform</dd></div>
+            <div><dt>Platform</dt><dd>Enterprise web, desktop first</dd></div>
+            <div><dt>Client</dt><dd>Verse, renewable energy (anonymised)</dd></div>
+            <!-- TODO(Ajit): add Timeline, Team size and Outcome once confirmed. Do not invent figures. -->
+            <div><dt>Status</dt><dd>Live since mid-2026; results measured over the next financial year</dd></div>
+            <div><dt>Worked with</dt><dd>Product, engineering and four business functions</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS / SOLUTIONS -->
+  <section class="s" id="problems" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">DRS Web Platform</span><h2>Problems and solutions</h2></div>
+        <div class="ps-head"><h3 class="p">Problems</h3><h3 class="s">Solutions</h3></div>
+        <div class="ps">
+          <div class="ps-row"><div class="pb"><span class="ic">!</span><p>Projects only existed once SAP created them after award, so Pre-Bid BoQs had no home.</p></div><div class="sl"><span class="ic">✓</span><p>Create a project at Pre-Bid with five fields; link it to SAP later with validated project codes and it moves to Awarded.</p></div></div>
+          <div class="ps-row"><div class="pb"><span class="ic">!</span><p>BoQs and drawings were kept as separate Excel and AutoCAD files, versioned by hand.</p></div><div class="sl"><span class="ic">✓</span><p>Versioned BoQs and drawings in DRS, with a mandatory change reason, rollback, and BoQ generated from drawing layers.</p></div></div>
+          <div class="ps-row"><div class="pb"><span class="ic">!</span><p>Nothing linked a service order activity to a physical area, so contractor responsibility was unclear.</p></div><div class="sl"><span class="ic">✓</span><p>Map-first allocation: drag across tracker tables on the plant drawing; quantities count against the S.O. as you select.</p></div></div>
+          <div class="ps-row"><div class="pb"><span class="ic">!</span><p>Material could be requested beyond planned limits, and shortages surfaced when a crew was waiting.</p></div><div class="sl"><span class="ic">✓</span><p>Requests capped at mapped minus issued; extra quantity needs a reason and Plot Head approval; stock shown beside every line.</p></div></div>
+          <div class="ps-row"><div class="pb"><span class="ic">!</span><p>Store issues were kept in trackers and re-typed into SAP, so nobody saw which block material went to.</p></div><div class="sl"><span class="ic">✓</span><p>Every reservation is tied to blocks and tables; issues and returns post in SAP and sync back, with a DRS vs SAP discrepancy flag.</p></div></div>
+          <div class="ps-row"><div class="pb"><span class="ic">!</span><p>A block could look finished while its material was never formally issued or its inspection never closed.</p></div><div class="sl"><span class="ic">✓</span><p>Completion only on tables with material issued, a six-gate block status, and measurement approval before a WMC.</p></div></div>
+          <div class="ps-row"><div class="pb"><span class="ic">!</span><p>Closing a service order meant reconciling stock by hand across spreadsheets.</p></div><div class="sl"><span class="ic">✓</span><p>An S.O. closes only when four conditions hold: nothing more to map, mapped = used, no open MR, used = issued.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DECISIONS -->
+  <section class="s" id="decisions" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Design decisions</span><h2>Five decisions that shaped DRS</h2><p class="prose">The product went through 9-10 versions. These are the calls that changed its direction, and why.</p></div>
+        <div class="dec">
+          <div><span class="n">01</span><div><h3>Start at project creation, not on a map of India</h3><p><b>First version:</b> a map of all project locations, then drill into one. The internal team liked it.</p><p><b>What changed:</b> in client discussions it did not fit how work begins, so the product opens on project creation, where the process starts.</p></div></div>
+          <div><span class="n">02</span><div><h3>Left navigation that opens a second panel, not a dropdown</h3><p><b>First version:</b> a left nav with nested dropdowns.</p><p><b>What changed:</b> client and internal management asked for the left nav to stay, but each item now opens its 6-7 sub-items in a panel beside it. No usability issues have been reported.</p></div></div>
+          <div><span class="n">03</span><div><h3>Keyboard-first, because users lived in Excel</h3><p><b>Insight:</b> the users worked in spreadsheets all day, so a mouse-driven product would slow them down.</p><p><b>Decision:</b> shortcuts and keyboard operation across the main tasks, so familiar speed carries over.</p></div></div>
+          <div><span class="n">04</span><div><h3>Assign work areas on the plant map</h3><p><b>Problem:</b> allocating work areas to plots, then assigning and returning material, was the hardest part of the process.</p><p><b>Decision:</b> select tables on the drawing, since engineers think in layouts rather than codes, and show allocation and material status on the same map.</p></div></div>
+          <div><span class="n">05</span><div><h3>Design the Excel structure with the client before building</h3><p><b>Problem:</b> the existing sheets were not maintained or formatted consistently.</p><p><b>Decision:</b> we proposed the sheet structure, the client filled it in, and then we built the import and screens around that data.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="s" id="research" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">User Research</span><h2>Mapping the process with every function</h2></div>
+        <p class="sub" style="margin-top:0">Process discovery</p>
+        <div class="stats">
+          <div class="stat"><b>4</b><p>Business functions mapped: PMAG, Engineering, Projects and Store, each signing off its own To-Be process.</p></div>
+          <div class="stat"><b>16</b><p>User roles, from Super Admin to Block Engineer and Store Manager, with a module access matrix.</p></div>
+          <div class="stat"><b>8</b><p>Project stages, Pre-Bid to O&amp;M, with DRS covering Pre-Bid to QC.</p></div>
+          <div class="stat"><b>14</b><p>Reports and KPIs requested, from material plan vs actual to contractor reconciliation.</p></div>
+        </div>
+        <p class="sub">As-Is landscape</p>
+        <div class="asis">
+          <div><h3>Before DRS</h3><div class="chips"><span>SAP: projects, PR, S.O., MRS, MIS</span><span>Excel trackers and SharePoint files</span><span>AutoCAD drawings</span><span>Signed documents</span><span>Calls</span></div><p class="muted" style="font-size:14px">Apart from SAP, each function kept its own spreadsheets and files.</p></div>
+          <div><h3>With DRS</h3><div class="chips t"><span>BoQ and DWG</span><span>PR creation</span><span>Work management</span><span>Material requisition</span><span>Traceability</span></div><p class="muted" style="font-size:14px">SAP remains the system of record; DRS adds the drawing, the routing and the checks.</p></div>
+        </div>
+        <p class="sub">Qualitative insights <span class="muted" style="font:500 13px var(--body)">(from process walkthroughs with each function)</span></p>
+        <div class="kv">
+          <p><b>Pain points:</b> re-typing request forms and trackers into SAP; no picture of which contractor works where; extra material requested without a recorded reason; reconciliation done by hand.</p>
+          <p><b>Desired features:</b> allocate on the drawing, see stock while requesting, approvals for exceptions, version history with reasons, one dashboard per project.</p>
+          <p><b>Concerns:</b> two copies of SAP data drifting apart, and losing control of who can change what.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAS -->
+  <section class="s" id="persona" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">User Personas</span></div>
+        <div class="persona">
+          <div class="p-photo">
+            <div class="p-art" aria-hidden="true"><span>SK</span></div>
+            <div class="p-meta"><b>Sandeep</b><span>Block Engineer · Projects</span><span>On site, between blocks and the site office</span><span class="muted">Primary persona</span></div>
+          </div>
+          <div class="p-grid">
+            <div class="p-card"><h3>Goals and behaviours</h3><ul class="dots"><li>Give each contractor a clear area of work</li><li>Get the right material to that area on time</li><li>Close work and service orders cleanly</li></ul></div>
+            <div class="p-card"><h3>Challenges and pain points</h3><ul class="dots"><li>S.O. activities aren't linked to the drawing</li><li>No easy check against planned quantities</li><li>Closing an order means reconciling paper files</li></ul></div>
+            <div class="p-card"><h3>Desires</h3><ul class="dots"><li>"Let me mark the blocks, not type their codes"</li><li>See stock before raising a request</li><li>Know when material is issued</li></ul></div>
+            <div class="p-card"><h3>Works with</h3><ul class="dots"><li>Service orders from SAP</li><li>The site layout drawing</li><li>Stores, the Plot Head and contractors</li></ul></div>
+          </div>
+        </div>
+        <div class="others">
+          <div class="persona2"><span class="avatar" aria-hidden="true">KV</span><div><h3>Kavita · Plot Head</h3><p>Keeps her plot on plan and controls exceptions. Approves extra-quantity requests with their reason beside them, and approves measurements before a WMC.</p></div></div>
+          <div class="persona2"><span class="avatar" aria-hidden="true">AR</span><div><h3>Arjun · Store Manager</h3><p>Issues against valid requisitions and accepts only valid returns. Sees the reason on every exception and the block each issue goes to.</p></div></div>
+          <div class="persona2"><span class="avatar" aria-hidden="true">RD</span><div><h3>Rohan · Design Engineer</h3><p>Owns BoQs and drawings. Imports from a similar project, versions every change with a reason, and generates quantities from drawing layers.</p></div></div>
+          <div class="persona2"><span class="avatar" aria-hidden="true">MN</span><div><h3>Meera · Project Control Manager</h3><p>Registers bids at Pre-Bid so engineering can start early, then links awarded projects to SAP without re-keying.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPATHY MAP -->
+  <section class="s" id="empathy" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Empathy Map</span><p class="muted" style="font-size:14px">Sandeep, Block Engineer. Built from the persona and the process walkthroughs.</p></div>
+        <div class="em">
+          <div class="q"><h3>Think and feel</h3><ul class="dots"><li>"Which blocks did I already give to this contractor?"</li><li>Pressure when a crew is idle waiting for material</li><li>Worried about over-requesting and audits</li></ul></div>
+          <div class="q"><h3>Say and do</h3><ul class="dots"><li>"Is the steel for B-04 issued yet?"</li><li>Marks blocks on a layout drawing</li><li>Sends request forms to stores and chases signatures</li></ul></div>
+          <div class="q"><h3>Hear</h3><ul class="dots"><li>Contractor: "Material isn't here, we can't start"</li><li>Stores: "Raise the request again, with the code"</li><li>Plot head: "Why do you need more than planned?"</li></ul></div>
+          <div class="q"><h3>See</h3><ul class="dots"><li>SAP screens full of codes</li><li>Spreadsheets, trackers and drawing copies that don't agree</li><li>Blocks that look done but aren't certified</li></ul></div>
+          <div class="em-center" aria-hidden="true">SK</div>
+        </div>
+        <div class="em-foot">
+          <div class="q"><h3>Pains</h3><ul class="dots"><li>Translating the drawing into codes every day</li><li>Not knowing stock before asking</li><li>Manual reconciliation of files at closure</li></ul></div>
+          <div class="q"><h3>Gains</h3><ul class="dots"><li>Allocate by dragging on the drawing</li><li>Requests checked as he types</li><li>An order that closes itself when material balances</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USER FLOW -->
+  <section class="s" id="flow" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">User Flow</span><p class="muted" style="font-size:14px">One service order from Pre-Bid to closure, across five roles.</p></div>
+        <div class="flow" tabindex="0" aria-label="User flow diagram, scroll sideways on small screens">
+          <div class="flow-inner">
+            <div class="chain"><span class="node">Project at Pre-Bid<small>Project Control Mgr</small></span><span class="node">Link with SAP<small>Project Control Mgr</small></span><span class="node">BoQ and drawings<small>Design Engineer</small></span><span class="node">PR to SAP<small>PR Initiator</small></span><span class="node">S.O. config<small>Plot Head</small></span><span class="node key">Work area allocation<small>Block Engineer</small></span></div>
+            <div class="branches">
+              <div class="branch"><span class="node alt">Material</span><div class="stack"><span class="node">Select tables · MIRS</span><span class="node">Extra qty → Plot Head approval</span><span class="node">Issue in SAP · Store</span><span class="node">Movement 971 synced</span></div></div>
+              <div class="branch"><span class="node alt">Completion</span><div class="stack"><span class="node">Complete issued tables</span><span class="node">Measurement review</span><span class="node">Approve · Plot Head</span><span class="node">Generate WMC</span></div></div>
+              <div class="branch"><span class="node alt">Returns</span><div class="stack"><span class="node">MRRS · reason</span><span class="node">Damaged → doc required</span><span class="node">Receive in SAP · 972</span><span class="node">Reconciliation</span></div></div>
+              <div class="branch"><span class="node alt">Close</span><div class="stack"><span class="node">Nothing more to map</span><span class="node">Mapped = used</span><span class="node">No open MR · used = issued</span><span class="node">S.O. completed</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="flow-key"><span><i style="background:var(--key-bg);border-color:var(--key-bg)"></i>Core screen</span><span><i style="background:var(--accent-wash);border-color:transparent"></i>Branch</span><span>Scroll sideways on small screens</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section class="s" id="dashboard" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Dashboard</span><h2>Are we on plan, and what's stuck?</h2></div>
+        <div class="screens one">
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Helios-240 · Dashboard</span></div><img src="screens/01-dashboard.png" width="1440" height="860" loading="lazy" decoding="async" alt="Project dashboard: schedule 32% elapsed versus 13% work completed, progress by package, block status mini-map, material required versus issued versus consumed" loading="lazy"></div><figcaption><span><b>Project at a glance</b>Every figure comes from live data and links to where it can be fixed.</span><a href="../drs-demo/#dashboard" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+        </div>
+        <div class="callouts">
+          <div><b>Schedule vs work</b>A tick on the work bar marks where the schedule is, so "behind" needs no explanation.</div>
+          <div><b>Blocks as a map</b>The same layout as the allocation screen, coloured by gate status.</div>
+          <div><b>Needs attention</b>Blocked blocks, pending approvals and stock shortfalls, one click from their fix.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINEERING -->
+  <section class="s" id="engineering" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Projects &amp; Engineering</span><h2>From Pre-Bid to a versioned BoQ</h2></div>
+        <div class="screens">
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Projects</span></div><img src="screens/02-projects.png" width="1440" height="860" loading="lazy" decoding="async" alt="Projects list with Awarded and Pre-Bid status" loading="lazy"></div><figcaption><span><b>Projects</b>Pre-Bid until linked with SAP</span></figcaption></figure>
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Link with SAP</span></div><img src="screens/04-link-sap.png" width="1440" height="860" loading="lazy" decoding="async" alt="Link with SAP card with three project code fields" loading="lazy"></div><figcaption><span><b>Link with SAP</b>Three codes, validated, then Awarded</span></figcaption></figure>
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Engineering · BoQ files</span></div><img src="screens/06-boq.png" width="1440" height="860" loading="lazy" decoding="async" alt="BoQ editor with lines, WBS and version history" loading="lazy"></div><figcaption><span><b>BoQ files</b>Edit, version with a reason, roll back</span><a href="../drs-demo/#boq" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Engineering · Drawings</span></div><img src="screens/05-drawings.png" width="1440" height="860" loading="lazy" decoding="async" alt="Drawing list with document numbers and revisions" loading="lazy"></div><figcaption><span><b>Drawings</b>Synced from SharePoint with revision history</span></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE ORDER -->
+  <section class="s" id="order" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Service Order</span><h2>Read from SAP, configured for the site</h2></div>
+        <div class="screens">
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · SO 7100004821 · S.O. Config</span></div><img src="screens/07-so-config.png" width="1440" height="860" loading="lazy" decoding="async" alt="S.O. configuration with work locations and activity lines" loading="lazy"></div><figcaption><span><b>S.O. Config</b>Plots, blocks and site activities per line</span><a href="../drs-demo/#config" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · SO 7100004821 · Work Management</span></div><img src="screens/08-work-list.png" width="1440" height="860" loading="lazy" decoding="async" alt="Work management line list with the S.O. completion checklist" loading="lazy"></div><figcaption><span><b>Work Management</b>Every line's mapped and complete share, and the closure check</span><a href="../drs-demo/#work" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANT MAP -->
+  <section class="s" id="map" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Plant Map</span><h2>One drawing, three jobs</h2><p class="prose">Engineers think in the drawing ("the two blocks past the inverter"), so the drawing became the input. The same map switches between allocation, completion and requisition, and colours each table by its state.</p></div>
+        <div class="screens one">
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Work area allocation</span></div><img src="screens/09-map-alloc.png" width="1440" height="860" loading="lazy" decoding="async" alt="Work area allocation with 26 tables selected in B-05" loading="lazy"></div><figcaption><span><b>Allocate</b>Drag across tables; over-allocation is refused with the exact excess</span><a href="../drs-demo/#allocation" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+        </div>
+        <div class="screens" style="margin-top:22px">
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Material requisition</span></div><img src="screens/11-map-mirs.png" width="1440" height="860" loading="lazy" decoding="async" alt="Material requisition for block B-04 with its materials table" loading="lazy"></div><figcaption><span><b>Request</b>What the selected tables need, with stock beside it</span><a href="../drs-demo/#requisition" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Work completion</span></div><img src="screens/10-map-done.png" width="1440" height="860" loading="lazy" decoding="async" alt="Work completion map coloured by material status" loading="lazy"></div><figcaption><span><b>Complete</b>Only tables with material fully issued</span><a href="../drs-demo/#completion" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+        </div>
+        <div class="callouts">
+          <div><b>Locked where it should be</b>Tables of other contractors and areas outside the order can't be selected; clicking says why.</div>
+          <div><b>Numbers as you select</b>Design element counts and the selected quantity update with the lasso.</div>
+          <div><b>One status language</b>Not requested, requested, issued, used, return raised and mixed, with a legend on every mode.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORE -->
+  <section class="s" id="store" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Store &amp; Traceability</span><h2>SAP stays the record; DRS shows where it went</h2></div>
+        <div class="screens one">
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Reservations &amp; Posting</span></div><img src="screens/12-reservations.png" width="1440" height="860" loading="lazy" decoding="async" alt="Reservations and posting: requisition list and reservation lines" loading="lazy"></div><figcaption><span><b>Reservations &amp; Posting</b>Reasons highlighted; issue capped by stock; posted in SAP and synced</span><a href="../drs-demo/#reservation" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+        </div>
+        <div class="screens" style="margin-top:22px">
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · MRRS</span></div><img src="screens/13-mrrs.png" width="1440" height="860" loading="lazy" decoding="async" alt="Material return request with returnable quantities and condition" loading="lazy"></div><figcaption><span><b>Returns</b>Returnable = issued − used − already reserved; damaged needs a document</span></figcaption></figure>
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Reconciliation</span></div><img src="screens/15-recon.png" width="1440" height="860" loading="lazy" decoding="async" alt="Material reconciliation grouped by material type with a DRS vs SAP discrepancy flag" loading="lazy"></div><figcaption><span><b>Reconciliation</b>Store and contractor balances, with a DRS vs SAP flag</span><a href="../drs-demo/#recon" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALITY -->
+  <section class="s" id="quality" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Quality &amp; Billing</span><h2>"Complete" means every gate passed</h2></div>
+        <div class="screens">
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Block status</span></div><img src="screens/16-status.png" width="1440" height="860" loading="lazy" decoding="async" alt="Block status matrix with six gates per block" loading="lazy"></div><figcaption><span><b>Six gates per block</b>A gate passed out of order shows as a violation</span><a href="../drs-demo/#status" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · WMC</span></div><img src="screens/14-wmc.png" width="1440" height="860" loading="lazy" decoding="async" alt="Work measurement with pending, ready and generated WMC" loading="lazy"></div><figcaption><span><b>Work measurement</b>Plot Head approves, then a WMC is generated for billing</span><a href="../drs-demo/#wmc" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLES & ACCESS -->
+  <section class="s" id="access" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Roles, Access and Themes</span><h2>The right screen for each of 16 roles</h2></div>
+        <div class="screens">
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Roles &amp; access</span></div><img src="screens/03-roles.png" width="1440" height="860" loading="lazy" decoding="async" alt="Roles and access page with the module matrix" loading="lazy"></div><figcaption><span><b>Roles &amp; access</b>Grouped by function, Admin / Write / Read per module</span><a href="../drs-demo/#roles" target="_blank" rel="noopener">Open in demo</a></figcaption></figure>
+          <figure class="scr"><div class="browser"><div class="bbar"><i></i><i></i><i></i><span>DRS · Dashboard · dark</span></div><img src="screens/18-dashboard-dark.png" width="1440" height="860" loading="lazy" decoding="async" alt="Dashboard in the dark theme" loading="lazy"></div><figcaption><span><b>Dark theme</b>Its own Radix steps, not an inversion</span></figcaption></figure>
+        </div>
+        <div class="callouts">
+          <div><b>Menus follow access</b>Engineering roles see Engineering; store roles see orders and reconciliation.</div>
+          <div><b>Never a dead end</b>A blocked action shows "Act as Plot Head" instead of a disabled button.</div>
+          <div><b>Contrast and shape</b>Text meets WCAG AA in both themes; status always has a shape.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="s" id="typography" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Typography</span></div>
+        <div class="type">
+          <div>
+            <p class="giant">Geist</p>
+            <p class="alpha" style="margin-top:16px">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>1234567890 · 18,000 Nos · ₹ 3.6 L</p>
+            <p class="alpha" style="margin-top:10px;font-family:'Geist Mono',ui-monospace,monospace;font-size:clamp(15px,1.8vw,18px)">7100004821 · B-04 · RSV-7100058014</p>
+          </div>
+          <div>
+            <p class="prose">Geist reads cleanly in dense tables and has tabular figures, so quantities line up. Codes such as S.O. numbers, blocks and reservations use the mono cut so they scan as identifiers. Quantities are right-aligned with units in their own column.</p>
+            <div class="scale">
+              <div><span>26 px</span><p style="font:650 26px/1.15 var(--product);letter-spacing:-.02em">Helios-<span class="tl">240</span></p></div>
+              <div><span>20 px</span><p style="font:600 20px/1.3 var(--product)">Work area <span class="tl">allocation</span></p></div>
+              <div><span>15 px</span><p style="font:600 15px/1.4 var(--product)">Material issue request slip</p></div>
+              <div><span>13 px</span><p style="font:500 13px/1.4 var(--product)">Raise reservation · Post issue in SAP</p></div>
+              <div><span>12 px</span><p style="font:400 12px/1.4 var(--product)">Pile boring, 300 mm dia · 1,503 Nos · <span class="tl">29% mapped</span></p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLOURS -->
+  <section class="s" id="colors" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Colours</span><p class="muted" style="font-size:14px">shadcn/ui components coloured with Radix scales. One accent; status colours keep their meaning and always carry a shape.</p></div>
+        <div class="colors">
+          <div class="col"><h3>Accent · Radix teal</h3>
+            <div class="sw" style="background:#008573;color:#FFFFFF"><span>Primary, light</span><span>#008573</span></div>
+            <div class="sw" style="background:#12A594;color:#0D1514"><span>Primary, dark</span><span>#12A594</span></div>
+            <div class="sw" style="background:#E0F8F3;color:#0D3D38"><span>Selection wash</span><span>#E0F8F3</span></div>
+          </div>
+          <div class="col"><h3>Neutrals · Radix slate</h3>
+            <div class="sw" style="background:#FCFCFD;color:#1C2024"><span>Background</span><span>#FCFCFD</span></div>
+            <div class="sw" style="background:#D9D9E0;color:#1C2024"><span>Border</span><span>#D9D9E0</span></div>
+            <div class="sw" style="background:#1C2024;color:#EDEEF0"><span>Text · dark bg</span><span>#1C2024</span></div>
+          </div>
+          <div class="col"><h3>Status, with shapes</h3>
+            <div class="sw" style="background:#E6F6EB;color:#218358"><span class="shape"><i class="mk d"></i>Done · used</span><span>#30A46C</span></div>
+            <div class="sw" style="background:#FFEFD6;color:#CC4E00"><span class="shape"><i class="mk r"></i>Late · at risk</span><span>#F76B15</span></div>
+            <div class="sw" style="background:#FEEBEC;color:#CE2C31"><span class="shape"><i class="mk b"></i>Blocked · violation</span><span>#E5484D</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGO -->
+  <section class="s" id="logo" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Logo</span></div>
+        <div class="logo-grid">
+          <figure class="logo-tile lt"><span class="wm" style="color:#1C2024"><i style="background:#12A594"></i>verse</span></figure>
+          <figure class="logo-tile dk"><span class="wm" style="color:#EDEEF0"><i style="background:#12A594"></i>verse</span></figure>
+          <figure class="logo-tile tl2"><span class="wm" style="color:#FFFFFF"><i style="background:#FFFFFF"></i>verse</span></figure>
+        </div>
+        <div class="logo-notes">
+          <p><b>A plain wordmark.</b> Lowercase Geist, so the product name never competes with the data in the header.</p>
+          <p><b>The square.</b> One tracker table seen from above: the unit everything in DRS is routed to.</p>
+          <p><b>Placeholder brand.</b> Built for this case study to replace the client's identity under NDA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ITERATION -->
+  <section class="s" id="iteration" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Iteration</span><h2>What review changed</h2></div>
+        <div class="log">
+          <div><span><em>Feedback</em>Allocation by whole block was too coarse; contractors work on rows of tables.</span><span><em>Change</em>The map models every tracker table, with 112, 84 and 56 sizes and edge or interior counts.</span></div>
+          <div><span><em>Feedback</em>The service order needs the same tabs as the site process.</span><span><em>Change</em>S.O. Config, Work Management, MIRS, MRRS, Reservations &amp; Posting, Material Movement.</span></div>
+          <div><span><em>Process review</em>Extra material and damaged returns had no recorded reason.</span><span><em>Change</em>Reasons, justification and a supporting document, routed to the Plot Head and shown to stores.</span></div>
+          <div><span><em>Process review</em>Orders were closed with stock still unreconciled.</span><span><em>Change</em>A four-condition S.O. completion checklist.</span></div>
+          <div><span><em>Design review</em>Nested cards made the overview hard to scan.</span><span><em>Change</em>Flat sections with dividers; one border level.</span></div>
+          <div><span><em>Design review</em>Breadcrumbs alone weren't enough to get back.</span><span><em>Change</em>A labelled back control on every page, the arrow styled as the only button.</span></div>
+        </div>
+        <h3 style="margin:32px 0 12px">What's next</h3>
+        <ol class="next">
+          <li><b>Field mode</b>A tablet layout for site walks, with large targets and offline drafts.</li>
+          <li><b>Measure the route</b>Time from S.O. to first allocation, and from requisition to issue.</li>
+          <li><b>RFI and NC in DRS</b>Inspection requests and non-conformance with site photos on the block.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <!-- REFLECTION -->
+  <section class="s" id="reflection" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <div class="head"><span class="label">Reflection</span><h2>What I'd do differently</h2></div>
+        <div class="dec">
+          <div><span class="n">01</span><div><h3>Get closer to the people who use it</h3><p>The client confirmed the business process, but not how each of the 5-6 roles works day to day. Next time I'd ask for short observation sessions with each role before the first design, instead of relying on the process document alone.</p></div></div>
+          <div><span class="n">02</span><div><h3>Agree how success is measured before launch</h3><p>DRS has been live for a few months and the real results come with the next financial year. I'd now agree the measures at the start: request-to-issue time, orders closed without manual reconciliation, and whether people stay in the product instead of going back to Excel.</p></div></div>
+          <div><span class="n">03</span><div><h3>Test the big directions earlier</h3><p>The entry flow and the navigation both changed after client discussions. A rough clickable prototype in front of the client in the first weeks would have found those changes sooner and cheaper.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><b style="color:var(--fg)">verse</b> · DRS UX case study · <a href="../drs-demo/" target="_blank" rel="noopener">Interactive demo</a></span>
+    <span>Product design by Ajit Shitole, Design Lead · client details anonymised under NDA</span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Enlarged screenshot" tabindex="-1" hidden><img alt=""></div>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  function current(){ var t=root.getAttribute('data-theme'); if(t) return t; return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+  function label(){ btn.setAttribute('aria-label', current()==='dark'?'Switch to light theme':'Switch to dark theme'); }
+  try{ var s=localStorage.getItem('drs-cs3-theme'); if(s) root.setAttribute('data-theme',s); }catch(e){}
+  label();
+  btn.addEventListener('click',function(){ var n=current()==='dark'?'light':'dark'; root.setAttribute('data-theme',n); try{localStorage.setItem('drs-cs3-theme',n);}catch(e){} label(); });
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  if('IntersectionObserver' in window){
+    var map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(a){a.classList.remove('on');}); var a=map[e.target.id]; if(a){a.classList.add('on'); a.scrollIntoView({block:'nearest',inline:'nearest'});} } }); },{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('section.s[id]').forEach(function(s){io.observe(s);});
+  }
+  var lb=document.getElementById('lb'), li=lb.querySelector('img'), last=null;
+  document.querySelectorAll('.browser').forEach(function(b){ b.setAttribute('tabindex','0'); b.setAttribute('role','button'); b.setAttribute('aria-label','Enlarge screenshot'); });
+  function openLb(b){ var im=b.querySelector('img'); li.src=im.src; li.alt=im.alt; lb.hidden=false; last=b; lb.focus(); }
+  function closeLb(){ lb.hidden=true; if(last) last.focus(); }
+  document.addEventListener('click',function(e){ var b=e.target.closest('.browser'); if(b){ openLb(b); return; } if(e.target.closest('#lb')) closeLb(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!lb.hidden){ closeLb(); return; } if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('browser')){ e.preventDefault(); openLb(e.target); } });
+})();
+</script>
+</body>
+</html>
